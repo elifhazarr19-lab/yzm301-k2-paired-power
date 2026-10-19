@@ -19,7 +19,7 @@ Bu proje G*Power'ın yerine geçmez ve G*Power adını taşımaz. G*Power'ın ma
 | Hata vektörleri (G*Power hata verdi → biz de hata) | 8/8 | aynı |
 | Kütüphane vektörleri (statsmodels) | 1000 vektör; farkların hepsi açıklandı | `oracle/library_vectors.csv`, `tests/UYUM_RAPORU.md` |
 | Toplam test | 1089 geçti | `pytest -q` |
-| [REA] bulguları | 16 adresli bulgu, GUI ile çapraz doğrulandı | `LEDGER.md`, `rea_notes/REA_BULGULAR.md` |
+| [REA] bulguları | 16 adresli REA bulgusu; 14'ü GUI vektörleriyle çapraz doğrulandı, her satırın doğrulama durumu `LEDGER.md` [REA] tablosunda | `LEDGER.md`, `rea_notes/REA_BULGULAR.md` |
 | Kanıtlanmış ajan hataları | 7 madde | `HALLUCINATIONS.md` |
 
 ## Kurulum

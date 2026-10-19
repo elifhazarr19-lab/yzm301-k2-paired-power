@@ -92,7 +92,7 @@ Sonuç: N ve güç |dz| ile aynıdır; yalnızca raporlanan `critical` ve `ncp` 
 ### 5.1 Post-hoc
 `N_int = floor(N + 0.5)` (en yakın tamsayı, .5 yukarı) ve **tüm hesap N_int ile** yapılır (df = N_int − 1, δ = dz·√N_int). [DOĞRULANDI V34: 10.5→11, V38: 10.2→10, R-15]
 
-### 5.2 A-priori N araması [DOĞRULANDI R-12; 21/21 a-priori vektör]
+### 5.2 A-priori N araması [DOĞRULANDI R-12; 23/23 a-priori vektör]
 G*Power N'yi **sürekli** bir değişken olarak ele alır (df ve δ kesirli N ile hesaplanır):
 1. `f(x) = güç(x) − power`, x gerçek sayı, x ≥ 2.
 2. `f(2) ≥ 0` ise sonuç **N = 2**. [DOĞRULANDI V18, V20]

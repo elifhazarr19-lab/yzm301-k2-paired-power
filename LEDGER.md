@@ -200,7 +200,7 @@ Hepsi "Input error" başlıklı bir pencere; çıktı alanları "?" kalıyor. Me
 ### A-03 [AJAN] N araması N=2'den başlar, ilk güç ≥ hedef değerinde durur
 - **İddia:** Minimum N = 2 (df=1). Durma koşulu "güç ≥ hedef".
 - **Belirsizlik:** G*Power ikili arama mı, doğrusal arama mı yapıyor? Eşitlik (güç tam hedefe eşit) nasıl ele alınıyor? Çok büyük dz'de minimum N 2 mi 3 mü? → V15–V17, REA.
-- **Durum:** KAPANDI — REA R-12: arama sürekli N üzerinde Brent kök bulucu + yukarı yuvarlama, alt sınır 2 (doğrusal arama değil). Sonuç "güç ≥ hedef olan en küçük N" ile aynı: 21/21 a-priori vektör.
+- **Durum:** KAPANDI — REA R-12: arama sürekli N üzerinde Brent kök bulucu + yukarı yuvarlama, alt sınır 2 (doğrusal arama değil). Sonuç "güç ≥ hedef olan en küçük N" ile aynı: 23/23 a-priori vektör.
 
 ### A-04 [AJAN] Negatif dz
 - **İddia:** İki kuyrukta |dz| kullanılır; tek kuyrukta negatif dz güç < α verebilir veya hata verilebilir.
@@ -224,15 +224,15 @@ Binary: GPowerNT.exe 3.1.9.7, SHA-256 C63E6A13…EFC812 (E-01; REA oturumu hash'
 | R-03 | Güç kontrolü: aynı sabitler | FUN_00488110; dize 0x5c60d8 | güç=1 hata | V26 ✔ |
 | R-04 | "power ≥ alpha": `COMISD` + `JC` → yalnızca güç < α hata; sıra: α → güç → güç≥α | FUN_004880e0; dize 0x5c6220 | güç=α geçerli | V18, V19, V20 ✔ |
 | R-05 | Post hoc (ve sensitivity/criterion/compromise) N kontrolü `3 ≤ N ≤ 2147483646`; a priori dalında yok | FUN_00488a10 (`N,3,0x7ffffffe`) çağrısı FUN_004dc2a0 içinde; dize 0x5c6524 | N=1,2 hata; N=3 geçerli | V32, V33, V39 ✔ |
-| R-06 | Yalnızca a priori'de `|dz| < 1e-05` hata (1e-05 kabul) | FUN_004db990; dizeler 0x5cb24c + 0x5cb510 | dz=0 hata; mesajdaki dil bilgisi hatası binary'de de var | V21 ✔ |
+| R-06 | Yalnızca a priori'de `\|dz\| < 1e-05` hata (1e-05 kabul) | FUN_004db990; dizeler 0x5cb24c + 0x5cb510 | dz=0 hata; mesajdaki dil bilgisi hatası binary'de de var | V21 ✔ |
 | R-07 | Tüm modlarda `−20 ≤ dz ≤ 20`; dışı "… is outside the admissible range" | FUN_004db990 → FUN_00487b70 (sabitler 0xc0340000 / 0x40340000) | dz=20.1 hata, dz=20 geçerli | V40, V43 ✔ |
-| R-08 | df = ARE[0]·N − 1 = N − 1 (ARE[0]=1.0) | FUN_004db950; tablo 0x6096a8 | df = N − 1 | 27/27 GUI ✔ |
-| R-09 | δ = √N · dz (sqrt, işaret korunur) | FUN_004dbdc0; çağrı 0x4d39e1 | δ = dz√N | 27/27 GUI ✔ |
+| R-08 | df = ARE[0]·N − 1 = N − 1 (ARE[0]=1.0) | FUN_004db950; tablo 0x6096a8 | df = N − 1 | 30/30 GUI ✔ |
+| R-09 | δ = √N · dz (sqrt, işaret korunur) | FUN_004dbdc0; çağrı 0x4d39e1 | δ = dz√N | 30/30 GUI ✔ |
 | R-10 | p = α/(1+[iki kuyruk]); dz≥0: t_c=t⁻¹(1−p); iki kuyrukta güç = 1 − (F(t_c;δ) − F(−t_c;δ)) | FUN_004d38b0 (0x4d398d–0x4d39ab) | Alt kuyruk ekleniyor | V03 vs V11 ✔ (iki kuyruk dalı yalnızca decompiler kanıtı) |
 | R-11 | Noncentral t CDF programın kendi seri implementasyonu (yakınsama 5.55e-17, ≤50000 terim) | FUN_004fa7e0 → FUN_004f9fa0; vtable 0x5c4a20 | Harici DLL yok | scipy ile 7 basamak uyumu ✔ |
-| R-12 | A priori arama: f(N)=güç(N)−hedef, N **sürekli**; aralık [2,100], üst sınır ×1.6 ile genişler; Brent (tol 1e-10, ≤300 iter); sonra `N = ceil(floor(x·1e10+0.5)/1e10)`, N<2 → 2 | FUN_00496aa0, FUN_004968d0, FUN_004962d0, FUN_004f9bb0, FUN_00496a20 | En küçük tamsayı N, güç ≥ hedef | Bu yöntemin taklidi 21/21 a priori GUI vektörüyle aynı; 400 rastgele girdide doğrusal aramayla aynı ✔ |
+| R-12 | A priori arama: f(N)=güç(N)−hedef, N **sürekli**; aralık [2,100], üst sınır ×1.6 ile genişler; Brent (tol 1e-10, ≤300 iter); sonra `N = ceil(floor(x·1e10+0.5)/1e10)`, N<2 → 2 | FUN_00496aa0, FUN_004968d0, FUN_004962d0, FUN_004f9bb0, FUN_00496a20 | En küçük tamsayı N, güç ≥ hedef | Bu yöntemin taklidi 23/23 a priori GUI vektörüyle aynı (V41 ve V43 dahil); 400 rastgele girdide doğrusal aramayla aynı ✔ |
 | R-15 | Post hoc N metinden okunurken `floor(x+0.5)` | FUN_0048b8d0 (FUN_0048ab70 üzerinden) | .5 yukarı yuvarlama, aralık kontrolü yuvarlanmış değerle | V34, V38, V42 ✔ |
-| R-16 | Negatif dz: abs yalnızca doğrulamada; dz<0 iken t_c = t⁻¹(p) < 0, δ < 0; nct CDF simetriyle çeviriyor | FUN_004d38b0 @ 0x4d3956; FUN_004dbdc0 | δ ve t_c negatif, N ve güç |dz| ile aynı | V22, V23 ✔ |
+| R-16 | Negatif dz: abs yalnızca doğrulamada; dz<0 iken t_c = t⁻¹(p) < 0, δ < 0; nct CDF simetriyle çeviriyor | FUN_004d38b0 @ 0x4d3956; FUN_004dbdc0 | δ ve t_c negatif, N ve güç \|dz\| ile aynı | V22, V23 ✔ |
 | R-17 | Matched pairs'e özgü kod: df, δ, etki doğrulama, Calculate, ad; gerisi paylaşılan | 8 vtable'da FUN_004d38b0 | — | — |
 | R-18 | A priori alt sınırı 2, post hoc alt sınırı 3 (tutarsızlık koddan geliyor) | FUN_0049a210, FUN_00496aa0, FUN_004dc2a0 | — | V18 + V32 ✔ |
 
