@@ -1,0 +1,31 @@
+# G*Power ikili dosyaları repoya girmez (ödev kuralı)
+GPower.exe
+GPowerNT.exe
+*.exe
+*.dll
+G*Power/
+GPower_3.1.9.7/
+
+# Ghidra / decompile çıktıları
+ghidra_projects/
+*.gpr
+*.rep/
+decompiled/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# Yerel çalışma notları ve yanlış kopyalar
+ADIMLAR.md
+rea_notes/src/
+
+# Windows
+desktop.ini
+Thumbs.db

@@ -1,0 +1,43 @@
+id,mode,tails,dz,alpha,power,n_input,gp_n_total,gp_actual_power,gp_critical_t,gp_df,gp_ncp,gp_error_message,screenshot,purpose,status
+V01,a-priori,2,0.5,0.05,0.80,,34,0.8077775,2.0345153,33,2.9154759,,oracle/screenshots/V01.png,temel orta etki,GUI-TOPLANDI
+V02,a-priori,2,0.5,0.05,0.95,,54,0.9502120,2.0057460,53,3.6742346,,oracle/screenshots/V02.png,temel yuksek guc,GUI-TOPLANDI
+V03,a-priori,1,0.5,0.05,0.80,,27,0.8118316,1.7056179,26,2.5980762,,oracle/screenshots/V03.png,tek kuyruk farki,GUI-TOPLANDI
+V04,a-priori,2,0.2,0.05,0.80,,199,0.8016910,1.9720175,198,2.8213472,,oracle/screenshots/V04.png,kucuk etki,GUI-TOPLANDI
+V05,a-priori,2,0.8,0.05,0.80,,15,0.8213105,2.1447867,14,3.0983867,,oracle/screenshots/V05.png,buyuk etki,GUI-TOPLANDI
+V06,a-priori,2,1.0,0.05,0.80,,10,0.8030969,2.2621572,9,3.1622777,,oracle/screenshots/V06.png,UCLA ornegi tekrari (beklenen 10),GUI-TOPLANDI
+V07,a-priori,2,1.0,0.05,0.85,,12,0.8828916,2.2009852,11,3.4641016,,oracle/screenshots/V07.png,UCLA (beklenen 12),GUI-TOPLANDI
+V08,a-priori,2,1.0,0.05,0.90,,13,0.9107085,2.1788128,12,3.6055513,,oracle/screenshots/V08.png,UCLA (beklenen 13),GUI-TOPLANDI
+V09,a-priori,2,1.118034,0.05,0.80,,9,0.8348670,2.3060041,8,3.3541020,,oracle/screenshots/V09.png,UCLA r=0.9 (beklenen 9),GUI-TOPLANDI
+V10,a-priori,2,0.5,0.01,0.80,,51,0.8093892,2.6777933,50,3.5707142,,oracle/screenshots/V10.png,kucuk alfa,GUI-TOPLANDI
+V11,a-priori,2,0.5,0.10,0.80,,27,0.8118463,1.7056179,26,2.5980762,,oracle/screenshots/V11.png,buyuk alfa,GUI-TOPLANDI
+V12,a-priori,1,0.3,0.01,0.99,,244,0.9901920,2.3417912,243,4.6861498,,oracle/screenshots/V12.png,asiri guc,GUI-TOPLANDI
+V13,a-priori,2,0.05,0.05,0.80,,3142,0.8000668,1.9607195,3141,2.8026773,,oracle/screenshots/V13.png,SINIR d cok kucuk,GUI-TOPLANDI
+V14,a-priori,2,0.01,0.05,0.80,,78491,0.8000024,1.9599942,78490,2.8016245,,oracle/screenshots/V14.png,SINIR d asiri kucuk (iterasyon/sure),GUI-TOPLANDI
+V15,a-priori,2,3.0,0.05,0.80,,4,0.9670006,3.1824463,3,6.0000000,,oracle/screenshots/V15.png,SINIR d cok buyuk (minimum N?),GUI-TOPLANDI
+V16,a-priori,2,5.0,0.05,0.95,,3,0.9754623,4.3026527,2,8.6602540,,oracle/screenshots/V16.png,SINIR d asiri buyuk,GUI-TOPLANDI
+V17,a-priori,1,5.0,0.05,0.80,,3,0.9992757,2.9199856,2,8.6602540,,oracle/screenshots/V17.png,SINIR tek kuyruk minimum N,GUI-TOPLANDI
+V18,a-priori,2,0.5,0.05,0.05,,2,0.0619486,12.7062047,1,0.7071068,,oracle/screenshots/V18.png,SINIR guc = alfa,GUI-TOPLANDI
+V19,a-priori,2,0.5,0.05,0.04,,,,,,,Input error: Power must be greater than or equal to alpha.,oracle/screenshots/V19.png,SINIR guc < alfa,GUI-TOPLANDI-HATA
+V20,a-priori,1,0.5,0.05,0.05,,2,0.1058229,6.3137515,1,0.7071068,,oracle/screenshots/V20.png,SINIR guc = alfa tek kuyruk,GUI-TOPLANDI
+V21,a-priori,2,0.0,0.05,0.80,,,,,,,"Input error: In an a priori analysis, the absolute value of the effect size be greater than 0.00001.",oracle/screenshots/V21.png,GECERSIZ? dz=0,GUI-TOPLANDI-HATA
+V22,a-priori,2,-0.5,0.05,0.80,,34,0.8077775,-2.0345153,33,-2.9154759,,oracle/screenshots/V22.png,negatif dz iki kuyruk,GUI-TOPLANDI
+V23,a-priori,1,-0.5,0.05,0.80,,27,0.8118316,-1.7056179,26,-2.5980762,,oracle/screenshots/V23.png,negatif dz tek kuyruk,GUI-TOPLANDI
+V24,a-priori,2,0.5,0,0.80,,,,,,,"Input error: Alpha is outside the admissible range (1e-07, 1).",oracle/screenshots/V24.png,GECERSIZ alfa=0,GUI-TOPLANDI-HATA
+V25,a-priori,2,0.5,1,0.80,,,,,,,"Input error: Alpha is outside the admissible range (1e-07, 1).",oracle/screenshots/V25.png,GECERSIZ alfa=1,GUI-TOPLANDI-HATA
+V26,a-priori,2,0.5,0.05,1,,,,,,,"Input error: Power is outside the admissible range (1e-07, 1).",oracle/screenshots/V26.png,GECERSIZ guc=1,GUI-TOPLANDI-HATA
+V27,post-hoc,2,0.5,0.05,,35,,0.8195358,2.0322445,34,2.9580399,,oracle/screenshots/V27.png,UCLA (beklenen guc 0.819536),GUI-TOPLANDI
+V28,post-hoc,1,0.5,0.05,,35,,0.8949909,1.6909243,34,2.9580399,,oracle/screenshots/V28.png,UCLA (beklenen 0.894991),GUI-TOPLANDI
+V29,post-hoc,2,0.5,0.05,,20,,0.5645044,2.0930241,19,2.2360680,,oracle/screenshots/V29.png,temel post hoc,GUI-TOPLANDI
+V30,post-hoc,2,0.2,0.01,,100,,,,,,,oracle/screenshots/V30.png,dusuk guc,IPTAL (kapsam daraltildi)
+V31,post-hoc,1,0.8,0.05,,10,,,,,,,oracle/screenshots/V31.png,tek kuyruk kucuk N,IPTAL (kapsam daraltildi)
+V32,post-hoc,2,0.5,0.05,,2,,,,,,"Input error: Total sample size is outside the admissible range (3, 2147483646)",oracle/screenshots/V32.png,SINIR en kucuk N (df=1),GUI-TOPLANDI-HATA
+V33,post-hoc,2,0.5,0.05,,1,,,,,,"Input error: Total sample size is outside the admissible range (3, 2147483646)",oracle/screenshots/V33.png,GECERSIZ? N=1 (df=0),GUI-TOPLANDI-HATA
+V34,post-hoc,2,0.5,0.05,,10.5,,0.3232370,2.2281389,10,1.6583124,"Hata yok; 10.5 girdisi N=11 gibi hesaplandi (Df=10, delta=0.5*sqrt(11))",oracle/screenshots/V34.png,kesirli N tepkisi,GUI-TOPLANDI
+V35,post-hoc,2,0.0,0.05,,30,,,,,,,oracle/screenshots/V35.png,dz=0 post hoc (guc = alfa?),IPTAL (kapsam daraltildi)
+V36,post-hoc,2,0.5,0.05,,5000,,,,,,,oracle/screenshots/V36.png,cok buyuk N,IPTAL (kapsam daraltildi)
+V38,post-hoc,2,0.5,0.05,,10.2,,0.2931756,2.2621572,9,1.5811388,Hata yok; 10.2 girdisi N=10 gibi hesaplandi,oracle/screenshots/V38.png,"kesirli N: ceil mi yuvarlama mi? (ceil->11, yuvarlama->10)",GUI-TOPLANDI
+V39,post-hoc,2,0.5,0.05,,3,,0.0841071,4.3026527,2,0.8660254,,oracle/screenshots/V39.png,post hoc alt sinir 3 dahil mi?,GUI-TOPLANDI
+V40,a-priori,2,20.1,0.05,0.80,,,,,,,"Input error: Effect size d is outside the admissible range (-20, 20).",oracle/screenshots/V40.png,REA R-07: dz>20 hata mi?,GUI-TOPLANDI-HATA
+V41,a-priori,2,0.5,0.0000001,0.80,,167,0.8048331,5.5716539,166,6.4614240,,oracle/screenshots/V41.png,REA R-02: alfa=1e-07 dahil mi?,GUI-TOPLANDI
+V42,post-hoc,2,0.5,0.05,,2.6,,0.0841071,4.3026527,2,0.8660254,"Hata yok; 2.6 girdisi N=3 gibi hesaplandi (once yuvarlama, sonra aralik kontrolu)",oracle/screenshots/V42.png,REA R-05/R-15: 2.6->3 kabul mu?,GUI-TOPLANDI
+V43,a-priori,2,20,0.05,0.80,,2,0.9735240,12.7062047,1,28.2842712,,oracle/screenshots/V43.png,REA R-07: dz=20 (uc) kabul mu?,GUI-TOPLANDI
