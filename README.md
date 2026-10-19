@@ -110,7 +110,9 @@ Not: claude.ai bulut sohbetlerinde REA kullanılamadı; yerel Claude Code gerekt
 
 ## Demo
 
-60 saniyelik CLI videosu: *(bağlantı eklenecek)*
+60 saniyelik CLI videosu (36 sn): https://drive.google.com/file/d/132n-g22Ssp__Az5gds-arHfjYCCOhaw2/view?usp=sharing
+
+Videoda: a-priori (N=34), post-hoc (güç 0.8195), geçersiz girdi (`error`) ve G*Power diferansiyel testi (38 passed).
 
 ## Atıf
 
