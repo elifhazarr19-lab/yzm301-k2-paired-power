@@ -58,8 +58,7 @@ motorun tam hassasiyetli değeri 7 ondalığa yuvarlanıp G*Power'ın 7 ondalık
 
 **Uyuşmazlık yok.**
 
-Not: SPEC §7 metni "27 hesaplı + 7 hatalı" diyor; CSV ise 30 hesaplı + 8 hatalı içeriyor. Fark, CSV'de SPEC §7
-tablosunda olmayan 8 hesaplı satır olması: V05, V06, V07, V08, V09, V11, V13, V17. Bunlar da test edildi.
+Not (düzeltildi): Yazım oturumu, SPEC'in bir cümlesinde eski sayının ("27 hesaplı + 7 hatalı") kaldığını bildirdi. Doğrusu 30 hesaplı + 8 hatalıdır ve SPEC v1.1'de düzeltildi (`HALLUCINATIONS.md` H-12). SPEC §7 tabloları bu 38 vektörün bir alt kümesidir; tabloda olmayan 8 hesaplı satır (V05, V06, V07, V08, V09, V11, V13, V17) da bu diferansiyel testte çalıştırıldı.
 
 ## 2. statsmodels kütüphane vektörleri
 

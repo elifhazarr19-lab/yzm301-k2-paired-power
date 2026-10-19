@@ -1,8 +1,10 @@
 # LEDGER.md — Kanıt Defteri (K2 · t-paired · Grup 8)
 
-> Durum: **Aşama 1, taslak v0** — 2026-10-19
-> Bu defterde henüz **hiçbir [REA] satırı yok**. Ghidra/REA ile binary incelemesi yapılmadı (ayrıntı: aşağıda "Erişim durumu").
-> G*Power arayüzünden henüz **hiçbir vektör toplanmadı**. `oracle/gpower_vectors.csv` içindeki satırlar PLANLANDI durumundadır.
+> **Durum: Son sürüm — 2026-10-19 (Oturum 1 tamamlandı).**
+> - G*Power 3.1.9.7 arayüzünden **42 vektör planlandı**: 30'u hesaplı (`GUI-TOPLANDI`), 8'i hata mesajlı (`GUI-TOPLANDI-HATA`) olarak ekran görüntüsüyle toplandı; 4'ü (V30, V31, V35, V36) kapsam daraltılınca iptal edildi. Bkz. `oracle/README.md`.
+> - REA 6.7.0 + Ghidra 12.1.4 ile `GPowerNT.exe` incelendi: **16 [REA]** satırı (aşağıda), 2 [AJAN] satırı.
+> - Bölümler kronolojik sırayla yazıldı: E-00 (oturum başındaki durum) → E-01/E-02 (binary ve araç kurulumu) → G-01…G-07 (GUI gözlemleri) → [DOK] → [AJAN] (ilk hipotezler) → [REA] (binary kanıtları).
+> - Erken bölümlerdeki "bekliyor / yeniden alınacak" notları, o anki durumu kayıt altına almak için bırakıldı; her birinin sonradan nasıl kapandığı yanında belirtildi.
 
 ## Etiketler (ödev belgesinden, değiştirilmeden)
 - **[DOK]** Kılavuzda ya da makalede yazıyor.
@@ -11,15 +13,18 @@
 
 Ek durum sütunu (ödevde yok, izlenebilirlik için eklendi):
 `AÇIK` = sınanmadı · `GUI-DOĞRULANDI` = G*Power ekranıyla eşleşti · `ÇÜRÜTÜLDÜ` = yanlış çıktı (HALLUCINATIONS.md'ye taşınır)
+`KAPANDI` = GUI ve/veya REA ile doğrulandı · `KAPSAM DIŞI` = bilinçli olarak uygulanmadı
 
-## Erişim durumu (E-00)
-| Araç | Bu oturumda durum | Nasıl kontrol edildi |
+## Erişim durumu (E-00) — oturum başlangıcı, 2026-10-19 14:21
+*Bu tablo, inceleme sohbetinin (claude.ai bulut ortamı) **başlangıçtaki** araç durumunu gösterir. Araçlar sonradan öğrencinin bilgisayarına kuruldu → E-02.*
+
+| Araç | Başlangıçta (bulut ortamı) | Nasıl kontrol edildi | Sonraki durum |
 |---|---|---|
-| G*Power 3.1.9.7 | Ajanın sunucusunda YOK; öğrencinin Windows bilgisayarında VAR (E-01) | `find / -iname "*gpower*"` boş; `which wine` boş |
-| Ghidra | YOK | `which ghidra analyzeHeadless` boş (Java mevcut) |
-| REA (rea-agents) | KURULU DEĞİL | Kurulum yapılmadı; doğru paketin doğrulanması öğrencinin makinesinde yapılmalı |
-| R / pwr | YOK | `which R` boş |
-| Python scipy 1.18.1 | VAR | Yalnızca bağımsız kütüphane kontrolü için kullanıldı |
+| G*Power 3.1.9.7 | YOK | `find / -iname "*gpower*"` boş; `which wine` boş | Öğrencinin Windows bilgisayarında kuruldu (E-01) |
+| Ghidra | YOK | `which ghidra analyzeHeadless` boş (Java mevcut) | 12.1.4, öğrencinin bilgisayarında (E-02) |
+| REA (rea-agents) | YOK | — | 6.7.0, Claude Code ile kullanıldı (E-02); bulut sohbetine bağlanamadı (H-10) |
+| R / pwr | YOK | `which R` boş | Kullanılmadı; kütüphane vektörleri statsmodels ile üretildi |
+| Python scipy 1.18.1 | VAR | — | Bağımsız çapraz kontrol (`tools/library_check.py`) |
 
 ## E-01 İncelenen binary'nin kimliği (2026-10-19)
 | Alan | Değer |
@@ -49,7 +54,7 @@ Ek durum sütunu (ödevde yok, izlenebilirlik için eklendi):
   5. Grafik üstünde "critical t = 2.03452" (5 basamak) yazıyor; çıktı tablosundaki 7 basamaklı değer esas alınmalı.
 - **Bağımsız karşılaştırma:** A-01 modeli (scipy) 5 çıktının 5'ini 7 basamağa kadar aynı verdi. N=33'te güç 0.7953658 < 0.80, N=34'te 0.8077775 ≥ 0.80 → "hedefi geçen en küçük N" ile tutarlı (A-03).
 - **Sınırlama:** Tek vektör; sınır durumları henüz sınanmadı.
-- **Durum:** GUI-DOĞRULANDI (A-01 ve A-03 bu vektörde destek aldı; REA kanıtı hâlâ gerekli)
+- **Durum:** GUI-DOĞRULANDI (A-01 ve A-03 bu vektörde destek aldı; kod düzeyinde REA ile de doğrulandı → R-08, R-09, R-12)
 
 ### G-02 Normal bölge vektörleri (V03–V12)
 - **Girdi/çıktı:** `oracle/gpower_vectors.csv` (V03–V12), ekran görüntüleri `oracle/screenshots/V03.png`…`V12.png`
@@ -59,8 +64,8 @@ Ek durum sütunu (ödevde yok, izlenebilirlik için eklendi):
   - V11: iki kuyruk, α=0.10, N=27 → aynı critical t 1.7056179, power **0.8118463**
   - Kritik değer aynı olduğu hâlde iki kuyrukta güç 0.0000147 daha büyük. Bu fark, noncentral t'nin −t_c altındaki olasılığına eşit (scipy: 1.47e-05). → A-01'deki "alt kuyruk eklenir mi?" belirsizliği GUI'de **evet** yönünde çözüldü.
 - **UCLA değerleri (D-05) G*Power'da yeniden üretildi:** V06=10, V07=12, V08=13, V09=9 → D-05 artık birincil kanıtla destekleniyor.
-- **Veri toplama hatası:** V02 ekran görüntüsünde çıktılar "?" — Calculate'e basılmadan alınmış. Yeniden alınacak. *(Girdi değişince G*Power çıktıları "?" ile siliyor; bu da gözlemdir: eski sonuç ekranda kalmıyor.)*
-- **Durum:** GUI-DOĞRULANDI (REA kanıtı hâlâ gerekli)
+- **Veri toplama hatası (kapandı):** V02'nin ilk ekran görüntüsünde çıktılar "?" idi — Calculate'e basılmadan alınmıştı. *(Gözlem: girdi değişince G*Power eski sonucu "?" ile siliyor.)* V02 aynı turda yeniden alındı ve geçerli: N=54, güç 0.9502120 → G-03. Repodaki `V02.png` yeni (geçerli) görüntüdür.
+- **Durum:** GUI-DOĞRULANDI (kod düzeyinde REA ile de doğrulandı → R-10)
 
 ### G-03 Sınır vektörleri (V02, V13–V16, V18, V22, V23)
 - **Kanıt:** `oracle/screenshots/` ilgili PNG'ler; değerler CSV'de.
@@ -179,31 +184,31 @@ Hepsi "Input error" başlıklı bir pencere; çıktı alanları "?" kalıyor. Me
 
 ---
 
-## [AJAN] satırları (hipotez — hepsi sınanmalı)
+## [AJAN] satırları (oturum başındaki hipotezler — her birinin kapanışı altında)
 
 ### A-01 [AJAN] Hesap modeli
 - **İddia:** t-paired, tek-örneklem t testinin farklar üzerinde uygulanmasıdır: N = çift sayısı, df = N − 1, ncp δ = dz·√N, kritik t = t⁻¹(1−α/kuyruk; df), güç noncentral t'den.
 - **Kanıt düzeyi:** Kanıt yok. Ancak D-05'teki 7 yayımlanmış sayının 7'si bu modelle (scipy) birebir tuttu → `tools/library_check.py`.
 - **Tekrar üretme:** `python3 -I tools/library_check.py`
 - **Belirsizlik:** İki kuyrukta alt kuyruk olasılığı (P(T' < −t_c)) toplanıyor mu? → GUI'de evet (G-02: V03 vs V11). REA ile kod düzeyinde gösterilecek.
-- **Durum:** AÇIK
+- **Durum:** KAPANDI — 30/30 GUI vektörü (G-01…G-07) ve REA (R-08 df, R-09 δ, R-10 alt kuyruk) ile doğrulandı. İki kuyrukta alt kuyruk ekleniyor.
 
 ### A-02 [AJAN] dz'yi "Determine" penceresi hesaplar, motor yalnızca dz alır
 - **İddia:** Ana hesap yalnızca dz'ye bakar; grup parametreleri (ortalamalar, SD'ler, r) yalnızca yardımcı penceredir.
-- **Durum:** AÇIK. t2-indep örneğinde yalnızca etki büyüklüğü (--d) var; CLI dz dışında grup parametresi almayacak (SPEC §3).
+- **Durum:** KAPSAM DIŞI (bilinçli karar). CLI yalnızca dz alır; ortalama/SD/korelasyondan dz hesaplayan yardımcı pencere uygulanmadı (SPEC §3). REA ile incelenmedi.
 
 ### A-03 [AJAN] N araması N=2'den başlar, ilk güç ≥ hedef değerinde durur
 - **İddia:** Minimum N = 2 (df=1). Durma koşulu "güç ≥ hedef".
 - **Belirsizlik:** G*Power ikili arama mı, doğrusal arama mı yapıyor? Eşitlik (güç tam hedefe eşit) nasıl ele alınıyor? Çok büyük dz'de minimum N 2 mi 3 mü? → V15–V17, REA.
-- **Durum:** AÇIK
+- **Durum:** KAPANDI — REA R-12: arama sürekli N üzerinde Brent kök bulucu + yukarı yuvarlama, alt sınır 2 (doğrusal arama değil). Sonuç "güç ≥ hedef olan en küçük N" ile aynı: 21/21 a-priori vektör.
 
 ### A-04 [AJAN] Negatif dz
 - **İddia:** İki kuyrukta |dz| kullanılır; tek kuyrukta negatif dz güç < α verebilir veya hata verilebilir.
-- **Durum:** AÇIK → V22, V23
+- **Durum:** ÇÜRÜTÜLDÜ (tek kuyruk kısmı) — V23: tek kuyrukta negatif dz ayna gibi davranıyor, güç α'nın altına düşmüyor. → HALLUCINATIONS H-08, REA R-16.
 
 ### A-05 [AJAN] Geçersiz girdi davranışı
 - **İddia:** α ∉ (0,1), güç ∉ (0,1), dz = 0, güç ≤ α durumlarında G*Power bir hata/uyarı gösterir.
-- **Durum:** AÇIK → V18–V21, V24–V26, V33. Hata metinleri birebir ekran görüntüsüyle kaydedilmeli.
+- **Durum:** KAPANDI — G-04, G-07 ve REA R-02…R-07: 8 hata vektörünün mesajları birebir kayıtlı.
 
 ---
 

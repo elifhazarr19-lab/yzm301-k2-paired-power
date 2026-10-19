@@ -196,7 +196,7 @@ Feature: Eşleştirilmiş örneklem t testi — örneklem büyüklüğü ve gü�
     Then çıktıda "n1" ve "n2" alanları bulunmamalı
     And df, n_total − 1'e eşit olmalı
 ```
-Tam vektör listesi (27 hesaplı + 7 hatalı): `oracle/gpower_vectors.csv`. Diferansiyel test hepsini kullanmalıdır.
+Tam vektör listesi (30 hesaplı + 8 hatalı; §7 tabloları bunların bir alt kümesidir): `oracle/gpower_vectors.csv`. Diferansiyel test hepsini kullanmalıdır.
 
 ## 8. Sınır durumları özeti
 | Durum | Beklenen | Kanıt |

@@ -62,7 +62,7 @@
 - **İddia:** SPEC §7 sonunda "Tam vektör listesi (27 hesaplı + 7 hatalı)" yazıyordu; aynı belgenin başında ve CSV'de 30 hesaplı + 8 hatalı var.
 - **Nasıl fark edildi:** Yazım oturumu (Oturum 2) CSV ile SPEC'i karşılaştırırken bildirdi.
 - **Yakalayan test:** Diferansiyel testin satır sayımı (38 = 30 + 8).
-- **Düzeltme:** SPEC metni düzeltildi. Etkisi yok (hesap kuralı değil, yalnızca sayım).
+- **Düzeltme:** SPEC §7 sonundaki cümle "30 hesaplı + 8 hatalı" olarak düzeltildi; `tests/UYUM_RAPORU.md`'deki not da "düzeltildi" olarak güncellendi. Etkisi yok (hesap kuralı değil, yalnızca sayım).
 - **Durum:** DOĞRULANDI
 
 ### H-11 "scipy nct NaN verirse güç ≈ 1'dir" varsayımı (SPEC v0.9'a yazılmıştı)
