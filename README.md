@@ -2,7 +2,7 @@
 
 > **Yapılan katmanlar:** ✅ Temel katman (CLI) · ❌ MCP sunucusu (yapılmadı) · ❌ AI ajanı (yapılmadı)
 
-**Hazırlayan:** Elif Hazar — bireysel çalışma (gruplar listesinde 8. grup; hoca bireysel çalışmayı onayladı)
+**Hazırlayan:** Elif Hazar — bireysel çalışma 
 **Test ailesi:** K2 — t testi, eşleştirilmiş ortalamalar (önce/sonra tansiyon). G*Power karşılığı: *t tests → Means: Difference between two dependent means (matched pairs)*.
 
 Bu proje G*Power'ın yerine geçmez ve G*Power adını taşımaz. G*Power'ın matched-pairs t testi davranışı tersine mühendislik ve arayüz gözlemiyle belgelendi, ardından temiz oda yöntemiyle yeniden yazıldı. CLI komutunun adı (`gpower-clone`) ödev sözleşmesinden gelir.
