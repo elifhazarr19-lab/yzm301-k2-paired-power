@@ -33,7 +33,7 @@ pytest
 ## Yapı
 
 - `src/pairedpower/engine.py` — saf hesap motoru (G/Ç yok). Doğrulama, N araması, güç.
-  MCP sunucusu da bu modülü doğrudan kullanacak.
+  CLI'dan bağımsız çağrılabilir; ileride bir MCP sunucusu eklenirse aynı modülü kullanabilir (MCP bu teslimde yok).
 - `src/pairedpower/cli.py` — argüman okuma, eş ad çözümü, JSON çıktısı.
 - `tests/test_spec.py` — SPEC §7 senaryoları.
 

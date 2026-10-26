@@ -6,6 +6,7 @@
 - **Analiz tarihi:** 2026-10-19
 - **Yöntem:** Yalnızca statik inceleme. Binary çalıştırılmadı, değiştirilmedi. Ghidra PDB yüklemedi; fonksiyon adları `FUN_xxxxxxxx` biçiminde. Sınıf adları Ghidra'nın RTTI'den çıkardığı vtable etiketleri.
 - **Adres notu:** Tüm adresler sanal adres (image base 0x400000).
+- **Sonradan yapılan GUI doğrulaması (aynı gün):** Bu rapordaki açık noktalar G*Power arayüzünde ayrıca sınandı (LEDGER G-07): R-07 (V40 dz=20.1 hata, V43 dz=20 geçerli), R-02 (V41 α=1e-07 geçerli), R-15 (V42 post hoc N=2.6 → N=3). Aşağıdaki bulgu metinleri REA oturumunun ilk çıktısıdır; bu doğrulamalar ilgili maddelere "Sonradan" notu olarak eklendi.
 
 ---
 
@@ -87,9 +88,10 @@ Not: Hata mesajlarındaki sayılar (`1e-07`, `1`, `3`, `2147483646`) dizenin iç
 - Konum: FUN_004db990 @ 0x4db990 → FUN_00487b70 @ 0x487b70 ; dize " is outside the admissible range (" @ 0x5c61d8
 - Gözlem: `FUN_00487b70(100,0,0,0,1,0xf, dz, 0,0xc0340000, 0,0x40340000)` çağrılıyor. 0xc034…=−20.0, 0x4034…=20.0. İlk argümanlar 1 karakterlik bir std::string ('d' = 100) oluşturuyor. FUN_00487b70: `if (x < lo || hi < x)` → hata.
 - Sonuç: Her analiz tipinde −20 ≤ dz ≤ 20 olmalı (uçlar dahil). Aksi halde "… is outside the admissible range (-20, 20)" benzeri bir mesaj çıkıyor.
-- Destekleyen GUI gözlemi: — (GUI'de test edilmedi)
+- Destekleyen GUI gözlemi: — (rapor yazılırken GUI'de test edilmemişti)
 - Güven: orta (mesajın tam metni ve "d" önekinin nasıl birleştiği FUN_00485390 içinde, izlenmedi)
 - Açık kalan: GUI'de dz=20.1 ile doğrulanmalı.
+- Sonradan: V40 (dz=20.1) `Effect size d is outside the admissible range (-20, 20).` hatası verdi, V43 (dz=20) hesaplandı. Uçlar dahil ve mesaj öneki "d" — bulgu doğrulandı (LEDGER G-07).
 
 ### R-08 [REA] df = N − 1
 - Görev: R3
@@ -162,6 +164,7 @@ Not: Hata mesajlarındaki sayılar (`1e-07`, `1`, `3`, `2147483646`) dizenin iç
 - Destekleyen GUI gözlemi: G5 (10.5→11, 10.2→10)
 - Güven: orta
 - Açık kalan: Normal yazılan sayının hangi dala girdiği ve önbellekteki int'in (+0x4c) nerede hesaplandığı bulunamadı. Bu yüzden G5 davranışının kesin olarak bu satırdan geldiği kanıtlanmadı.
+- Sonradan: V42 (post hoc, N=2.6) hesaplandı ve Df=2 verdi; yani N önce 3'e yuvarlanıyor, aralık kontrolü yuvarlanmış değerle yapılıyor. V34 (10.5→11) ve V38 (10.2→10) ile birlikte `floor(x+0.5)` kuralıyla tutarlı (LEDGER G-06, G-07).
 
 ### R-16 [REA] Negatif dz: abs yalnızca doğrulamada; δ ve t_c işaretini koruyor
 - Görev: R6
@@ -193,7 +196,7 @@ Not: Hata mesajlarındaki sayılar (`1e-07`, `1`, `3`, `2147483646`) dizenin iç
 ---
 
 ## Bulunamayanlar
-1. `1e-07`, `2147483646`, `0.00001` dışındaki sayılar düz dize olarak yok. Mesajlara çalışma anında `ostream <<` ile ekleniyorlar (R-02, R-05).
+1. Mesajlardaki `1e-07`, `1`, `3` ve `2147483646` sayıları düz dize olarak yok; çalışma anında `ostream <<` ile ekleniyorlar (R-02, R-05). Yalnızca `0.00001` mesaj dizesinin içinde yazılı (0x5cb510).
 2. `Noncentrality parameter $\delta$` (0x5c567c) dizesine koddan doğrudan xref bulunamadı (dolaylı tablo erişimi olabilir).
 3. `Effect size dz` (0x5c5ba0) yalnızca 0x609540'taki veri tablosundan referanslanıyor; tabloyu okuyan kod izlenmedi.
 4. Post hoc'ta normal yazılan kesirli N'nin hangi kod yolunda tamsayıya çevrildiği (R-15'teki önbellek int'i, +0x4c) bulunamadı.
@@ -204,5 +207,5 @@ Not: Hata mesajlarındaki sayılar (`1e-07`, `1`, `3`, `2147483646`) dizenin iç
 ## GUI gözlemiyle çelişen bulgular
 Doğrudan çelişki bulunamadı. G1–G7'nin tamamı kodla tutarlı. İnce farklar:
 - **Mesajdaki aralık gösterimi yanıltıcı:** `(1e-07, 1)` ve `(3, 2147483646)` açık aralık gibi görünse de kodda tüm uçlar **dahil** (≤). α=1e-07 ve N=3 kabul ediliyor.
-- **"1" aslında 0.9999999:** Alfa/güç üst sınırı kodda 0.9999999. Mesajdaki "1", `setprecision(6)` yuvarlamasından geliyor. Örneğin güç = 0.99999995 reddedilmeli; GUI'de test edilmedi.
-- **dz için [−20, 20] sınırı** (R-07) GUI gözlem listesinde yok. Doğrulanması önerilir.
+- **"1" aslında 0.9999999:** Alfa/güç üst sınırı kodda 0.9999999. Mesajdaki "1", `setprecision(6)` yuvarlamasından geliyor. Örneğin güç = 0.99999995 reddedilmeli; bu değer GUI'de test edilmedi.
+- **dz için [−20, 20] sınırı** (R-07) ilk GUI gözlem listesinde yoktu. Sonradan V40 ve V43 ile doğrulandı (LEDGER G-07).

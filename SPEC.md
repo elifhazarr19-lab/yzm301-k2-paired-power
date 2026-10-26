@@ -72,7 +72,7 @@ Notlar:
 - Kontrollerin hata mesajının **tam metni** puanlanmıyor varsayılır; `error` alanının varlığı ve çıkış kodu esastır. [KARAR]
 - Kontrol 2–3 ile 4–5'in kendi aralarındaki sırası G*Power'da ölçülmedi; birden çok hatalı girdide hangi mesajın çıktığı garanti edilmez. [KARAR]
 
-## 5. Hesap modeli [DOĞRULANDI — 27/27 GUI vektörü 7 basamağa kadar; R-08…R-12, R-16]
+## 5. Hesap modeli [DOĞRULANDI — 30/30 GUI vektörü 7 basamağa kadar; R-08…R-12, R-16]
 Girdi: `dz`, `alpha`, `tails ∈ {1,2}`, N (gerçek sayı olabilir; aşağıya bakın).
 
 ```
@@ -104,7 +104,7 @@ G*Power N'yi **sürekli** bir değişken olarak ele alır (df ve δ kesirli N il
 Eşdeğerlik notu: güç N'de monoton arttığı için bu yöntem, "güç(N) ≥ power olan en küçük tamsayı N ≥ 2" ile 400 rastgele girdide aynı sonucu verdi. Ancak çok büyük N'lerde (V14: N = 78491) tek tek artırma yavaştır; kök bulma yöntemini kullanın.
 
 ### 5.3 Sayısal gereksinimler
-- Merkezi t ters CDF ve noncentral t CDF, 7 ondalığa kadar doğru olmalı. scipy (`scipy.stats.t`, `scipy.stats.nct`) yeterlidir. [DOĞRULANDI 27/27]
+- Merkezi t ters CDF ve noncentral t CDF, 7 ondalığa kadar doğru olmalı. scipy (`scipy.stats.t`, `scipy.stats.nct`) yeterlidir. [DOĞRULANDI 30/30]
 - **Dikkat (sayısal tuzak):** scipy 1.18'de iki kuyruklu gücün **alt kuyruk** terimi `nct.cdf(−t_c; df, δ)` büyük δ'da `NaN` döndürebilir (ör. dz=1, N=100; dz=20, N=2). Bu terimin gerçek değeri ≈0'dır. **Alt kuyruk NaN ise 0 kullanın.** Üst kuyruğu `nct.sf(t_c)` ile hesaplayın (`1 − cdf` yerine). Gücü NaN için 1 kabul etmek YANLIŞTIR: V41'de N=167 yerine 95 verir. [DOĞRULANDI V41, V43; HALLUCINATIONS H-11]
 - Doğrulama için: V41 (α=1e-07, dz=0.5, iki kuyruk, power 0.80) → N=167, güç 0.8048331; V43 (dz=20) → N=2, güç 0.9735240.
 - Kesirli df ile t ve noncentral t hesaplanabilmeli (5.2 için).

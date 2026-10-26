@@ -19,7 +19,7 @@ Ek durum sütunu (ödevde yok, izlenebilirlik için eklendi):
 *Bu tablo, inceleme sohbetinin (claude.ai bulut ortamı) **başlangıçtaki** araç durumunu gösterir. Araçlar sonradan öğrencinin bilgisayarına kuruldu → E-02.*
 
 | Araç | Başlangıçta (bulut ortamı) | Nasıl kontrol edildi | Sonraki durum |
-|---|---|---|
+|---|---|---|---|
 | G*Power 3.1.9.7 | YOK | `find / -iname "*gpower*"` boş; `which wine` boş | Öğrencinin Windows bilgisayarında kuruldu (E-01) |
 | Ghidra | YOK | `which ghidra analyzeHeadless` boş (Java mevcut) | 12.1.4, öğrencinin bilgisayarında (E-02) |
 | REA (rea-agents) | YOK | — | 6.7.0, Claude Code ile kullanıldı (E-02); bulut sohbetine bağlanamadı (H-10) |
@@ -119,7 +119,7 @@ Hepsi "Input error" başlıklı bir pencere; çıktı alanları "?" kalıyor. Me
 |---|---|---|
 | Node.js | v24.22.0 | `oracle/screenshots/S01a_kurulum.png` |
 | JDK | Temurin 21.0.12.1 (java + javac) | aynı |
-| Ghidra | 12.1.4 PUBLIC, `C:\tools\ghidra_12.1.4_PUBLIC`; release sayfasında yayımlanan zip SHA-256: `ddac49f9…d2d4db` | `S01b_ghidra_hash.png` (alındıysa) |
+| Ghidra | 12.1.4 PUBLIC, `C:\tools\ghidra_12.1.4_PUBLIC`; indirilen `ghidra_12.1.4_PUBLIC_20260921.zip` SHA-256: `DDAC49F903DA9D5BAC833E5CC79395098B9C33CFD3279BE5F31BD00387D2D4DB` (release sayfasında yayımlanan değerle aynı) | Kurulum yolu ve sürüm: `rea_notes/doctor_ghidra.json` (`ghidra_12.1.4_PUBLIC`); REA oturumu da sürümü 12.1.4 olarak bildirdi (`rea_notes/REA_BULGULAR.md`). Zip hash'i `Get-FileHash` ile yeniden hesaplandı (2026-10-26). |
 | REA (rea-agents) | CLI 6.7.0, skill 42, `npx rea-agents@latest` (resmi npm paketi) | `rea_notes/doctor_claude.json`, `rea_notes/doctor_ghidra.json` |
 | REA → Ghidra sağlayıcısı | configured=true, available=true, version 12.1.4, analyzeHeadless ve native decompiler bulundu | `doctor_ghidra.json` → providerInspections[0] |
 | REA → Claude masaüstü kaydı | registration state = aligned, healthy = true | `doctor_claude.json` |

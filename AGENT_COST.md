@@ -1,4 +1,4 @@
-# AGENT_COST.md — Ajan maliyet ve süreç günlüğü (taslak)
+# AGENT_COST.md — Ajan maliyet ve süreç günlüğü
 
 > Ölçülmüş değerler ekran görüntüsüyle desteklenir. Ölçülemeyenler açıkça "ölçülmedi" diye yazılır.
 
