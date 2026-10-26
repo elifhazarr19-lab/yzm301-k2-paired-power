@@ -7,13 +7,14 @@ name = "pairedpower"
 version = "0.1.0"
 description = "Paired-samples t-test power and sample size calculator"
 requires-python = ">=3.10"
-dependencies = ["scipy>=1.11"]
+dependencies = ["scipy>=1.11", "mcp>=1.2,<2"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "statsmodels>=0.14"]
 
 [project.scripts]
 gpower-clone = "pairedpower.cli:main"
+pairedpower-mcp = "pairedpower.mcp_server:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

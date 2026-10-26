@@ -1,0 +1,403 @@
+{
+  "id": "Q08",
+  "question": "Yeni bir antihipertansif ilacı plaseboyla karşılaştıracağız. Hastalar rastgele iki ayrı gruba ayrılacak: bir grup ilaç, diğer grup plasebo alacak. Gruplar arasındaki sistolik tansiyon farkı için etki büyüklüğü d = 0,5, alfa 0,05, %80 güç. Her grupta kaç hasta olmalı?",
+  "model": "claude-opus-5-5",
+  "started_utc": "2026-10-26T12:13:16.249771+00:00",
+  "wall_seconds_measured": 19.655,
+  "exit_code": 0,
+  "stderr": "",
+  "tool_calls": [],
+  "final_answer": "Bu araç yalnızca eşleştirilmiş örneklem t testini hesaplıyor, bu yüzden sorunuza sayı veremiyorum.\n\n**Neden uymuyor:** Hastalar rastgele iki ayrı gruba ayrılıyor (ilaç ve plasebo). Her grupta farklı hastalar var ve iki grubun ortalaması karşılaştırılıyor. Elimdeki araç ise aynı hastada iki ölçümün farkına (örneğin tedavi öncesi ve sonrası) göre hesap yapıyor. Bu iki desenin örneklem büyüklüğü hesabı farklı. Aracı sizin çalışmanıza uygularsam yanlış ve eksik bir N çıkar.\n\n**Uygun test:** Bu tasarım için **bağımsız iki örneklem t testi** kullanılmalı. Hesabı G*Power'da \"t tests → Means: Difference between two independent means (two groups)\" ile yapabilirsiniz. Girdiler: d = 0,5, α = 0,05, güç = 0,80, iki yönlü, gruplar arası oran = 1.\n\nNot: Planınızı değiştirip aynı hastalarda tedavi öncesi ve sonrası tansiyonu karşılaştırırsanız ya da çapraz geçişli (crossover) bir tasarıma geçerseniz, farkların ortalaması ve farkların standart sapmasıyla (dz) hesabı bu araçla yapabilirim.\n\n```json\n{\"etiket\": \"t2-indep\", \"guven\": \"yuksek\", \"arac_cagrildi\": false}\n```",
+  "final_block": {
+    "etiket": "t2-indep",
+    "guven": "yuksek",
+    "arac_cagrildi": false
+  },
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1109,
+    "cache_read_input_tokens": 2663,
+    "output_tokens": 581,
+    "output_tokens_details": {
+      "thinking_tokens": 21
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1109,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 581,
+        "cache_read_input_tokens": 2663,
+        "cache_creation_input_tokens": 1109,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1109
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "model_usage": {
+    "claude-opus-5-5": {
+      "inputTokens": 2,
+      "outputTokens": 581,
+      "cacheReadInputTokens": 2663,
+      "cacheCreationInputTokens": 1109,
+      "webSearchRequests": 0,
+      "costUSD": 0.0210326,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 21,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.0210326,
+  "duration_ms": 12027,
+  "duration_api_ms": 6761,
+  "num_turns": 1,
+  "command": [
+    "-p",
+    "<soru>",
+    "--model",
+    "claude-opus-5-5",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--system-prompt-file",
+    "C:\\Users\\ELİF HAZAAR\\Downloads\\k2-tpaired-asama1\\k2-tpaired\\agent\\system_prompt.md",
+    "--mcp-config",
+    "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmp8hvbrvpb\\mcp.json",
+    "--strict-mcp-config",
+    "--tools",
+    "",
+    "--allowedTools",
+    "mcp__pairedpower__t_paired_power",
+    "--setting-sources",
+    "",
+    "--no-session-persistence",
+    "--disable-slash-commands"
+  ],
+  "raw_stream": [
+    {
+      "type": "system",
+      "subtype": "init",
+      "cwd": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmp8hvbrvpb",
+      "session_id": "b26fe7c4-5db7-474c-b72f-32f7070d44c4",
+      "tools": [
+        "mcp__pairedpower__t_paired_power"
+      ],
+      "mcp_servers": [
+        {
+          "name": "pairedpower",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "model": "claude-opus-5-5",
+      "permissionMode": "default",
+      "slash_commands": [],
+      "apiKeySource": "none",
+      "claude_code_version": "2.1.309",
+      "output_style": "default",
+      "agents": [
+        "claude",
+        "claude-code-guide",
+        "Explore",
+        "general-purpose",
+        "Plan",
+        "statusline-setup"
+      ],
+      "skills": [],
+      "plugins": [
+        {
+          "name": "cc-plugin-agents-md",
+          "path": "builtin",
+          "source": "cc-plugin-agents-md@builtin"
+        },
+        {
+          "name": "cc-plugin-telemetry",
+          "path": "builtin",
+          "source": "cc-plugin-telemetry@builtin"
+        },
+        {
+          "name": "cc-plugin-plugin-authoring",
+          "path": "builtin",
+          "source": "cc-plugin-plugin-authoring@builtin"
+        }
+      ],
+      "capabilities": [
+        "interrupt_receipt_v1",
+        "interrupt_cancel_queued_v1",
+        "interrupt_send_now_v1",
+        "interrupt_requeue_taken_v1",
+        "msg_lifecycle_v1",
+        "request_marker_lists_v1",
+        "lifecycle_wakeup_source_v1",
+        "sdk_mcp_tools_list_changed",
+        "sdk_mcp_manifests",
+        "mcp_read_resource_v1",
+        "mcp_tool_ui_meta_v1",
+        "ui_surface_v1",
+        "mcp_call_result_not_for_model_v1"
+      ],
+      "analytics_disabled": false,
+      "product_feedback_disabled": false,
+      "uuid": "f3362887-d937-4ea3-9fa1-d48353a1fce7",
+      "memory_paths": {
+        "auto": "C:\\Users\\ELİF HAZAAR\\.claude\\projects\\C--Users-ELFHAZ-1-AppData-Local-Temp-tmp8hvbrvpb\\memory\\"
+      },
+      "scratchpad_path": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\claude\\C--Users-ELFHAZ-1-AppData-Local-Temp-tmp8hvbrvpb\\b26fe7c4-5db7-474c-b72f-32f7070d44c4\\scratchpad",
+      "original_cwd": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmp8hvbrvpb",
+      "additional_directories": [],
+      "messaging_socket_path": "\\\\.\\pipe\\LOCAL\\cc-msg-83cece9dad0bac9410b01ef8c8545718",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "per_turn_effort_active": true,
+      "view_mode": "default",
+      "powershell_path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-opus-5-5",
+        "id": "msg_011CgQq2gWL5GUwpzcE3ps8Y",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "thinking",
+            "thinking": "",
+            "signature": "CAQSnwUKEAgTGAI4AUIIdGhpbmtpbmcSDP1/93KalUK2e5PP+BoM5V+VFcQ1cCqCJ85XIjDO4MuzgyIcRuap4iNChdunJsQj4zok6wdXCrieNHLegyq6W/OBA1pa8ivGCYzGnG4qvAR7h/AgtipHbHrZsyO7BR0ogJRmvnaVmUOahG+lmaBmuPsS3shKvX16a9xJDTe4WRJfSSoF6Uy+qH8tum+/1DcqDFfENXPjiD9ZGC/byWIOBu8Ut0Q7HW1BmQiHRnAqdLtY6aG8HlSzlfFBYiFOv29yDEEGo0JP3y0z93FTWcW47eH1AtHc/xHcgC6LNFv3zdBOcfd1kA4WT27pZBCNvAVqeOY+zmv2e3rOwxNXX6dmvtUKrDdN6M00dV5WNelxx/MDmQ2CkxnBbpRtjAYSMSEz6JgkLhrTsPnjvNE4NBU35SdWLTAoFuFeY+fq4A/7MjxBccqOSFspNMwplBXWgvJsHBhkn9n5H7lxpp5RGzyPwcDYxqaYZd9OHfLV53NEPMm5ikhmx7a6nLrJ9/bD9OhjaVkPmfvPsyfv6+GGcucEusjnv14ydUIvJLVmmoJuycJE4rF4MHN1ToG1RCIPNYXzaw7FWXsjBEuDYLIm9usy+ET2btrqEcu1F4gkh76TJnoDGNqEpYTH7odJN+KpxgjLgyo3S6hYukWa37NAtiq8ZoCkiH594on5LjZPsom7/Kxf73gCqV/VDeiEW3VOq+9ovNqum8HOLj7m9qfRNxGguCv1lnWTlWMBA9nlqZd0yffbMt96EkFHXQ3YJs2x3mAY+A+051HHz8smIjiwsfDvgnCaSUf+n854HS/4787cPHk29MXwTChZDZ9A/WADdAIjkESaprDrZwAF5wDhsfj0ZY+boJ+7FJYWGu/JMxgB"
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 1109,
+          "cache_read_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1109
+          },
+          "output_tokens": 10,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "b26fe7c4-5db7-474c-b72f-32f7070d44c4",
+      "uuid": "18a69dce-8883-4a92-bea8-f9e5461d9b56",
+      "timestamp": "2026-10-26T12:13:24.811Z",
+      "request_id": "req_011CgQq2gGTDkjTNgpVsgFtK",
+      "thinking_duration_ms": 100,
+      "thinking_display": "updates"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-opus-5-5",
+        "id": "msg_011CgQq2gWL5GUwpzcE3ps8Y",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Bu araç yalnızca eşleştirilmiş örneklem t testini hesaplıyor, bu yüzden sorunuza sayı veremiyorum.\n\n**Neden uymuyor:** Hastalar rastgele iki ayrı gruba ayrılıyor (ilaç ve plasebo). Her grupta farklı hastalar var ve iki grubun ortalaması karşılaştırılıyor. Elimdeki araç ise aynı hastada iki ölçümün farkına (örneğin tedavi öncesi ve sonrası) göre hesap yapıyor. Bu iki desenin örneklem büyüklüğü hesabı farklı. Aracı sizin çalışmanıza uygularsam yanlış ve eksik bir N çıkar.\n\n**Uygun test:** Bu tasarım için **bağımsız iki örneklem t testi** kullanılmalı. Hesabı G*Power'da \"t tests → Means: Difference between two independent means (two groups)\" ile yapabilirsiniz. Girdiler: d = 0,5, α = 0,05, güç = 0,80, iki yönlü, gruplar arası oran = 1.\n\nNot: Planınızı değiştirip aynı hastalarda tedavi öncesi ve sonrası tansiyonu karşılaştırırsanız ya da çapraz geçişli (crossover) bir tasarıma geçerseniz, farkların ortalaması ve farkların standart sapmasıyla (dz) hesabı bu araçla yapabilirim.\n\n```json\n{\"etiket\": \"t2-indep\", \"guven\": \"yuksek\", \"arac_cagrildi\": false}\n```"
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 1109,
+          "cache_read_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1109
+          },
+          "output_tokens": 10,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "b26fe7c4-5db7-474c-b72f-32f7070d44c4",
+      "uuid": "f40e3987-4aa6-4e10-a389-f63462375296",
+      "timestamp": "2026-10-26T12:13:30.030Z",
+      "request_id": "req_011CgQq2gGTDkjTNgpVsgFtK"
+    },
+    {
+      "type": "rate_limit_event",
+      "rate_limit_info": {
+        "status": "allowed",
+        "resetsAt": 1793028600,
+        "rateLimitType": "five_hour",
+        "overageStatus": "rejected",
+        "overageDisabledReason": "org_level_disabled",
+        "isUsingOverage": false,
+        "unifiedWindows": {
+          "five_hour": {
+            "utilization": 0.46,
+            "resetsAt": 1793028600
+          },
+          "seven_day": {
+            "utilization": 0.06,
+            "resetsAt": 1793466000
+          }
+        }
+      },
+      "uuid": "b69372fb-c214-43cd-98e7-25cb383ece07",
+      "session_id": "b26fe7c4-5db7-474c-b72f-32f7070d44c4"
+    },
+    {
+      "type": "system",
+      "subtype": "post_turn_summary",
+      "summarizes_uuid": "f40e3987-4aa6-4e10-a389-f63462375296",
+      "status_category": "completed",
+      "status_detail": "bağımsız t-testi önerildi; G*Power yolu verildi, N hesaplanmadı",
+      "needs_action": "",
+      "uuid": "e37bae59-a54c-49ed-b8f8-527d08a21bed",
+      "session_id": "b26fe7c4-5db7-474c-b72f-32f7070d44c4"
+    },
+    {
+      "duration_api_ms": 6761,
+      "stop_reason": "end_turn",
+      "session_id": "b26fe7c4-5db7-474c-b72f-32f7070d44c4",
+      "total_cost_usd": 0.0210326,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 1109,
+        "cache_read_input_tokens": 2663,
+        "output_tokens": 581,
+        "output_tokens_details": {
+          "thinking_tokens": 21
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 1109,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 581,
+            "cache_read_input_tokens": 2663,
+            "cache_creation_input_tokens": 1109,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 1109
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "claude-opus-5-5": {
+          "inputTokens": 2,
+          "outputTokens": 581,
+          "cacheReadInputTokens": 2663,
+          "cacheCreationInputTokens": 1109,
+          "webSearchRequests": 0,
+          "costUSD": 0.0210326,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 21,
+          "canonicalModel": "claude-opus-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 1,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "Bu araç yalnızca eşleştirilmiş örneklem t testini hesaplıyor, bu yüzden sorunuza sayı veremiyorum.\n\n**Neden uymuyor:** Hastalar rastgele iki ayrı gruba ayrılıyor (ilaç ve plasebo). Her grupta farklı hastalar var ve iki grubun ortalaması karşılaştırılıyor. Elimdeki araç ise aynı hastada iki ölçümün farkına (örneğin tedavi öncesi ve sonrası) göre hesap yapıyor. Bu iki desenin örneklem büyüklüğü hesabı farklı. Aracı sizin çalışmanıza uygularsam yanlış ve eksik bir N çıkar.\n\n**Uygun test:** Bu tasarım için **bağımsız iki örneklem t testi** kullanılmalı. Hesabı G*Power'da \"t tests → Means: Difference between two independent means (two groups)\" ile yapabilirsiniz. Girdiler: d = 0,5, α = 0,05, güç = 0,80, iki yönlü, gruplar arası oran = 1.\n\nNot: Planınızı değiştirip aynı hastalarda tedavi öncesi ve sonrası tansiyonu karşılaştırırsanız ya da çapraz geçişli (crossover) bir tasarıma geçerseniz, farkların ortalaması ve farkların standart sapmasıyla (dz) hesabı bu araçla yapabilirim.\n\n```json\n{\"etiket\": \"t2-indep\", \"guven\": \"yuksek\", \"arac_cagrildi\": false}\n```",
+      "ttft_ms": 1567,
+      "type": "result",
+      "duration_ms": 12027,
+      "uuid": "1d0223a1-3bbd-43b6-a935-04a40abe6c78",
+      "ttft_stream_ms": 1467,
+      "time_to_request_ms": 41,
+      "first_content_frame_ms": 1467,
+      "queued_turn_count": 0,
+      "result_index": 0,
+      "model_usage_since_last_result": {
+        "claude-opus-5-5": {
+          "inputTokens": 2,
+          "outputTokens": 581,
+          "cacheReadInputTokens": 2663,
+          "cacheCreationInputTokens": 1109,
+          "webSearchRequests": 0,
+          "costUSD": 0.0210326,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 21,
+          "canonicalModel": "claude-opus-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      }
+    }
+  ]
+}

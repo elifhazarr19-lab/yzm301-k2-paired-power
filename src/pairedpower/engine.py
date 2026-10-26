@@ -1,8 +1,8 @@
 """Eşleştirilmiş örneklem t testi için saf hesap motoru.
 
-G/Ç yok; CLI'dan bağımsız çağrılabilir. Doğrulama sırası ve hesap modeli
-SPEC.md §4, §5 ve §5.1–§5.3'e birebir uyar. Değerler tam hassasiyetle döner;
-yuvarlama çıktı katmanında (cli.py) yapılır.
+G/Ç yok; CLI (cli.py) ve MCP sunucusu (mcp_server.py) aynı `calculate`/`solve`
+yolunu çağırır. Doğrulama sırası ve hesap modeli SPEC.md §4, §5 ve §5.1–§5.3'e
+birebir uyar. `Result` tam hassasiyetle döner; yuvarlama `to_dict` içinde yapılır.
 """
 
 import math
@@ -20,6 +20,8 @@ DZ_ZERO_TOLERANCE = 0.00001
 N_MIN = 3
 N_MAX = 2147483646
 TAILS_VALUES = (1, 2)
+MODES = ("a-priori", "post-hoc")
+DECIMALS = 4  # SPEC §6: çıktı 4 ondalık
 
 # A-priori N araması (SPEC §5.2)
 SEARCH_START = 2.0
@@ -67,6 +69,54 @@ def post_hoc(tails, dz, alpha, n):
     if not (N_MIN <= n_int <= N_MAX):
         raise InputError("Total sample size is outside the admissible range (3, 2147483646).")
     return _result(dz, alpha, tails, n_int)
+
+
+def solve(mode, tails, dz, alpha, power=None, n=None):
+    """Mod seçimi ve zorunlu alan kontrolü; CLI ve MCP bu tek yolu kullanır (SPEC §3.1 (3), (7))."""
+    check_tails(tails)  # §3.1 (3): tails kontrolü önce
+    for label, value in (("tails", tails), ("dz", dz), ("alpha", alpha), ("power", power), ("n", n)):
+        # §3.1 (2): inf, -inf, nan sayı olarak kabul edilmez.
+        if value is not None and not math.isfinite(value):
+            raise InputError(f"{label}: not a finite number: {value!r}")
+    if mode not in MODES:
+        raise InputError(f"mode must be one of: {', '.join(MODES)}")
+    if dz is None:
+        raise InputError("the following arguments are required: --dz")
+    if alpha is None:
+        raise InputError("the following arguments are required: --alpha")
+    if mode == "a-priori":
+        # Moda ait olmayan alan (n) yok sayılır (SPEC §3).
+        if power is None:
+            raise InputError("the following arguments are required: --power")
+        return a_priori(tails, dz, alpha, power)
+    # Moda ait olmayan alan (power) yok sayılır (SPEC §3).
+    if n is None:
+        raise InputError("the following arguments are required: --n")
+    return post_hoc(tails, dz, alpha, n)
+
+
+def to_dict(result, decimals=DECIMALS):
+    """SPEC §6 çıktı sözlüğü; ondalıklar `decimals` basamağa yuvarlanır."""
+    return {
+        "n_total": result.n_total,
+        "actual_power": _round(result.actual_power, decimals),
+        "critical": _round(result.critical, decimals),
+        "df": result.df,
+        "ncp": _round(result.ncp, decimals),
+    }
+
+
+def calculate(mode, tails, dz, alpha, power=None, n=None, decimals=DECIMALS):
+    """Girdi → sonuç sözlüğü. Hatada {"error": ...} döner (SPEC §6)."""
+    try:
+        return to_dict(solve(mode, tails, dz, alpha, power, n), decimals)
+    except InputError as exc:
+        return {"error": str(exc)}
+
+
+def _round(value, decimals):
+    # + 0.0, -0.0 değerinin JSON'da "-0.0" olarak çıkmasını önler.
+    return round(value, decimals) + 0.0
 
 
 def _result(dz, alpha, tails, n):

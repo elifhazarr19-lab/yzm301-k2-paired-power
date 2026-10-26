@@ -1,0 +1,427 @@
+{
+  "id": "Q10",
+  "question": "Hastalarımda yeni tedavinin işe yarayıp yaramadığını görmek istiyorum. Kaç hastaya ihtiyacım var?",
+  "model": "claude-haiku-5-5",
+  "started_utc": "2026-10-26T11:53:19.863224+00:00",
+  "wall_seconds_measured": 17.676,
+  "exit_code": 0,
+  "stderr": "",
+  "tool_calls": [],
+  "final_answer": "Hasta sayısını hesaplayabilmem için birkaç bilgiye ihtiyacım var:\n\n1. **Tasarım:** Aynı hastalarda tedavi öncesi ve sonrası ölçüm mü yapacaksınız? Yoksa tedavi alan ve almayan (plasebo ya da kontrol) iki ayrı hasta grubu mu olacak? Bu araç yalnızca aynı hastalardaki önce/sonra ölçümleri için hesap yapabiliyor. Ayrı gruplar kullanılacaksa farklı bir test gerekir.\n2. **Ölçüm:** Neyi ölçüyorsunuz? Ağrı skoru, kan basıncı gibi sürekli bir değer olmalı. \"İyileşti / iyileşmedi\" gibi evet-hayır sonuçlarıysa ayrı bir test gerekir.\n3. **Beklenen etki:** Tedavi sonrası farkın ortalamasını ve farkların standart sapmasını biliyor musunuz ya da tahmin edebilir misiniz? Bir pilot çalışmanız varsa o veriler işe yarar. Doğrudan etki büyüklüğü (dz) biliyorsanız o da yeterli.\n4. **Yön:** Yalnızca iyileşme (tek yönlü) mi bekliyorsunuz, yoksa değişimin yönünden bağımsız olarak fark var mı (iki yönlü) mı araştırıyorsunuz?\n5. **Standart değerler:** Anlamlılık düzeyini %5, hedef gücü %80 olarak alabilir miyiz? Farklı bir değer istiyorsanız belirtin.\n\nBu bilgileri paylaşırsanız gerekli hasta sayısını hesaplayabilirim.\n\n```json\n{\"etiket\": \"ambiguous\", \"guven\": \"yuksek\", \"arac_cagrildi\": false}\n```",
+  "final_block": {
+    "etiket": "ambiguous",
+    "guven": "yuksek",
+    "arac_cagrildi": false
+  },
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 977,
+    "cache_read_input_tokens": 2663,
+    "output_tokens": 1220,
+    "output_tokens_details": {
+      "thinking_tokens": 554
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 977,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1220,
+        "cache_read_input_tokens": 2663,
+        "cache_creation_input_tokens": 977,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 977
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "model_usage": {
+    "claude-haiku-5-5": {
+      "inputTokens": 2,
+      "outputTokens": 1220,
+      "cacheReadInputTokens": 2663,
+      "cacheCreationInputTokens": 977,
+      "webSearchRequests": 0,
+      "costUSD": 0.00083223,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 554,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.00083223,
+  "duration_ms": 10488,
+  "duration_api_ms": 6622,
+  "num_turns": 1,
+  "command": [
+    "-p",
+    "<soru>",
+    "--model",
+    "claude-haiku-5-5",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--system-prompt-file",
+    "C:\\Users\\ELİF HAZAAR\\Downloads\\k2-tpaired-asama1\\k2-tpaired\\agent\\system_prompt.md",
+    "--mcp-config",
+    "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmpyfx94jzq\\mcp.json",
+    "--strict-mcp-config",
+    "--tools",
+    "",
+    "--allowedTools",
+    "mcp__pairedpower__t_paired_power",
+    "--setting-sources",
+    "",
+    "--no-session-persistence",
+    "--disable-slash-commands"
+  ],
+  "raw_stream": [
+    {
+      "type": "system",
+      "subtype": "init",
+      "cwd": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmpyfx94jzq",
+      "session_id": "100bb179-ae95-4bd8-88f2-f1b8b471a181",
+      "tools": [
+        "mcp__pairedpower__t_paired_power"
+      ],
+      "mcp_servers": [
+        {
+          "name": "pairedpower",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "model": "claude-haiku-5-5",
+      "permissionMode": "default",
+      "slash_commands": [],
+      "apiKeySource": "none",
+      "claude_code_version": "2.1.309",
+      "output_style": "default",
+      "agents": [
+        "claude",
+        "claude-code-guide",
+        "Explore",
+        "general-purpose",
+        "Plan",
+        "statusline-setup"
+      ],
+      "skills": [],
+      "plugins": [
+        {
+          "name": "cc-plugin-agents-md",
+          "path": "builtin",
+          "source": "cc-plugin-agents-md@builtin"
+        },
+        {
+          "name": "cc-plugin-telemetry",
+          "path": "builtin",
+          "source": "cc-plugin-telemetry@builtin"
+        },
+        {
+          "name": "cc-plugin-plugin-authoring",
+          "path": "builtin",
+          "source": "cc-plugin-plugin-authoring@builtin"
+        }
+      ],
+      "capabilities": [
+        "interrupt_receipt_v1",
+        "interrupt_cancel_queued_v1",
+        "interrupt_send_now_v1",
+        "interrupt_requeue_taken_v1",
+        "msg_lifecycle_v1",
+        "request_marker_lists_v1",
+        "lifecycle_wakeup_source_v1",
+        "sdk_mcp_tools_list_changed",
+        "sdk_mcp_manifests",
+        "mcp_read_resource_v1",
+        "mcp_tool_ui_meta_v1",
+        "ui_surface_v1",
+        "mcp_call_result_not_for_model_v1"
+      ],
+      "analytics_disabled": false,
+      "product_feedback_disabled": false,
+      "uuid": "53038e84-397f-4b61-a6ad-43ab4fa7562f",
+      "memory_paths": {
+        "auto": "C:\\Users\\ELİF HAZAAR\\.claude\\projects\\C--Users-ELFHAZ-1-AppData-Local-Temp-tmpyfx94jzq\\memory\\"
+      },
+      "scratchpad_path": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\claude\\C--Users-ELFHAZ-1-AppData-Local-Temp-tmpyfx94jzq\\100bb179-ae95-4bd8-88f2-f1b8b471a181\\scratchpad",
+      "original_cwd": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmpyfx94jzq",
+      "additional_directories": [],
+      "messaging_socket_path": "\\\\.\\pipe\\LOCAL\\cc-msg-8176fd806fecfa90542013ded9fdf373",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "per_turn_effort_active": true,
+      "view_mode": "default",
+      "powershell_path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    },
+    {
+      "type": "system",
+      "subtype": "thinking_tokens",
+      "estimated_tokens": 50,
+      "estimated_tokens_delta": 50,
+      "session_id": "100bb179-ae95-4bd8-88f2-f1b8b471a181",
+      "uuid": "dc1142de-7ecb-4332-9d39-0dd330179bb1"
+    },
+    {
+      "type": "system",
+      "subtype": "thinking_tokens",
+      "estimated_tokens": 300,
+      "estimated_tokens_delta": 250,
+      "session_id": "100bb179-ae95-4bd8-88f2-f1b8b471a181",
+      "uuid": "83f6a8e2-3d38-4ed2-8527-513b89730b58"
+    },
+    {
+      "type": "system",
+      "subtype": "thinking_tokens",
+      "estimated_tokens": 500,
+      "estimated_tokens_delta": 200,
+      "session_id": "100bb179-ae95-4bd8-88f2-f1b8b471a181",
+      "uuid": "35d000bb-e27f-4877-a27c-f3fe4105a13b"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-haiku-5-5",
+        "id": "msg_011CgQoWTHeguVUboQQFASWA",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "thinking",
+            "thinking": "",
+            "signature": "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"
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 977,
+          "cache_read_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 977
+          },
+          "output_tokens": 4,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "100bb179-ae95-4bd8-88f2-f1b8b471a181",
+      "uuid": "82ef4645-5346-4c15-9619-92f49f112027",
+      "timestamp": "2026-10-26T11:53:30.200Z",
+      "request_id": "req_011CgQoWSz3DtvHTAYkqQQJw",
+      "thinking_duration_ms": 2868,
+      "thinking_display": "updates"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-haiku-5-5",
+        "id": "msg_011CgQoWTHeguVUboQQFASWA",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Hasta sayısını hesaplayabilmem için birkaç bilgiye ihtiyacım var:\n\n1. **Tasarım:** Aynı hastalarda tedavi öncesi ve sonrası ölçüm mü yapacaksınız? Yoksa tedavi alan ve almayan (plasebo ya da kontrol) iki ayrı hasta grubu mu olacak? Bu araç yalnızca aynı hastalardaki önce/sonra ölçümleri için hesap yapabiliyor. Ayrı gruplar kullanılacaksa farklı bir test gerekir.\n2. **Ölçüm:** Neyi ölçüyorsunuz? Ağrı skoru, kan basıncı gibi sürekli bir değer olmalı. \"İyileşti / iyileşmedi\" gibi evet-hayır sonuçlarıysa ayrı bir test gerekir.\n3. **Beklenen etki:** Tedavi sonrası farkın ortalamasını ve farkların standart sapmasını biliyor musunuz ya da tahmin edebilir misiniz? Bir pilot çalışmanız varsa o veriler işe yarar. Doğrudan etki büyüklüğü (dz) biliyorsanız o da yeterli.\n4. **Yön:** Yalnızca iyileşme (tek yönlü) mi bekliyorsunuz, yoksa değişimin yönünden bağımsız olarak fark var mı (iki yönlü) mı araştırıyorsunuz?\n5. **Standart değerler:** Anlamlılık düzeyini %5, hedef gücü %80 olarak alabilir miyiz? Farklı bir değer istiyorsanız belirtin.\n\nBu bilgileri paylaşırsanız gerekli hasta sayısını hesaplayabilirim.\n\n```json\n{\"etiket\": \"ambiguous\", \"guven\": \"yuksek\", \"arac_cagrildi\": false}\n```"
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 977,
+          "cache_read_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 977
+          },
+          "output_tokens": 4,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "100bb179-ae95-4bd8-88f2-f1b8b471a181",
+      "uuid": "7d11edb4-e3a7-4e5f-80e9-17f79f3793dc",
+      "timestamp": "2026-10-26T11:53:32.996Z",
+      "request_id": "req_011CgQoWSz3DtvHTAYkqQQJw"
+    },
+    {
+      "type": "rate_limit_event",
+      "rate_limit_info": {
+        "status": "allowed",
+        "resetsAt": 1793028600,
+        "rateLimitType": "five_hour",
+        "overageStatus": "rejected",
+        "overageDisabledReason": "org_level_disabled",
+        "isUsingOverage": false,
+        "unifiedWindows": {
+          "five_hour": {
+            "utilization": 0.29,
+            "resetsAt": 1793028600
+          },
+          "seven_day": {
+            "utilization": 0.04,
+            "resetsAt": 1793466000
+          }
+        }
+      },
+      "uuid": "ffa0cd93-8ae1-45a1-b522-7782aedec657",
+      "session_id": "100bb179-ae95-4bd8-88f2-f1b8b471a181"
+    },
+    {
+      "type": "system",
+      "subtype": "post_turn_summary",
+      "summarizes_uuid": "7d11edb4-e3a7-4e5f-80e9-17f79f3793dc",
+      "status_category": "blocked",
+      "status_detail": "Hasta sayısı için tasarım ve ölçüm bilgisi bekleniyor",
+      "needs_action": "Tasarımı (önce/sonra mı, iki grup mu), ölçülen değeri, beklenen fark ile standart sapmayı, yönü (tek/çift yönlü) belirtin ve %5 anlamlılık, %80 güç değerlerini onaylayın.",
+      "uuid": "e12cf157-067d-4e6d-835d-da9b43734382",
+      "session_id": "100bb179-ae95-4bd8-88f2-f1b8b471a181"
+    },
+    {
+      "duration_api_ms": 6622,
+      "stop_reason": "end_turn",
+      "session_id": "100bb179-ae95-4bd8-88f2-f1b8b471a181",
+      "total_cost_usd": 0.00083223,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 977,
+        "cache_read_input_tokens": 2663,
+        "output_tokens": 1220,
+        "output_tokens_details": {
+          "thinking_tokens": 554
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 977,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 1220,
+            "cache_read_input_tokens": 2663,
+            "cache_creation_input_tokens": 977,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 977
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "claude-haiku-5-5": {
+          "inputTokens": 2,
+          "outputTokens": 1220,
+          "cacheReadInputTokens": 2663,
+          "cacheCreationInputTokens": 977,
+          "webSearchRequests": 0,
+          "costUSD": 0.00083223,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 554,
+          "canonicalModel": "claude-haiku-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 1,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "Hasta sayısını hesaplayabilmem için birkaç bilgiye ihtiyacım var:\n\n1. **Tasarım:** Aynı hastalarda tedavi öncesi ve sonrası ölçüm mü yapacaksınız? Yoksa tedavi alan ve almayan (plasebo ya da kontrol) iki ayrı hasta grubu mu olacak? Bu araç yalnızca aynı hastalardaki önce/sonra ölçümleri için hesap yapabiliyor. Ayrı gruplar kullanılacaksa farklı bir test gerekir.\n2. **Ölçüm:** Neyi ölçüyorsunuz? Ağrı skoru, kan basıncı gibi sürekli bir değer olmalı. \"İyileşti / iyileşmedi\" gibi evet-hayır sonuçlarıysa ayrı bir test gerekir.\n3. **Beklenen etki:** Tedavi sonrası farkın ortalamasını ve farkların standart sapmasını biliyor musunuz ya da tahmin edebilir misiniz? Bir pilot çalışmanız varsa o veriler işe yarar. Doğrudan etki büyüklüğü (dz) biliyorsanız o da yeterli.\n4. **Yön:** Yalnızca iyileşme (tek yönlü) mi bekliyorsunuz, yoksa değişimin yönünden bağımsız olarak fark var mı (iki yönlü) mı araştırıyorsunuz?\n5. **Standart değerler:** Anlamlılık düzeyini %5, hedef gücü %80 olarak alabilir miyiz? Farklı bir değer istiyorsanız belirtin.\n\nBu bilgileri paylaşırsanız gerekli hasta sayısını hesaplayabilirim.\n\n```json\n{\"etiket\": \"ambiguous\", \"guven\": \"yuksek\", \"arac_cagrildi\": false}\n```",
+      "ttft_ms": 3930,
+      "type": "result",
+      "duration_ms": 10488,
+      "uuid": "ed9134e9-0a00-4365-9001-99ab5be6fdb1",
+      "ttft_stream_ms": 1061,
+      "time_to_request_ms": 131,
+      "first_content_frame_ms": 1062,
+      "queued_turn_count": 0,
+      "result_index": 0,
+      "model_usage_since_last_result": {
+        "claude-haiku-5-5": {
+          "inputTokens": 2,
+          "outputTokens": 1220,
+          "cacheReadInputTokens": 2663,
+          "cacheCreationInputTokens": 977,
+          "webSearchRequests": 0,
+          "costUSD": 0.00083223,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 554,
+          "canonicalModel": "claude-haiku-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,553 @@
+{
+  "id": "Q07",
+  "question": "Fizik tedavi programının diz ağrısı skorunu azaltıp azaltmadığını aynı hastalarda önce ve sonra ölçeceğiz. Pilot çalışmada önce-sonra farkının ortalaması 8 puan, farkların standart sapması da 8 puan çıktı. Alfa 0,05, iki yönlü test ve %90 güç istiyoruz. Kaç hasta yeterli olur?",
+  "model": "claude-haiku-5-5",
+  "started_utc": "2026-10-26T11:52:28.026751+00:00",
+  "wall_seconds_measured": 17.923,
+  "exit_code": 0,
+  "stderr": "",
+  "tool_calls": [
+    {
+      "id": "toolu_01SR55trSeFv4BFe1ecwg5vB",
+      "name": "mcp__pairedpower__t_paired_power",
+      "input": {
+        "mode": "a-priori",
+        "tails": 2,
+        "dz": 1,
+        "alpha": 0.05,
+        "power": 0.9
+      },
+      "result": {
+        "is_error": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"n_total\": 13,\n  \"actual_power\": 0.9107,\n  \"critical\": 2.1788,\n  \"df\": 12,\n  \"ncp\": 3.6056\n}"
+          }
+        ]
+      },
+      "result_json": {
+        "n_total": 13,
+        "actual_power": 0.9107,
+        "critical": 2.1788,
+        "df": 12,
+        "ncp": 3.6056
+      }
+    }
+  ],
+  "final_answer": "Bu çalışma için yaklaşık **13 hasta** gerekir.\n\n**Hesap varsayımları:**\n- Aynı hastalarda önce ve sonra ölçüm yapıldığı için eşleştirilmiş örneklem t testi kullanıldı.\n- Etki büyüklüğü dz = 8 ÷ 8 = **1,0** (farkların ortalaması / farkların standart sapması). Bu değer pilot verilerden geldiği için kesin değildir; gerçek etki daha küçük çıkarsa gereken hasta sayısı artar.\n- Anlamlılık düzeyi α = 0,05, test iki yönlü.\n- Hedef güç %90.\n\n**Sonuçlar:**\n- Gereken hasta (çift) sayısı: **13**\n- Bu sayıyla elde edilen gerçek güç: **%91,1**\n- Serbestlik derecesi: 12, kritik t: 2,1788\n\nPilot etkisinin tam olarak tekrarlanacağından emin değilseniz, kayıp takibi için birkaç hasta eklemeniz planlamada güvenli olur. Örneğin %15–20 kayıp payıyla yaklaşık 15–16 hasta hedeflenebilir. Bu ek hesabı istersiniz, söyleyin.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```",
+  "final_block": {
+    "etiket": "t-paired",
+    "guven": "yuksek",
+    "arac_cagrildi": true
+  },
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 1404,
+    "cache_read_input_tokens": 6397,
+    "output_tokens": 735,
+    "output_tokens_details": {
+      "thinking_tokens": 88
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1404,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 490,
+        "cache_read_input_tokens": 3734,
+        "cache_creation_input_tokens": 333,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 333
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "model_usage": {
+    "claude-haiku-5-5": {
+      "inputTokens": 4,
+      "outputTokens": 735,
+      "cacheReadInputTokens": 6397,
+      "cacheCreationInputTokens": 1404,
+      "webSearchRequests": 0,
+      "costUSD": 0.0007126700000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 88,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.0007126700000000001,
+  "duration_ms": 10964,
+  "duration_api_ms": 7442,
+  "num_turns": 2,
+  "command": [
+    "-p",
+    "<soru>",
+    "--model",
+    "claude-haiku-5-5",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--system-prompt-file",
+    "C:\\Users\\ELİF HAZAAR\\Downloads\\k2-tpaired-asama1\\k2-tpaired\\agent\\system_prompt.md",
+    "--mcp-config",
+    "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmpdw_oa03i\\mcp.json",
+    "--strict-mcp-config",
+    "--tools",
+    "",
+    "--allowedTools",
+    "mcp__pairedpower__t_paired_power",
+    "--setting-sources",
+    "",
+    "--no-session-persistence",
+    "--disable-slash-commands"
+  ],
+  "raw_stream": [
+    {
+      "type": "system",
+      "subtype": "init",
+      "cwd": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmpdw_oa03i",
+      "session_id": "cc0109dd-c269-4770-9b57-23a021f4ec26",
+      "tools": [
+        "mcp__pairedpower__t_paired_power"
+      ],
+      "mcp_servers": [
+        {
+          "name": "pairedpower",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "model": "claude-haiku-5-5",
+      "permissionMode": "default",
+      "slash_commands": [],
+      "apiKeySource": "none",
+      "claude_code_version": "2.1.309",
+      "output_style": "default",
+      "agents": [
+        "claude",
+        "claude-code-guide",
+        "Explore",
+        "general-purpose",
+        "Plan",
+        "statusline-setup"
+      ],
+      "skills": [],
+      "plugins": [
+        {
+          "name": "cc-plugin-agents-md",
+          "path": "builtin",
+          "source": "cc-plugin-agents-md@builtin"
+        },
+        {
+          "name": "cc-plugin-telemetry",
+          "path": "builtin",
+          "source": "cc-plugin-telemetry@builtin"
+        },
+        {
+          "name": "cc-plugin-plugin-authoring",
+          "path": "builtin",
+          "source": "cc-plugin-plugin-authoring@builtin"
+        }
+      ],
+      "capabilities": [
+        "interrupt_receipt_v1",
+        "interrupt_cancel_queued_v1",
+        "interrupt_send_now_v1",
+        "interrupt_requeue_taken_v1",
+        "msg_lifecycle_v1",
+        "request_marker_lists_v1",
+        "lifecycle_wakeup_source_v1",
+        "sdk_mcp_tools_list_changed",
+        "sdk_mcp_manifests",
+        "mcp_read_resource_v1",
+        "mcp_tool_ui_meta_v1",
+        "ui_surface_v1",
+        "mcp_call_result_not_for_model_v1"
+      ],
+      "analytics_disabled": false,
+      "product_feedback_disabled": false,
+      "uuid": "c1cee9c8-5e4e-4e1e-9013-1bb9e010eb5b",
+      "memory_paths": {
+        "auto": "C:\\Users\\ELİF HAZAAR\\.claude\\projects\\C--Users-ELFHAZ-1-AppData-Local-Temp-tmpdw-oa03i\\memory\\"
+      },
+      "scratchpad_path": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\claude\\C--Users-ELFHAZ-1-AppData-Local-Temp-tmpdw-oa03i\\cc0109dd-c269-4770-9b57-23a021f4ec26\\scratchpad",
+      "original_cwd": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmpdw_oa03i",
+      "additional_directories": [],
+      "messaging_socket_path": "\\\\.\\pipe\\LOCAL\\cc-msg-70773b4f252b2e913a85450830056713",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "per_turn_effort_active": true,
+      "view_mode": "default",
+      "powershell_path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    },
+    {
+      "type": "system",
+      "subtype": "thinking_tokens",
+      "estimated_tokens": 50,
+      "estimated_tokens_delta": 50,
+      "session_id": "cc0109dd-c269-4770-9b57-23a021f4ec26",
+      "uuid": "431e3380-d3c1-4f53-a203-9f7059cb4703"
+    },
+    {
+      "type": "system",
+      "subtype": "thinking_tokens",
+      "estimated_tokens": 203,
+      "estimated_tokens_delta": 153,
+      "session_id": "cc0109dd-c269-4770-9b57-23a021f4ec26",
+      "uuid": "d8942830-2b63-4d2e-b46e-802549fc75c8"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-haiku-5-5",
+        "id": "msg_011CgQoScQiaS1Q9iAUWJCCx",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "thinking",
+            "thinking": "",
+            "signature": "CAQSoQYKEAgTGAI4AUIIdGhpbmtpbmcSDMgT9WeBvTaxQeOI/BoMkcvaOKCCEFDwypA3IjChPq2YOvs0u7s4/cVspnXBQdtKzyqIee0INa71CFx1cuROhMsI6tEc6IeItVwWcpcqvgURbyNUZw3LbVZPefVEJ8Ht6HBxK5FQTvjpsFcw1hayvXuduvAju95LbulbRk+reL6QIx29InqSDlbu80PROQVdfnotbmEOhbdavcawQutFwxZVZ62/sCAqCN6zbgXYVTuLFAroo1u/5CH0VUyCKV6Flbj8J/dGn9aRxDhRakZBPMtssWye2Ygr+DLlOm41dOGQSkvYWA4jT+ZkQcM9+4wJhVYjVA+i5XuUxzO9A/n4apZtpW98h7+KtM8DfruQ8SmY2pPZ1ANoWOLutIKZpqIeboPkNcFAlZr4QlaYEVC2QtYWBrV+K3v/u/3tmGsr4lxW1bijMccbyIocB/peNBwAwNUKcU7r5IThMybqw0NWzBkRvkJEG+4XbYLOr8Z88dAIQmpqQr1tcXahuuqmjxGGdp7AgYAfmS9G+wSGUmvFBJXJJcZy5/Y8ppsSRZH0WhvD2bTXOhx+AIJFV4XV9otR4ttU+BRSzPWAGoAWoZS9FLQurGYWkN9nSqxtMRxKIaGyoa08iXUqGaW8y3UraC0qhK1u0GdwiVZWh8SQhJAz3EkTTfXTJn3+571Fq6lJNGWVugv7sClFRpn+zBLlKjtLd+9K3pEhRSolOuFanGIQGIpL3lP/w9dd8Mf5TsClJWm0G7r1EqfPh20nfSeu/N6P1gytpfFTCAqyprwkA7Q4AU+X17nih+GxY8e019PvSEZYoZxWGwljDWKncgoH78zFNKwJiBLRvX7zVJWtzl5SNSaX83Puwy0hhc+HUIRfHc+MAAgTk+KWCzd2FnA2oSeAlLGkJvGSAlkhs/jKtHus3cZcNdFn0Q4dmuV+Gx9sUoqetowal+A7mRtPXPXLO8d9CxgINKTjzNOZcRwHTQETXKj7WfuLkN1NvjrqzIU7dsvyd12bfl+Mq+uS2t+wDyOyfC8S+A85cUoUdRJjogQYAQ=="
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 1071,
+          "cache_read_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1071
+          },
+          "output_tokens": 4,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "cc0109dd-c269-4770-9b57-23a021f4ec26",
+      "uuid": "d017f393-97a3-4583-b332-20bf75d5731f",
+      "timestamp": "2026-10-26T11:52:37.046Z",
+      "request_id": "req_011CgQoSc8MGPACAwgCZD4x8",
+      "thinking_duration_ms": 330,
+      "thinking_display": "updates"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-haiku-5-5",
+        "id": "msg_011CgQoScQiaS1Q9iAUWJCCx",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "tool_use",
+            "id": "toolu_01SR55trSeFv4BFe1ecwg5vB",
+            "name": "mcp__pairedpower__t_paired_power",
+            "input": {
+              "mode": "a-priori",
+              "tails": 2,
+              "dz": 1,
+              "alpha": 0.05,
+              "power": 0.9
+            },
+            "caller": {
+              "type": "direct"
+            }
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 1071,
+          "cache_read_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1071
+          },
+          "output_tokens": 4,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "cc0109dd-c269-4770-9b57-23a021f4ec26",
+      "uuid": "f5c28069-41a2-4bea-8d1c-06d09fc27451",
+      "timestamp": "2026-10-26T11:52:37.360Z",
+      "request_id": "req_011CgQoSc8MGPACAwgCZD4x8",
+      "wire_tool_inputs": {
+        "toolu_01SR55trSeFv4BFe1ecwg5vB": {
+          "mode": "a-priori",
+          "tails": 2,
+          "dz": 1,
+          "alpha": 0.05,
+          "power": 0.9
+        }
+      },
+      "tool_use_meta": [
+        {
+          "id": "toolu_01SR55trSeFv4BFe1ecwg5vB",
+          "display_name": "T Paired Power",
+          "server_display_name": "pairedpower",
+          "tool_name": "t_paired_power"
+        }
+      ]
+    },
+    {
+      "type": "rate_limit_event",
+      "rate_limit_info": {
+        "status": "allowed",
+        "resetsAt": 1793028600,
+        "rateLimitType": "five_hour",
+        "overageStatus": "rejected",
+        "overageDisabledReason": "org_level_disabled",
+        "isUsingOverage": false,
+        "unifiedWindows": {
+          "five_hour": {
+            "utilization": 0.29,
+            "resetsAt": 1793028600
+          },
+          "seven_day": {
+            "utilization": 0.04,
+            "resetsAt": 1793466000
+          }
+        }
+      },
+      "uuid": "e2294538-467d-4898-9ed5-553b03556a5a",
+      "session_id": "cc0109dd-c269-4770-9b57-23a021f4ec26"
+    },
+    {
+      "type": "user",
+      "message": {
+        "role": "user",
+        "content": [
+          {
+            "tool_use_id": "toolu_01SR55trSeFv4BFe1ecwg5vB",
+            "type": "tool_result",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\n  \"n_total\": 13,\n  \"actual_power\": 0.9107,\n  \"critical\": 2.1788,\n  \"df\": 12,\n  \"ncp\": 3.6056\n}"
+              }
+            ]
+          }
+        ]
+      },
+      "parent_tool_use_id": null,
+      "session_id": "cc0109dd-c269-4770-9b57-23a021f4ec26",
+      "uuid": "de538971-d12b-4c29-af60-d9b50f5d0fd1",
+      "timestamp": "2026-10-26T11:52:37.401Z",
+      "tool_use_result": [
+        {
+          "type": "text",
+          "text": "{\n  \"n_total\": 13,\n  \"actual_power\": 0.9107,\n  \"critical\": 2.1788,\n  \"df\": 12,\n  \"ncp\": 3.6056\n}"
+        }
+      ],
+      "tool_result_meta": [
+        {
+          "id": "toolu_01SR55trSeFv4BFe1ecwg5vB",
+          "permission_decision": {
+            "decision": "accept",
+            "source": "config",
+            "reason_type": "rule"
+          }
+        }
+      ]
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-haiku-5-5",
+        "id": "msg_011CgQoSrTJzqf1yWdpwfz81",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Bu çalışma için yaklaşık **13 hasta** gerekir.\n\n**Hesap varsayımları:**\n- Aynı hastalarda önce ve sonra ölçüm yapıldığı için eşleştirilmiş örneklem t testi kullanıldı.\n- Etki büyüklüğü dz = 8 ÷ 8 = **1,0** (farkların ortalaması / farkların standart sapması). Bu değer pilot verilerden geldiği için kesin değildir; gerçek etki daha küçük çıkarsa gereken hasta sayısı artar.\n- Anlamlılık düzeyi α = 0,05, test iki yönlü.\n- Hedef güç %90.\n\n**Sonuçlar:**\n- Gereken hasta (çift) sayısı: **13**\n- Bu sayıyla elde edilen gerçek güç: **%91,1**\n- Serbestlik derecesi: 12, kritik t: 2,1788\n\nPilot etkisinin tam olarak tekrarlanacağından emin değilseniz, kayıp takibi için birkaç hasta eklemeniz planlamada güvenli olur. Örneğin %15–20 kayıp payıyla yaklaşık 15–16 hasta hedeflenebilir. Bu ek hesabı istersiniz, söyleyin.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```"
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 333,
+          "cache_read_input_tokens": 3734,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 333
+          },
+          "output_tokens": 7,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "cc0109dd-c269-4770-9b57-23a021f4ec26",
+      "uuid": "61a6519c-0f6a-46c5-8e00-a598bee83e27",
+      "timestamp": "2026-10-26T11:52:41.729Z",
+      "request_id": "req_011CgQoSr5zNo2z4SbmFRzgM"
+    },
+    {
+      "type": "system",
+      "subtype": "post_turn_summary",
+      "summarizes_uuid": "61a6519c-0f6a-46c5-8e00-a598bee83e27",
+      "status_category": "completed",
+      "status_detail": "Eşleştirilmiş t testi: 13 hasta yeterli (dz=1,0, güç %91)",
+      "needs_action": "",
+      "uuid": "22f77197-ba34-4fb4-b506-b848ee51deda",
+      "session_id": "cc0109dd-c269-4770-9b57-23a021f4ec26"
+    },
+    {
+      "duration_api_ms": 7442,
+      "stop_reason": "end_turn",
+      "session_id": "cc0109dd-c269-4770-9b57-23a021f4ec26",
+      "total_cost_usd": 0.0007126700000000001,
+      "usage": {
+        "input_tokens": 4,
+        "cache_creation_input_tokens": 1404,
+        "cache_read_input_tokens": 6397,
+        "output_tokens": 735,
+        "output_tokens_details": {
+          "thinking_tokens": 88
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 1404,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 490,
+            "cache_read_input_tokens": 3734,
+            "cache_creation_input_tokens": 333,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 333
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "claude-haiku-5-5": {
+          "inputTokens": 4,
+          "outputTokens": 735,
+          "cacheReadInputTokens": 6397,
+          "cacheCreationInputTokens": 1404,
+          "webSearchRequests": 0,
+          "costUSD": 0.0007126700000000001,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 88,
+          "canonicalModel": "claude-haiku-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 2,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "Bu çalışma için yaklaşık **13 hasta** gerekir.\n\n**Hesap varsayımları:**\n- Aynı hastalarda önce ve sonra ölçüm yapıldığı için eşleştirilmiş örneklem t testi kullanıldı.\n- Etki büyüklüğü dz = 8 ÷ 8 = **1,0** (farkların ortalaması / farkların standart sapması). Bu değer pilot verilerden geldiği için kesin değildir; gerçek etki daha küçük çıkarsa gereken hasta sayısı artar.\n- Anlamlılık düzeyi α = 0,05, test iki yönlü.\n- Hedef güç %90.\n\n**Sonuçlar:**\n- Gereken hasta (çift) sayısı: **13**\n- Bu sayıyla elde edilen gerçek güç: **%91,1**\n- Serbestlik derecesi: 12, kritik t: 2,1788\n\nPilot etkisinin tam olarak tekrarlanacağından emin değilseniz, kayıp takibi için birkaç hasta eklemeniz planlamada güvenli olur. Örneğin %15–20 kayıp payıyla yaklaşık 15–16 hasta hedeflenebilir. Bu ek hesabı istersiniz, söyleyin.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```",
+      "ttft_ms": 2935,
+      "type": "result",
+      "duration_ms": 10964,
+      "uuid": "f0102f55-4ef5-4151-bb7b-fb8ddc18a9c4",
+      "ttft_stream_ms": 2605,
+      "time_to_request_ms": 151,
+      "first_content_frame_ms": 2605,
+      "queued_turn_count": 0,
+      "result_index": 0,
+      "model_usage_since_last_result": {
+        "claude-haiku-5-5": {
+          "inputTokens": 4,
+          "outputTokens": 735,
+          "cacheReadInputTokens": 6397,
+          "cacheCreationInputTokens": 1404,
+          "webSearchRequests": 0,
+          "costUSD": 0.0007126700000000001,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 88,
+          "canonicalModel": "claude-haiku-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      }
+    }
+  ]
+}

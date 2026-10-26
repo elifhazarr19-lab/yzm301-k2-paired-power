@@ -1,0 +1,11 @@
+id,baglam_once,baglam_sonra,saat_bas_utc,saat_bit_utc,gui_arac_turu,olcum_turu,dogru,gui_sonucu,ekran_goruntusu,not
+Q01,167036,175712,11:55:42,11:57:06,10,1,1,"N=34, güç 0.8077775",agent/gui_screenshots/Q01.jpg,"kurulum dahil: test seçimi, pencereyi öne getirme, computer-use şemaları (+2,934); giriş hatası düzeltildi"
+Q02,175712,178016,11:57:06,11:57:25,1,1,1,"N=27, güç 0.8118316",agent/gui_screenshots/Q02.jpg,
+Q03,178016,180132,11:57:25,11:57:44,1,1,1,"N=51, güç 0.8093892",agent/gui_screenshots/Q03.jpg,
+Q04,180132,183195,11:57:44,11:58:12,3,1,1,"güç 0.8195358",agent/gui_screenshots/Q04.jpg,post hoc moduna geçiş
+Q05,183195,185070,11:58:12,11:58:27,1,1,1,"güç 0.8949909",agent/gui_screenshots/Q05.jpg,
+Q06,185070,187226,11:58:27,11:58:49,1,1,1,"N=78491, güç 0.8000024",agent/gui_screenshots/Q06.jpg,a priori moduna geri dönüş
+Q07,187226,188973,11:58:49,11:59:02,1,1,1,"N=13, güç 0.9107085",agent/gui_screenshots/Q07.jpg,
+Q08,188973,190854,11:59:02,11:59:22,1,1,1,doğru test bulundu (two independent means),agent/gui_screenshots/Q08.jpg,G*Power vektörü yok; N karşılaştırılmadı
+Q09,190854,193311,11:59:22,11:59:56,3,1,1,doğru test bulundu (z tests: two independent proportions),agent/gui_screenshots/Q09.jpg,G*Power vektörü yok; N karşılaştırılmadı
+Q10,,,,,0,0,,uygulanamaz,,belirsiz soru; GUI'ye girilecek değer yok

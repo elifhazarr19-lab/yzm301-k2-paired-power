@@ -2,6 +2,7 @@
 
 Bu rapor üç referans kaynağa karşı yapılan testlerin sonuçlarını özetler:
 G*Power 3.1.9.7 kara kutu vektörleri, statsmodels kütüphane vektörleri ve SPEC §7 senaryoları.
+§5, CLI ile MCP sunucusunun aynı girdide aynı çıktıyı verdiğini gösterir.
 
 ## Çalıştırma
 
@@ -20,7 +21,8 @@ python tests/gen_library_vectors.py
 | `tests/test_spec.py` | 50 | `SPEC.md` §7 Examples satırları, geçersiz girdi, §3.1 kararları, ek kurallar |
 | `tests/test_differential.py` | 38 | `oracle/gpower_vectors.csv` (30 hesaplı + 8 hata) |
 | `tests/test_library.py` | 1001 | `oracle/library_vectors.csv` (1000 satır) |
-| **Toplam** | **1089** | Hepsi geçiyor |
+| `tests/test_mcp_parity.py` | 99 | CLI = MCP: 38 G*Power + 60 kütüphane satırı (+1 sayım testi) |
+| **Toplam** | **1188** | Hepsi geçiyor |
 
 ## 0. SPEC v1.1 (§3.1) uyumu
 
@@ -141,3 +143,26 @@ Alt kuyruk katkısı ≈ 0.0218. (Test: `test_statsmodels_two_sided_includes_low
 Ayrıca: G*Power'ın hata metinlerinde küçük metin farkları var (ör. V21'de "must" kelimesi eksik;
 V32'de sondaki nokta yok). SPEC §4 notunda hata metninin puanlanmadığı yazıyor; bu yüzden test
 yalnızca `error` alanının varlığını ve çıkış kodunu kontrol ediyor.
+
+## 5. CLI = MCP eşitliği (Oturum 3)
+
+Test: `tests/test_mcp_parity.py`. Her girdi iki yoldan çalıştırılır:
+- **CLI:** `python -m pairedpower.cli ...` alt süreç olarak; stdout'taki tek satır JSON okunur.
+- **MCP:** `python -m pairedpower.mcp_server` stdio sunucusu başlatılır; resmi `mcp` Python istemcisiyle
+  (`stdio_client` + `ClientSession`) **gerçek MCP protokolü üzerinden** `initialize` → `list_tools` → `call_tool("t_paired_power", ...)`.
+
+| Girdi kümesi | Satır | Birebir aynı JSON |
+|---|---|---|
+| `oracle/gpower_vectors.csv` hesaplı (`GUI-TOPLANDI`) | 30 | **30/30** |
+| `oracle/gpower_vectors.csv` hata (`GUI-TOPLANDI-HATA`) | 8 | **8/8** (ikisi de `{"error": ...}`, aynı metin; CLI çıkış kodu 2) |
+| `oracle/library_vectors.csv`, eşit aralıklı 30 a-priori + 30 post-hoc | 60 | **60/60** |
+| **Toplam** | **98** | **98/98** |
+
+"Birebir aynı": aynı anahtarlar, aynı değerler ve aynı tipler (int / float). Başarılı satırlarda anahtar sırası da
+`n_total, actual_power, critical, df, ncp`. MCP aracı hiçbir satırda `isError` döndürmedi.
+
+Neden aynı: iki katman da `engine.solve` (mod seçimi, zorunlu alanlar, §3.1 (2)–(3), §4 doğrulama) ve `engine.to_dict`
+(4 ondalık yuvarlama, −0.0 düzeltmesi) yolunu kullanır; CLI'ya özgü olan yalnızca bayrak okuma ve eş ad çözümüdür.
+Bu ortak yolu çıkarmak için `cli.py`'deki `_run`/`_format`/`_round` motora taşındı; var olan 1089 test değişiklikten sonra da geçti.
+
+**Uyuşmazlık yok.**

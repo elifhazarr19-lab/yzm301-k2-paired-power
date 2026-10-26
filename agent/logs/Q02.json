@@ -1,0 +1,612 @@
+{
+  "id": "Q02",
+  "question": "Diyabet hastalarında yeni bir egzersiz programının HbA1c'yi düşüreceğini düşünüyoruz; artırma ihtimali bizi ilgilendirmiyor, yalnızca düşüşü test edeceğiz (tek yönlü). Aynı hastalar önce ve sonra ölçülecek. Etki büyüklüğü dz = 0,5, alfa %5, güç %80 olsun. Kaç hasta lazım?",
+  "model": "claude-haiku-5-5",
+  "started_utc": "2026-10-26T11:51:01.966947+00:00",
+  "wall_seconds_measured": 13.247,
+  "exit_code": 0,
+  "stderr": "",
+  "tool_calls": [
+    {
+      "id": "toolu_01J4dhWbjcYR9gPTnqsrmLkC",
+      "name": "mcp__pairedpower__t_paired_power",
+      "input": {
+        "mode": "a-priori",
+        "tails": 1,
+        "dz": 0.5,
+        "alpha": 0.05,
+        "power": 0.8
+      },
+      "result": {
+        "is_error": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"n_total\": 27,\n  \"actual_power\": 0.8118,\n  \"critical\": 1.7056,\n  \"df\": 26,\n  \"ncp\": 2.5981\n}"
+          }
+        ]
+      },
+      "result_json": {
+        "n_total": 27,
+        "actual_power": 0.8118,
+        "critical": 1.7056,
+        "df": 26,
+        "ncp": 2.5981
+      }
+    }
+  ],
+  "final_answer": "Tek yönlü, eşleştirilmiş t testi için gereken hasta sayısı **27**'dir.\n\n**Varsayımlar:**\n- Tasarım: Aynı hastalarda önce ve sonra ölçüm (eşleştirilmiş t testi).\n- Hipotez: Yalnızca HbA1c düşüşü test ediliyor (tek yönlü).\n- Etki büyüklüğü: dz = 0,5.\n- Anlamlılık düzeyi: α = 0,05.\n- Hedef güç: %80.\n\n**Ek bilgiler:**\n- Serbestlik derecesi (df) 26, kritik t değeri 1,7056'dır.\n- 27 hastayla gerçekleşen güç yaklaşık %81,2'dir (0,8118).\n\nHasta kaybı olabileceğini düşünüyorsanız, bu sayıyı kayıp oranına göre artırmanız gerekir. Bu hesabı yapmam için kayıp oranını bildirmeniz yeterli.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```",
+  "final_block": {
+    "etiket": "t-paired",
+    "guven": "yuksek",
+    "arac_cagrildi": true
+  },
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 1380,
+    "cache_read_input_tokens": 6411,
+    "output_tokens": 659,
+    "output_tokens_details": {
+      "thinking_tokens": 108
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1380,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 452,
+        "cache_read_input_tokens": 3748,
+        "cache_creation_input_tokens": 295,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 295
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "model_usage": {
+    "claude-haiku-5-5": {
+      "inputTokens": 4,
+      "outputTokens": 659,
+      "cacheReadInputTokens": 6411,
+      "cacheCreationInputTokens": 1380,
+      "webSearchRequests": 0,
+      "costUSD": 0.00067001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 108,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.00067001,
+  "duration_ms": 6802,
+  "duration_api_ms": 3904,
+  "num_turns": 2,
+  "command": [
+    "-p",
+    "<soru>",
+    "--model",
+    "claude-haiku-5-5",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--system-prompt-file",
+    "C:\\Users\\ELİF HAZAAR\\Downloads\\k2-tpaired-asama1\\k2-tpaired\\agent\\system_prompt.md",
+    "--mcp-config",
+    "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmpis44ahvi\\mcp.json",
+    "--strict-mcp-config",
+    "--tools",
+    "",
+    "--allowedTools",
+    "mcp__pairedpower__t_paired_power",
+    "--setting-sources",
+    "",
+    "--no-session-persistence",
+    "--disable-slash-commands"
+  ],
+  "raw_stream": [
+    {
+      "type": "system",
+      "subtype": "init",
+      "cwd": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmpis44ahvi",
+      "session_id": "d3b3b622-0ab4-4f67-8a2b-ad89a02bc6b5",
+      "tools": [
+        "mcp__pairedpower__t_paired_power"
+      ],
+      "mcp_servers": [
+        {
+          "name": "pairedpower",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "model": "claude-haiku-5-5",
+      "permissionMode": "default",
+      "slash_commands": [],
+      "apiKeySource": "none",
+      "claude_code_version": "2.1.309",
+      "output_style": "default",
+      "agents": [
+        "claude",
+        "claude-code-guide",
+        "Explore",
+        "general-purpose",
+        "Plan",
+        "statusline-setup"
+      ],
+      "skills": [],
+      "plugins": [
+        {
+          "name": "cc-plugin-agents-md",
+          "path": "builtin",
+          "source": "cc-plugin-agents-md@builtin"
+        },
+        {
+          "name": "cc-plugin-telemetry",
+          "path": "builtin",
+          "source": "cc-plugin-telemetry@builtin"
+        },
+        {
+          "name": "cc-plugin-plugin-authoring",
+          "path": "builtin",
+          "source": "cc-plugin-plugin-authoring@builtin"
+        }
+      ],
+      "capabilities": [
+        "interrupt_receipt_v1",
+        "interrupt_cancel_queued_v1",
+        "interrupt_send_now_v1",
+        "interrupt_requeue_taken_v1",
+        "msg_lifecycle_v1",
+        "request_marker_lists_v1",
+        "lifecycle_wakeup_source_v1",
+        "sdk_mcp_tools_list_changed",
+        "sdk_mcp_manifests",
+        "mcp_read_resource_v1",
+        "mcp_tool_ui_meta_v1",
+        "ui_surface_v1",
+        "mcp_call_result_not_for_model_v1"
+      ],
+      "analytics_disabled": false,
+      "product_feedback_disabled": false,
+      "uuid": "3f22e101-456d-4bc2-9acf-72446b026664",
+      "memory_paths": {
+        "auto": "C:\\Users\\ELİF HAZAAR\\.claude\\projects\\C--Users-ELFHAZ-1-AppData-Local-Temp-tmpis44ahvi\\memory\\"
+      },
+      "scratchpad_path": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\claude\\C--Users-ELFHAZ-1-AppData-Local-Temp-tmpis44ahvi\\d3b3b622-0ab4-4f67-8a2b-ad89a02bc6b5\\scratchpad",
+      "original_cwd": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmpis44ahvi",
+      "additional_directories": [],
+      "messaging_socket_path": "\\\\.\\pipe\\LOCAL\\cc-msg-fcd510da82c1f067c2fb81dc186ae026",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "per_turn_effort_active": true,
+      "view_mode": "default",
+      "powershell_path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    },
+    {
+      "type": "system",
+      "subtype": "thinking_tokens",
+      "estimated_tokens": 50,
+      "estimated_tokens_delta": 50,
+      "session_id": "d3b3b622-0ab4-4f67-8a2b-ad89a02bc6b5",
+      "uuid": "a76e5df0-8804-4d06-b3ed-c5d7c2389821"
+    },
+    {
+      "type": "system",
+      "subtype": "thinking_tokens",
+      "estimated_tokens": 183,
+      "estimated_tokens_delta": 133,
+      "session_id": "d3b3b622-0ab4-4f67-8a2b-ad89a02bc6b5",
+      "uuid": "27276911-51a2-4951-83b9-c03e2d4ef0f5"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-haiku-5-5",
+        "id": "msg_011CgQoLEh67m6n72GS77xYP",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "thinking",
+            "thinking": "",
+            "signature": "CAQS1AUKEAgTGAI4AUIIdGhpbmtpbmcSDH4VCH5yVV2xfvD7fxoMQZhXa37kHXYXkvRLIjCNdIscfivoME8/LBhRLxbYhObllMpW3zP8668WUQYbpwTbG7Sd2u3ZmBwEI8l/aVsq8QTkSn9mNX3s0tQh3v6VlXqVrH+TZ4rzfDnpqMMeGVLbFnwwlmDJtP/sGkUb7INrRWSaXfeE0nip6DVH48v/CHFBVBLcLxYutCp0w2hGSbVbcJkRdhkmTh0SEsF31xfWlcJ8zavX5Y9b8NpFxCy68S0ZceC1G2ToRRGpGeo0EOkMMiFDxTm3TeSAQO+MxHdpKnRg4JTi1mrdLabH+l0w8mDMcyt9tf9Rgalh41T9TWPKtP5wu9x2n2ekVkclZprKnZ6y1mu57qtD8Xf8hchCuzXkub9S9meOMFhwVOFcFUDOqBXERzA9TEOsO0vieUQTFRq+7znSngmz8AMTHGWsYQcUQPOISEfegwFsQmCq7Tuny7Uxl/mLHRRKuQQWCmpaeLnz+SY9kLJyjyvOjv0yNzBPWOmpzih38IQGbj2eUVDJfR81l9DEsr3AmHQK1x1QvXmL5e6GxhwgEbnCiuC9XZsbN7nE3RwK8FR8eSzQrv5KsyL5mOqwS2p+It9sXbsqtL6wAfHJ32hPUT6hkRJDOUlCu+fWZEG2GnfE8PYAkCUx2sOjg6dM7zLQ1mZjwhE1U1WguA4t3U7GUBvtxuue6wLVcoJ94v0eWbWBybr0wtVcYOk8ITeejKykf4nJ6y4WApd4FczEZclCNgnJ5zWItsMuwx+fJ0cRd9Si+v4bbQtj1Rt/uwVLWx8+YVD7UQs2POtd9DVDZ+zmbVLIjceNGcuAAnp6BddtQFG4D+oIlZk7g/NNhqm5ARpqtKq8c48yP4u+/glqocb3Xod28VG0ibE3HpEHqzUqjE56ZF947CAsaOIff2VMv0dAYKzuJZGm6pDpGAE="
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 1085,
+          "cache_read_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1085
+          },
+          "output_tokens": 4,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "d3b3b622-0ab4-4f67-8a2b-ad89a02bc6b5",
+      "uuid": "33dd999f-b14e-43ec-b908-f8632136e0b3",
+      "timestamp": "2026-10-26T11:51:08.702Z",
+      "request_id": "req_011CgQoLERCwcPu4wHDrSDLg",
+      "thinking_duration_ms": 279,
+      "thinking_display": "updates"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-haiku-5-5",
+        "id": "msg_011CgQoLEh67m6n72GS77xYP",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "tool_use",
+            "id": "toolu_01J4dhWbjcYR9gPTnqsrmLkC",
+            "name": "mcp__pairedpower__t_paired_power",
+            "input": {
+              "mode": "a-priori",
+              "tails": 1,
+              "dz": 0.5,
+              "alpha": 0.05,
+              "power": 0.8
+            },
+            "caller": {
+              "type": "direct"
+            }
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 1085,
+          "cache_read_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1085
+          },
+          "output_tokens": 4,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "d3b3b622-0ab4-4f67-8a2b-ad89a02bc6b5",
+      "uuid": "b8fed9d6-6477-42c9-85ba-da43f402113c",
+      "timestamp": "2026-10-26T11:51:09.064Z",
+      "request_id": "req_011CgQoLERCwcPu4wHDrSDLg",
+      "wire_tool_inputs": {
+        "toolu_01J4dhWbjcYR9gPTnqsrmLkC": {
+          "mode": "a-priori",
+          "tails": 1,
+          "dz": 0.5,
+          "alpha": 0.05,
+          "power": 0.8
+        }
+      },
+      "tool_use_meta": [
+        {
+          "id": "toolu_01J4dhWbjcYR9gPTnqsrmLkC",
+          "display_name": "T Paired Power",
+          "server_display_name": "pairedpower",
+          "tool_name": "t_paired_power"
+        }
+      ]
+    },
+    {
+      "type": "rate_limit_event",
+      "rate_limit_info": {
+        "status": "allowed",
+        "resetsAt": 1793028600,
+        "rateLimitType": "five_hour",
+        "overageStatus": "rejected",
+        "overageDisabledReason": "org_level_disabled",
+        "isUsingOverage": false,
+        "unifiedWindows": {
+          "five_hour": {
+            "utilization": 0.29,
+            "resetsAt": 1793028600
+          },
+          "seven_day": {
+            "utilization": 0.04,
+            "resetsAt": 1793466000
+          }
+        }
+      },
+      "uuid": "e4603293-d721-41b1-ab18-a2e7b8f64d66",
+      "session_id": "d3b3b622-0ab4-4f67-8a2b-ad89a02bc6b5"
+    },
+    {
+      "type": "user",
+      "message": {
+        "role": "user",
+        "content": [
+          {
+            "tool_use_id": "toolu_01J4dhWbjcYR9gPTnqsrmLkC",
+            "type": "tool_result",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\n  \"n_total\": 27,\n  \"actual_power\": 0.8118,\n  \"critical\": 1.7056,\n  \"df\": 26,\n  \"ncp\": 2.5981\n}"
+              }
+            ]
+          }
+        ]
+      },
+      "parent_tool_use_id": null,
+      "session_id": "d3b3b622-0ab4-4f67-8a2b-ad89a02bc6b5",
+      "uuid": "1cec2e13-70c3-421d-bf99-f722dbd168f9",
+      "timestamp": "2026-10-26T11:51:09.119Z",
+      "tool_use_result": [
+        {
+          "type": "text",
+          "text": "{\n  \"n_total\": 27,\n  \"actual_power\": 0.8118,\n  \"critical\": 1.7056,\n  \"df\": 26,\n  \"ncp\": 2.5981\n}"
+        }
+      ],
+      "tool_result_meta": [
+        {
+          "id": "toolu_01J4dhWbjcYR9gPTnqsrmLkC",
+          "permission_decision": {
+            "decision": "accept",
+            "source": "config",
+            "reason_type": "rule"
+          }
+        }
+      ]
+    },
+    {
+      "type": "system",
+      "subtype": "thinking_tokens",
+      "estimated_tokens": 50,
+      "estimated_tokens_delta": 50,
+      "session_id": "d3b3b622-0ab4-4f67-8a2b-ad89a02bc6b5",
+      "uuid": "e477c052-a21e-4068-b979-0f63efc65993"
+    },
+    {
+      "type": "system",
+      "subtype": "thinking_tokens",
+      "estimated_tokens": 184,
+      "estimated_tokens_delta": 134,
+      "session_id": "d3b3b622-0ab4-4f67-8a2b-ad89a02bc6b5",
+      "uuid": "4ffdd870-b920-4a4a-8c28-ef6deb35205a"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-haiku-5-5",
+        "id": "msg_011CgQoLLWKdv4gmeWvakDKP",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "thinking",
+            "thinking": "",
+            "signature": "CAQS1wUKEAgTGAI4AUIIdGhpbmtpbmcSDAmTNgpOxGUSiuXvmRoMc8Auvu7NSYm8G9EIIjDJfMFLhvE7fympIfWOMJYp9SsBq/q5sAtYKbxb76uDLu6H8hA8rrpKVSc+jYKAh9Qq9ARUVsoDAL0OI1g1IyPouqWHsDe1Hu1anb2RmhIJSy0KS0GSEIgDKWH4fvoVkv9Qdv07Ek7wQ7HOKX4JngqIgZaTb8oHyIQeFnN4SOvHakJn8leE1jdhLWm2NFEhXWB63wMPiPX2bHya11xvECQVmN334hp5MIbu43jK/fB3nrgIe5ygxEOxbuULQjcFRN6r5utYkUF8HzdbQ3QzeszLPePqjbh+AvP/cbum8Pv3aaC2+DuHUv3lLdTPYkyAvUO+CDGMX8uzKLs+THwqFbG/QcgzJmB8qerZTk+FHvSiZsC2pOQDOgkUc+zz9apF6r9ccdJgL/+As7EwJ/aRMEIZucfkVuBUpqHTBa7I7vDWMhGvNeKvg92SmJs/ZENsSTHevjlsF1uQSQ6O0OK+qIXkiXpPD+rHrmik8XXlpuhN81LJE9QqWR3kqdTeZCz2VTjo8Acq33KN2ulazUizqIA9yPepRA36ERg62v9sMKcCBolnfzkhwY+zYGXJ6Fw89orffue0aMFnfqg09U1hem11zd/xSwrAgAdKXCzQlJOinGjIR5e4VtpikA3OXd0sTZcGriPWYvQsF0TagHNJVwbWXsiJNJDhCUZCg7jlDvp8o0S5Xpr2xiXOJPcOPLMGRGdXKOYYpM8v9Df7ufBSViOEGhJo9vrCHdezBgeuvlBefPF+ExjEPIBluLCrdMeEleawQfBax4R5YMRQHSXz9XptndQ0J6ss2zUVl2/3DSM+p8QDByxcSAYVsrHjFQ2myPbR9D0aw7DVEsKqIssz70YUS2Mk96wXI0j0I6kGUdagfODB/p3l5Q/S6v697vnWS9lqWuYcZ01KGAE="
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 295,
+          "cache_read_input_tokens": 3748,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 295
+          },
+          "output_tokens": 3,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "d3b3b622-0ab4-4f67-8a2b-ad89a02bc6b5",
+      "uuid": "72fccd7f-13dc-4a26-9e49-f224e019bae6",
+      "timestamp": "2026-10-26T11:51:10.051Z",
+      "request_id": "req_011CgQoLLDiB83aQMxXNXkBM",
+      "thinking_duration_ms": 233,
+      "thinking_display": "updates"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-haiku-5-5",
+        "id": "msg_011CgQoLLWKdv4gmeWvakDKP",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Tek yönlü, eşleştirilmiş t testi için gereken hasta sayısı **27**'dir.\n\n**Varsayımlar:**\n- Tasarım: Aynı hastalarda önce ve sonra ölçüm (eşleştirilmiş t testi).\n- Hipotez: Yalnızca HbA1c düşüşü test ediliyor (tek yönlü).\n- Etki büyüklüğü: dz = 0,5.\n- Anlamlılık düzeyi: α = 0,05.\n- Hedef güç: %80.\n\n**Ek bilgiler:**\n- Serbestlik derecesi (df) 26, kritik t değeri 1,7056'dır.\n- 27 hastayla gerçekleşen güç yaklaşık %81,2'dir (0,8118).\n\nHasta kaybı olabileceğini düşünüyorsanız, bu sayıyı kayıp oranına göre artırmanız gerekir. Bu hesabı yapmam için kayıp oranını bildirmeniz yeterli.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```"
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 295,
+          "cache_read_input_tokens": 3748,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 295
+          },
+          "output_tokens": 3,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "d3b3b622-0ab4-4f67-8a2b-ad89a02bc6b5",
+      "uuid": "e9b6bb7c-7725-453d-8cca-338ad8fd5f90",
+      "timestamp": "2026-10-26T11:51:11.697Z",
+      "request_id": "req_011CgQoLLDiB83aQMxXNXkBM"
+    },
+    {
+      "type": "system",
+      "subtype": "post_turn_summary",
+      "summarizes_uuid": "e9b6bb7c-7725-453d-8cca-338ad8fd5f90",
+      "status_category": "completed",
+      "status_detail": "Tek yönlü eşleştirilmiş t testi: 27 hasta gerekli",
+      "needs_action": "",
+      "uuid": "244e965f-0471-4347-9137-ca2c9ca5f7d0",
+      "session_id": "d3b3b622-0ab4-4f67-8a2b-ad89a02bc6b5"
+    },
+    {
+      "duration_api_ms": 3904,
+      "stop_reason": "end_turn",
+      "session_id": "d3b3b622-0ab4-4f67-8a2b-ad89a02bc6b5",
+      "total_cost_usd": 0.00067001,
+      "usage": {
+        "input_tokens": 4,
+        "cache_creation_input_tokens": 1380,
+        "cache_read_input_tokens": 6411,
+        "output_tokens": 659,
+        "output_tokens_details": {
+          "thinking_tokens": 108
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 1380,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 452,
+            "cache_read_input_tokens": 3748,
+            "cache_creation_input_tokens": 295,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 295
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "claude-haiku-5-5": {
+          "inputTokens": 4,
+          "outputTokens": 659,
+          "cacheReadInputTokens": 6411,
+          "cacheCreationInputTokens": 1380,
+          "webSearchRequests": 0,
+          "costUSD": 0.00067001,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 108,
+          "canonicalModel": "claude-haiku-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 2,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "Tek yönlü, eşleştirilmiş t testi için gereken hasta sayısı **27**'dir.\n\n**Varsayımlar:**\n- Tasarım: Aynı hastalarda önce ve sonra ölçüm (eşleştirilmiş t testi).\n- Hipotez: Yalnızca HbA1c düşüşü test ediliyor (tek yönlü).\n- Etki büyüklüğü: dz = 0,5.\n- Anlamlılık düzeyi: α = 0,05.\n- Hedef güç: %80.\n\n**Ek bilgiler:**\n- Serbestlik derecesi (df) 26, kritik t değeri 1,7056'dır.\n- 27 hastayla gerçekleşen güç yaklaşık %81,2'dir (0,8118).\n\nHasta kaybı olabileceğini düşünüyorsanız, bu sayıyı kayıp oranına göre artırmanız gerekir. Bu hesabı yapmam için kayıp oranını bildirmeniz yeterli.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```",
+      "ttft_ms": 1094,
+      "type": "result",
+      "duration_ms": 6802,
+      "uuid": "cce34e4a-f666-44d5-a00d-cb2c5284ab6d",
+      "ttft_stream_ms": 813,
+      "time_to_request_ms": 150,
+      "first_content_frame_ms": 814,
+      "queued_turn_count": 0,
+      "result_index": 0,
+      "model_usage_since_last_result": {
+        "claude-haiku-5-5": {
+          "inputTokens": 4,
+          "outputTokens": 659,
+          "cacheReadInputTokens": 6411,
+          "cacheCreationInputTokens": 1380,
+          "webSearchRequests": 0,
+          "costUSD": 0.00067001,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 108,
+          "canonicalModel": "claude-haiku-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,600 @@
+{
+  "id": "Q07",
+  "question": "Fizik tedavi programının diz ağrısı skorunu azaltıp azaltmadığını aynı hastalarda önce ve sonra ölçeceğiz. Pilot çalışmada önce-sonra farkının ortalaması 8 puan, farkların standart sapması da 8 puan çıktı. Alfa 0,05, iki yönlü test ve %90 güç istiyoruz. Kaç hasta yeterli olur?",
+  "model": "claude-opus-5-5",
+  "started_utc": "2026-10-26T12:12:55.882488+00:00",
+  "wall_seconds_measured": 20.358,
+  "exit_code": 0,
+  "stderr": "",
+  "tool_calls": [
+    {
+      "id": "toolu_01ErLyghRCDThkjA1XwNqfX1",
+      "name": "mcp__pairedpower__t_paired_power",
+      "input": {
+        "mode": "a-priori",
+        "tails": 2,
+        "dz": 1,
+        "alpha": 0.05,
+        "power": 0.9
+      },
+      "result": {
+        "is_error": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"n_total\": 13,\n  \"actual_power\": 0.9107,\n  \"critical\": 2.1788,\n  \"df\": 12,\n  \"ncp\": 3.6056\n}"
+          }
+        ]
+      },
+      "result_json": {
+        "n_total": 13,
+        "actual_power": 0.9107,
+        "critical": 2.1788,
+        "df": 12,
+        "ncp": 3.6056
+      }
+    }
+  ],
+  "final_answer": "**13 hasta yeterli.** Her hasta önce ve sonra olmak üzere iki kez ölçülecek.\n\n**Tasarım:** Aynı hastalarda önce ve sonra ölçüm yapılıyor. Bu nedenle uygun test eşleştirilmiş örneklem t testi.\n\n**Varsayımlar:**\n- Etki büyüklüğü dz = ortalama fark / farkların standart sapması = 8 / 8 = **1,0**\n- α = 0,05, iki yönlü test\n- Hedef güç = %90\n\n**Sonuçlar:**\n- **Gereken hasta sayısı: 13**\n- 13 hastayla elde edilecek güç: **%91,07**\n- Serbestlik derecesi: 12\n- Kritik t değeri: 2,1788\n- Merkezi olmayan dağılım parametresi (δ): 3,6056\n\n**Dikkat edilmesi gerekenler:**\n- **Pilot çalışma etkiyi büyük gösterebilir.** Pilot çalışmalar genellikle küçük olduğu için etkiyi gerçekte olduğundan büyük ölçebilir. dz = 1,0 oldukça büyük bir etki. Gerçek etki daha küçükse 13 hasta yetersiz kalır. Daha temkinli bir dz değeriyle, örneğin 0,5 ya da 0,7 ile hesabı tekrarlamak isterseniz yapabilirim.\n- **Çalışmadan ayrılanlar bu sayıya dahil değil.** 13 hasta, analize girmesi gereken en az hasta sayısı. Takipte kayıp bekliyorsanız çalışmaya bunun üzerinde hasta almanız gerekir. Örneğin %20 kayıp bekleniyorsa N ÷ 0,8 formülüyle hesaplayabilirsiniz.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```",
+  "final_block": {
+    "etiket": "t-paired",
+    "guven": "yuksek",
+    "arac_cagrildi": true
+  },
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 1363,
+    "cache_read_input_tokens": 6432,
+    "output_tokens": 872,
+    "output_tokens_details": {
+      "thinking_tokens": 16
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1363,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 703,
+        "cache_read_input_tokens": 3769,
+        "cache_creation_input_tokens": 257,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 257
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "model_usage": {
+    "claude-opus-5-5": {
+      "inputTokens": 4,
+      "outputTokens": 872,
+      "cacheReadInputTokens": 6432,
+      "cacheCreationInputTokens": 1363,
+      "webSearchRequests": 0,
+      "costUSD": 0.029646399999999996,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 16,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.029646399999999996,
+  "duration_ms": 13030,
+  "duration_api_ms": 9563,
+  "num_turns": 2,
+  "command": [
+    "-p",
+    "<soru>",
+    "--model",
+    "claude-opus-5-5",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--system-prompt-file",
+    "C:\\Users\\ELİF HAZAAR\\Downloads\\k2-tpaired-asama1\\k2-tpaired\\agent\\system_prompt.md",
+    "--mcp-config",
+    "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmpen1bf9kt\\mcp.json",
+    "--strict-mcp-config",
+    "--tools",
+    "",
+    "--allowedTools",
+    "mcp__pairedpower__t_paired_power",
+    "--setting-sources",
+    "",
+    "--no-session-persistence",
+    "--disable-slash-commands"
+  ],
+  "raw_stream": [
+    {
+      "type": "system",
+      "subtype": "init",
+      "cwd": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmpen1bf9kt",
+      "session_id": "5977edb1-ecf9-4f16-886e-97dd37d94415",
+      "tools": [
+        "mcp__pairedpower__t_paired_power"
+      ],
+      "mcp_servers": [
+        {
+          "name": "pairedpower",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "model": "claude-opus-5-5",
+      "permissionMode": "default",
+      "slash_commands": [],
+      "apiKeySource": "none",
+      "claude_code_version": "2.1.309",
+      "output_style": "default",
+      "agents": [
+        "claude",
+        "claude-code-guide",
+        "Explore",
+        "general-purpose",
+        "Plan",
+        "statusline-setup"
+      ],
+      "skills": [],
+      "plugins": [
+        {
+          "name": "cc-plugin-agents-md",
+          "path": "builtin",
+          "source": "cc-plugin-agents-md@builtin"
+        },
+        {
+          "name": "cc-plugin-telemetry",
+          "path": "builtin",
+          "source": "cc-plugin-telemetry@builtin"
+        },
+        {
+          "name": "cc-plugin-plugin-authoring",
+          "path": "builtin",
+          "source": "cc-plugin-plugin-authoring@builtin"
+        }
+      ],
+      "capabilities": [
+        "interrupt_receipt_v1",
+        "interrupt_cancel_queued_v1",
+        "interrupt_send_now_v1",
+        "interrupt_requeue_taken_v1",
+        "msg_lifecycle_v1",
+        "request_marker_lists_v1",
+        "lifecycle_wakeup_source_v1",
+        "sdk_mcp_tools_list_changed",
+        "sdk_mcp_manifests",
+        "mcp_read_resource_v1",
+        "mcp_tool_ui_meta_v1",
+        "ui_surface_v1",
+        "mcp_call_result_not_for_model_v1"
+      ],
+      "analytics_disabled": false,
+      "product_feedback_disabled": false,
+      "uuid": "13219533-4872-4497-ac44-e59646befaaa",
+      "memory_paths": {
+        "auto": "C:\\Users\\ELİF HAZAAR\\.claude\\projects\\C--Users-ELFHAZ-1-AppData-Local-Temp-tmpen1bf9kt\\memory\\"
+      },
+      "scratchpad_path": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\claude\\C--Users-ELFHAZ-1-AppData-Local-Temp-tmpen1bf9kt\\5977edb1-ecf9-4f16-886e-97dd37d94415\\scratchpad",
+      "original_cwd": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmpen1bf9kt",
+      "additional_directories": [],
+      "messaging_socket_path": "\\\\.\\pipe\\LOCAL\\cc-msg-2369740cd5612f7cd5686a334d92a227",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "per_turn_effort_active": true,
+      "view_mode": "default",
+      "powershell_path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-opus-5-5",
+        "id": "msg_011CgQq1ABBV4h3GFSXCn8RR",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "dz = 8/8 = 1."
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 1106,
+          "cache_read_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1106
+          },
+          "output_tokens": 1,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "5977edb1-ecf9-4f16-886e-97dd37d94415",
+      "uuid": "64ac0389-1528-4dbb-9732-f8999dc51035",
+      "timestamp": "2026-10-26T12:13:03.915Z",
+      "request_id": "req_011CgQq19k8T5MhZvJq4oAHa"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-opus-5-5",
+        "id": "msg_011CgQq1ABBV4h3GFSXCn8RR",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "tool_use",
+            "id": "toolu_01ErLyghRCDThkjA1XwNqfX1",
+            "name": "mcp__pairedpower__t_paired_power",
+            "input": {
+              "mode": "a-priori",
+              "tails": 2,
+              "dz": 1,
+              "alpha": 0.05,
+              "power": 0.9
+            },
+            "caller": {
+              "type": "direct"
+            }
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 1106,
+          "cache_read_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1106
+          },
+          "output_tokens": 1,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "5977edb1-ecf9-4f16-886e-97dd37d94415",
+      "uuid": "0190601c-f565-4fd0-85d0-9862e9b3e288",
+      "timestamp": "2026-10-26T12:13:04.741Z",
+      "request_id": "req_011CgQq19k8T5MhZvJq4oAHa",
+      "wire_tool_inputs": {
+        "toolu_01ErLyghRCDThkjA1XwNqfX1": {
+          "mode": "a-priori",
+          "tails": 2,
+          "dz": 1,
+          "alpha": 0.05,
+          "power": 0.9
+        }
+      },
+      "tool_use_meta": [
+        {
+          "id": "toolu_01ErLyghRCDThkjA1XwNqfX1",
+          "display_name": "T Paired Power",
+          "server_display_name": "pairedpower",
+          "tool_name": "t_paired_power"
+        }
+      ]
+    },
+    {
+      "type": "rate_limit_event",
+      "rate_limit_info": {
+        "status": "allowed",
+        "resetsAt": 1793028600,
+        "rateLimitType": "five_hour",
+        "overageStatus": "rejected",
+        "overageDisabledReason": "org_level_disabled",
+        "isUsingOverage": false,
+        "unifiedWindows": {
+          "five_hour": {
+            "utilization": 0.45,
+            "resetsAt": 1793028600
+          },
+          "seven_day": {
+            "utilization": 0.06,
+            "resetsAt": 1793466000
+          }
+        }
+      },
+      "uuid": "7da24868-1012-4b3c-8147-e81b04ae0955",
+      "session_id": "5977edb1-ecf9-4f16-886e-97dd37d94415"
+    },
+    {
+      "type": "user",
+      "message": {
+        "role": "user",
+        "content": [
+          {
+            "tool_use_id": "toolu_01ErLyghRCDThkjA1XwNqfX1",
+            "type": "tool_result",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\n  \"n_total\": 13,\n  \"actual_power\": 0.9107,\n  \"critical\": 2.1788,\n  \"df\": 12,\n  \"ncp\": 3.6056\n}"
+              }
+            ]
+          }
+        ]
+      },
+      "parent_tool_use_id": null,
+      "session_id": "5977edb1-ecf9-4f16-886e-97dd37d94415",
+      "uuid": "849c6400-cb07-40ae-971e-6c2cf8108d74",
+      "timestamp": "2026-10-26T12:13:04.765Z",
+      "tool_use_result": [
+        {
+          "type": "text",
+          "text": "{\n  \"n_total\": 13,\n  \"actual_power\": 0.9107,\n  \"critical\": 2.1788,\n  \"df\": 12,\n  \"ncp\": 3.6056\n}"
+        }
+      ],
+      "tool_result_meta": [
+        {
+          "id": "toolu_01ErLyghRCDThkjA1XwNqfX1",
+          "permission_decision": {
+            "decision": "accept",
+            "source": "config",
+            "reason_type": "rule"
+          }
+        }
+      ]
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-opus-5-5",
+        "id": "msg_011CgQq1KS37ogdqQziGM15j",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "thinking",
+            "thinking": "",
+            "signature": "CAQSzQQKEAgTGAI4AUIIdGhpbmtpbmcSDGhPUbhWWPHuwXY5eBoM5egfeR1M2cXVqezeIjCcd/iHksg/kSOhsbdIRyStkpZV8Y9kF0NYWFtIPWLdE1gSPFSlMdi7+RwD7w6+85Aq6gP0ciua12CzKTU9CTL+71szeP3Jn5JYYVD7DNg0WDXxPNCQ1iOlXQodtgBDMxWYzaVvrMH6pWMOnVBvwwYK5wEDVK/sZizfDeyqhGlFiR0b90rsAMEY73dpK7Tjy2sc69SEOI2kKdCd0GBjjqr8XSdjTWUcJ/lWreOkyTfKdoBd66FVwNdO8Ik4DX/jZKHm5B89692Sd5OSpmg7E4wh21ZNDmhwrmkAPAUtEVdblESs6fs9Owyd0NdvlFHLB7P5hxdMa7VwVwhno/e3V7LKZ5r4kKFk9JiA6ubNWCAWIzC8cewUld111piVP8eNLqHuN+/gESt1MwIRoGJnN02ZzE5tm0c1s/n77Na8vTEyz25ZgT+N9F/fJOKpd8zSrJpacZM7GNJtp1pprliO4x/ZI15h46rG4DnQbP0doY0pC06pQRVctyHZvvchwpzNVC4jVVPjCJ23wO+QDFcYnEC/kptsqQq/qtnOx5g4p6FjFY8xXmklXgoPAKbzArNw0u6YOVo1kI+8i2qYyRn5JPxyn8+QCGo28i/17JM6zmThqLFhdxhFpBriGBKSCF4lO9yD54cbBvGPtZJMgrVXCAdNLz6sh3/irlq4LQZO4fNe6e6Y2g4N+JoIXPiNfBDt6WQr2ErV1kEh2v4TrljIGAE="
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 257,
+          "cache_read_input_tokens": 3769,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 257
+          },
+          "output_tokens": 2,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "5977edb1-ecf9-4f16-886e-97dd37d94415",
+      "uuid": "31894ae0-4713-45ac-a499-d807beb49bce",
+      "timestamp": "2026-10-26T12:13:12.136Z",
+      "request_id": "req_011CgQq1K6hFLncNgYbG8sQM",
+      "thinking_duration_ms": 6474,
+      "thinking_display": "updates"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-opus-5-5",
+        "id": "msg_011CgQq1KS37ogdqQziGM15j",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "**13 hasta yeterli.** Her hasta önce ve sonra olmak üzere iki kez ölçülecek.\n\n**Tasarım:** Aynı hastalarda önce ve sonra ölçüm yapılıyor. Bu nedenle uygun test eşleştirilmiş örneklem t testi.\n\n**Varsayımlar:**\n- Etki büyüklüğü dz = ortalama fark / farkların standart sapması = 8 / 8 = **1,0**\n- α = 0,05, iki yönlü test\n- Hedef güç = %90\n\n**Sonuçlar:**\n- **Gereken hasta sayısı: 13**\n- 13 hastayla elde edilecek güç: **%91,07**\n- Serbestlik derecesi: 12\n- Kritik t değeri: 2,1788\n- Merkezi olmayan dağılım parametresi (δ): 3,6056\n\n**Dikkat edilmesi gerekenler:**\n- **Pilot çalışma etkiyi büyük gösterebilir.** Pilot çalışmalar genellikle küçük olduğu için etkiyi gerçekte olduğundan büyük ölçebilir. dz = 1,0 oldukça büyük bir etki. Gerçek etki daha küçükse 13 hasta yetersiz kalır. Daha temkinli bir dz değeriyle, örneğin 0,5 ya da 0,7 ile hesabı tekrarlamak isterseniz yapabilirim.\n- **Çalışmadan ayrılanlar bu sayıya dahil değil.** 13 hasta, analize girmesi gereken en az hasta sayısı. Takipte kayıp bekliyorsanız çalışmaya bunun üzerinde hasta almanız gerekir. Örneğin %20 kayıp bekleniyorsa N ÷ 0,8 formülüyle hesaplayabilirsiniz.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```"
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 257,
+          "cache_read_input_tokens": 3769,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 257
+          },
+          "output_tokens": 2,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "5977edb1-ecf9-4f16-886e-97dd37d94415",
+      "uuid": "bce53d49-e1b3-48c3-a74d-d8f36734fcc6",
+      "timestamp": "2026-10-26T12:13:12.145Z",
+      "request_id": "req_011CgQq1K6hFLncNgYbG8sQM"
+    },
+    {
+      "type": "rate_limit_event",
+      "rate_limit_info": {
+        "status": "allowed",
+        "resetsAt": 1793028600,
+        "rateLimitType": "five_hour",
+        "overageStatus": "rejected",
+        "overageDisabledReason": "org_level_disabled",
+        "isUsingOverage": false,
+        "unifiedWindows": {
+          "five_hour": {
+            "utilization": 0.46,
+            "resetsAt": 1793028600
+          },
+          "seven_day": {
+            "utilization": 0.06,
+            "resetsAt": 1793466000
+          }
+        }
+      },
+      "uuid": "ee018890-e351-416d-a735-6ce5f566ccdf",
+      "session_id": "5977edb1-ecf9-4f16-886e-97dd37d94415"
+    },
+    {
+      "type": "system",
+      "subtype": "post_turn_summary",
+      "summarizes_uuid": "bce53d49-e1b3-48c3-a74d-d8f36734fcc6",
+      "status_category": "completed",
+      "status_detail": "13 hasta yeterli; eşleştirilmiş t testi, dz=1,0",
+      "needs_action": "",
+      "uuid": "0c6a7e6a-f389-4a48-b9a2-99f622e4aa9c",
+      "session_id": "5977edb1-ecf9-4f16-886e-97dd37d94415"
+    },
+    {
+      "duration_api_ms": 9563,
+      "stop_reason": "end_turn",
+      "session_id": "5977edb1-ecf9-4f16-886e-97dd37d94415",
+      "total_cost_usd": 0.029646399999999996,
+      "usage": {
+        "input_tokens": 4,
+        "cache_creation_input_tokens": 1363,
+        "cache_read_input_tokens": 6432,
+        "output_tokens": 872,
+        "output_tokens_details": {
+          "thinking_tokens": 16
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 1363,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 703,
+            "cache_read_input_tokens": 3769,
+            "cache_creation_input_tokens": 257,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 257
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "claude-opus-5-5": {
+          "inputTokens": 4,
+          "outputTokens": 872,
+          "cacheReadInputTokens": 6432,
+          "cacheCreationInputTokens": 1363,
+          "webSearchRequests": 0,
+          "costUSD": 0.029646399999999996,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 16,
+          "canonicalModel": "claude-opus-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 2,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "**13 hasta yeterli.** Her hasta önce ve sonra olmak üzere iki kez ölçülecek.\n\n**Tasarım:** Aynı hastalarda önce ve sonra ölçüm yapılıyor. Bu nedenle uygun test eşleştirilmiş örneklem t testi.\n\n**Varsayımlar:**\n- Etki büyüklüğü dz = ortalama fark / farkların standart sapması = 8 / 8 = **1,0**\n- α = 0,05, iki yönlü test\n- Hedef güç = %90\n\n**Sonuçlar:**\n- **Gereken hasta sayısı: 13**\n- 13 hastayla elde edilecek güç: **%91,07**\n- Serbestlik derecesi: 12\n- Kritik t değeri: 2,1788\n- Merkezi olmayan dağılım parametresi (δ): 3,6056\n\n**Dikkat edilmesi gerekenler:**\n- **Pilot çalışma etkiyi büyük gösterebilir.** Pilot çalışmalar genellikle küçük olduğu için etkiyi gerçekte olduğundan büyük ölçebilir. dz = 1,0 oldukça büyük bir etki. Gerçek etki daha küçükse 13 hasta yetersiz kalır. Daha temkinli bir dz değeriyle, örneğin 0,5 ya da 0,7 ile hesabı tekrarlamak isterseniz yapabilirim.\n- **Çalışmadan ayrılanlar bu sayıya dahil değil.** 13 hasta, analize girmesi gereken en az hasta sayısı. Takipte kayıp bekliyorsanız çalışmaya bunun üzerinde hasta almanız gerekir. Örneğin %20 kayıp bekleniyorsa N ÷ 0,8 formülüyle hesaplayabilirsiniz.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```",
+      "ttft_ms": 1370,
+      "type": "result",
+      "duration_ms": 13030,
+      "uuid": "566a501a-2ed1-4cf7-a8bb-41aa61bc4c14",
+      "ttft_stream_ms": 977,
+      "time_to_request_ms": 42,
+      "first_content_frame_ms": 977,
+      "queued_turn_count": 0,
+      "result_index": 0,
+      "model_usage_since_last_result": {
+        "claude-opus-5-5": {
+          "inputTokens": 4,
+          "outputTokens": 872,
+          "cacheReadInputTokens": 6432,
+          "cacheCreationInputTokens": 1363,
+          "webSearchRequests": 0,
+          "costUSD": 0.029646399999999996,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 16,
+          "canonicalModel": "claude-opus-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      }
+    }
+  ]
+}

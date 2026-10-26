@@ -1,0 +1,494 @@
+{
+  "id": "Q02",
+  "question": "Diyabet hastalarında yeni bir egzersiz programının HbA1c'yi düşüreceğini düşünüyoruz; artırma ihtimali bizi ilgilendirmiyor, yalnızca düşüşü test edeceğiz (tek yönlü). Aynı hastalar önce ve sonra ölçülecek. Etki büyüklüğü dz = 0,5, alfa %5, güç %80 olsun. Kaç hasta lazım?",
+  "model": "claude-opus-5-5",
+  "started_utc": "2026-10-26T12:11:13.452225+00:00",
+  "wall_seconds_measured": 20.371,
+  "exit_code": 0,
+  "stderr": "",
+  "tool_calls": [
+    {
+      "id": "toolu_01CbCm6JExhFiqUQXHyGpb4v",
+      "name": "mcp__pairedpower__t_paired_power",
+      "input": {
+        "mode": "a-priori",
+        "tails": 1,
+        "dz": 0.5,
+        "alpha": 0.05,
+        "power": 0.8
+      },
+      "result": {
+        "is_error": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"n_total\": 27,\n  \"actual_power\": 0.8118,\n  \"critical\": 1.7056,\n  \"df\": 26,\n  \"ncp\": 2.5981\n}"
+          }
+        ]
+      },
+      "result_json": {
+        "n_total": 27,
+        "actual_power": 0.8118,
+        "critical": 1.7056,
+        "df": 26,
+        "ncp": 2.5981
+      }
+    }
+  ],
+  "final_answer": "**Sonuç: Çalışmayı tamamlayan 27 hasta gerekiyor.** Her hastanın hem başlangıç hem de program sonrası HbA1c ölçümü olmalı.\n\nHesapta kullanılan varsayımlar:\n- **Test:** Eşleştirilmiş örneklem t testi (aynı hastalarda önce/sonra ölçüm).\n- **Yön:** Tek yönlü; yalnızca HbA1c'deki düşüş test ediliyor.\n- **Etki büyüklüğü:** dz = 0,5 (ortalama HbA1c düşüşü / farkların standart sapması).\n- **Alfa:** 0,05\n- **Hedeflenen güç:** %80\n\nAraçtan çıkan değerler:\n- Gereken hasta sayısı: **27**\n- 27 hastayla elde edilen gerçek güç: **%81,18**\n- Serbestlik derecesi: 26\n- Kritik t değeri: 1,7056\n- Merkezsizlik parametresi (δ): 2,5981\n\n**Dikkat edilecekler:**\n- **Hasta kaybı:** 27, son ölçümü yapılmış hasta sayısıdır. Takipten çıkacak hastalar düşünülerek daha fazla hasta alınmalı. Örneğin kayıp oranı %20 bekleniyorsa yaklaşık 27 / 0,8 ≈ 34 hasta almak gerekir. Bu sadece bir orana göre büyütme işlemidir, ayrı bir güç hesabı değildir.\n- **Tek yönlü testin gerekçesi:** Tek yönlü test, protokolde önceden ve gerekçesiyle yazılmalı. Çünkü program HbA1c'yi beklenmedik biçimde artırırsa bu test o artışı anlamlı olarak gösteremez. Bazı dergiler ve etik kurullar iki yönlü test isteyebilir. O durumda gereken hasta sayısı artar ve ayrıca hesaplanması gerekir.\n- **dz = 0,5 varsayımı:** Bu değerin pilot çalışmaya ya da literatüre dayanması önemli. Gerçek etki daha küçük çıkarsa çalışmanın gücü %80'in altına düşer.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```",
+  "final_block": {
+    "etiket": "t-paired",
+    "guven": "yuksek",
+    "arac_cagrildi": true
+  },
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 1370,
+    "cache_read_input_tokens": 6450,
+    "output_tokens": 991,
+    "output_tokens_details": {
+      "thinking_tokens": 0
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1370,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 833,
+        "cache_read_input_tokens": 3787,
+        "cache_creation_input_tokens": 246,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 246
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "model_usage": {
+    "claude-opus-5-5": {
+      "inputTokens": 4,
+      "outputTokens": 991,
+      "cacheReadInputTokens": 6450,
+      "cacheCreationInputTokens": 1370,
+      "webSearchRequests": 0,
+      "costUSD": 0.032086,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 0,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.032086,
+  "duration_ms": 13855,
+  "duration_api_ms": 11064,
+  "num_turns": 2,
+  "command": [
+    "-p",
+    "<soru>",
+    "--model",
+    "claude-opus-5-5",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--system-prompt-file",
+    "C:\\Users\\ELİF HAZAAR\\Downloads\\k2-tpaired-asama1\\k2-tpaired\\agent\\system_prompt.md",
+    "--mcp-config",
+    "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmp8u3vq4gw\\mcp.json",
+    "--strict-mcp-config",
+    "--tools",
+    "",
+    "--allowedTools",
+    "mcp__pairedpower__t_paired_power",
+    "--setting-sources",
+    "",
+    "--no-session-persistence",
+    "--disable-slash-commands"
+  ],
+  "raw_stream": [
+    {
+      "type": "system",
+      "subtype": "init",
+      "cwd": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmp8u3vq4gw",
+      "session_id": "fc6e0602-c8a1-4ffc-8251-b7d3a5f5cc63",
+      "tools": [
+        "mcp__pairedpower__t_paired_power"
+      ],
+      "mcp_servers": [
+        {
+          "name": "pairedpower",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "model": "claude-opus-5-5",
+      "permissionMode": "default",
+      "slash_commands": [],
+      "apiKeySource": "none",
+      "claude_code_version": "2.1.309",
+      "output_style": "default",
+      "agents": [
+        "claude",
+        "claude-code-guide",
+        "Explore",
+        "general-purpose",
+        "Plan",
+        "statusline-setup"
+      ],
+      "skills": [],
+      "plugins": [
+        {
+          "name": "cc-plugin-agents-md",
+          "path": "builtin",
+          "source": "cc-plugin-agents-md@builtin"
+        },
+        {
+          "name": "cc-plugin-telemetry",
+          "path": "builtin",
+          "source": "cc-plugin-telemetry@builtin"
+        },
+        {
+          "name": "cc-plugin-plugin-authoring",
+          "path": "builtin",
+          "source": "cc-plugin-plugin-authoring@builtin"
+        }
+      ],
+      "capabilities": [
+        "interrupt_receipt_v1",
+        "interrupt_cancel_queued_v1",
+        "interrupt_send_now_v1",
+        "interrupt_requeue_taken_v1",
+        "msg_lifecycle_v1",
+        "request_marker_lists_v1",
+        "lifecycle_wakeup_source_v1",
+        "sdk_mcp_tools_list_changed",
+        "sdk_mcp_manifests",
+        "mcp_read_resource_v1",
+        "mcp_tool_ui_meta_v1",
+        "ui_surface_v1",
+        "mcp_call_result_not_for_model_v1"
+      ],
+      "analytics_disabled": false,
+      "product_feedback_disabled": false,
+      "uuid": "3c90eb31-db5e-44d8-8268-bc31bd4a8c87",
+      "memory_paths": {
+        "auto": "C:\\Users\\ELİF HAZAAR\\.claude\\projects\\C--Users-ELFHAZ-1-AppData-Local-Temp-tmp8u3vq4gw\\memory\\"
+      },
+      "scratchpad_path": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\claude\\C--Users-ELFHAZ-1-AppData-Local-Temp-tmp8u3vq4gw\\fc6e0602-c8a1-4ffc-8251-b7d3a5f5cc63\\scratchpad",
+      "original_cwd": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmp8u3vq4gw",
+      "additional_directories": [],
+      "messaging_socket_path": "\\\\.\\pipe\\LOCAL\\cc-msg-5ca13ebd6329d87886956a8e885362d5",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "per_turn_effort_active": true,
+      "view_mode": "default",
+      "powershell_path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-opus-5-5",
+        "id": "msg_011CgQpsZ8apPZCgDVVVNmYR",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "tool_use",
+            "id": "toolu_01CbCm6JExhFiqUQXHyGpb4v",
+            "name": "mcp__pairedpower__t_paired_power",
+            "input": {
+              "mode": "a-priori",
+              "tails": 1,
+              "dz": 0.5,
+              "alpha": 0.05,
+              "power": 0.8
+            },
+            "caller": {
+              "type": "direct"
+            }
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 1124,
+          "cache_read_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1124
+          },
+          "output_tokens": 32,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "fc6e0602-c8a1-4ffc-8251-b7d3a5f5cc63",
+      "uuid": "88279f36-cc59-4696-93ec-ad1b7ab6d588",
+      "timestamp": "2026-10-26T12:11:21.827Z",
+      "request_id": "req_011CgQpsYqDnR4DmTaaz65fi",
+      "wire_tool_inputs": {
+        "toolu_01CbCm6JExhFiqUQXHyGpb4v": {
+          "mode": "a-priori",
+          "tails": 1,
+          "dz": 0.5,
+          "alpha": 0.05,
+          "power": 0.8
+        }
+      },
+      "tool_use_meta": [
+        {
+          "id": "toolu_01CbCm6JExhFiqUQXHyGpb4v",
+          "display_name": "T Paired Power",
+          "server_display_name": "pairedpower",
+          "tool_name": "t_paired_power"
+        }
+      ]
+    },
+    {
+      "type": "rate_limit_event",
+      "rate_limit_info": {
+        "status": "allowed",
+        "resetsAt": 1793028600,
+        "rateLimitType": "five_hour",
+        "overageStatus": "rejected",
+        "overageDisabledReason": "org_level_disabled",
+        "isUsingOverage": false,
+        "unifiedWindows": {
+          "five_hour": {
+            "utilization": 0.44,
+            "resetsAt": 1793028600
+          },
+          "seven_day": {
+            "utilization": 0.06,
+            "resetsAt": 1793466000
+          }
+        }
+      },
+      "uuid": "905b8e77-ac28-47ec-b8bd-f1a1f5638f37",
+      "session_id": "fc6e0602-c8a1-4ffc-8251-b7d3a5f5cc63"
+    },
+    {
+      "type": "user",
+      "message": {
+        "role": "user",
+        "content": [
+          {
+            "tool_use_id": "toolu_01CbCm6JExhFiqUQXHyGpb4v",
+            "type": "tool_result",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\n  \"n_total\": 27,\n  \"actual_power\": 0.8118,\n  \"critical\": 1.7056,\n  \"df\": 26,\n  \"ncp\": 2.5981\n}"
+              }
+            ]
+          }
+        ]
+      },
+      "parent_tool_use_id": null,
+      "session_id": "fc6e0602-c8a1-4ffc-8251-b7d3a5f5cc63",
+      "uuid": "504a9e48-3dca-4805-9f19-95d93c09d50c",
+      "timestamp": "2026-10-26T12:11:21.848Z",
+      "tool_use_result": [
+        {
+          "type": "text",
+          "text": "{\n  \"n_total\": 27,\n  \"actual_power\": 0.8118,\n  \"critical\": 1.7056,\n  \"df\": 26,\n  \"ncp\": 2.5981\n}"
+        }
+      ],
+      "tool_result_meta": [
+        {
+          "id": "toolu_01CbCm6JExhFiqUQXHyGpb4v",
+          "permission_decision": {
+            "decision": "accept",
+            "source": "config",
+            "reason_type": "rule"
+          }
+        }
+      ]
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-opus-5-5",
+        "id": "msg_011CgQpsjRD8h4oiP2vwtJtf",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "**Sonuç: Çalışmayı tamamlayan 27 hasta gerekiyor.** Her hastanın hem başlangıç hem de program sonrası HbA1c ölçümü olmalı.\n\nHesapta kullanılan varsayımlar:\n- **Test:** Eşleştirilmiş örneklem t testi (aynı hastalarda önce/sonra ölçüm).\n- **Yön:** Tek yönlü; yalnızca HbA1c'deki düşüş test ediliyor.\n- **Etki büyüklüğü:** dz = 0,5 (ortalama HbA1c düşüşü / farkların standart sapması).\n- **Alfa:** 0,05\n- **Hedeflenen güç:** %80\n\nAraçtan çıkan değerler:\n- Gereken hasta sayısı: **27**\n- 27 hastayla elde edilen gerçek güç: **%81,18**\n- Serbestlik derecesi: 26\n- Kritik t değeri: 1,7056\n- Merkezsizlik parametresi (δ): 2,5981\n\n**Dikkat edilecekler:**\n- **Hasta kaybı:** 27, son ölçümü yapılmış hasta sayısıdır. Takipten çıkacak hastalar düşünülerek daha fazla hasta alınmalı. Örneğin kayıp oranı %20 bekleniyorsa yaklaşık 27 / 0,8 ≈ 34 hasta almak gerekir. Bu sadece bir orana göre büyütme işlemidir, ayrı bir güç hesabı değildir.\n- **Tek yönlü testin gerekçesi:** Tek yönlü test, protokolde önceden ve gerekçesiyle yazılmalı. Çünkü program HbA1c'yi beklenmedik biçimde artırırsa bu test o artışı anlamlı olarak gösteremez. Bazı dergiler ve etik kurullar iki yönlü test isteyebilir. O durumda gereken hasta sayısı artar ve ayrıca hesaplanması gerekir.\n- **dz = 0,5 varsayımı:** Bu değerin pilot çalışmaya ya da literatüre dayanması önemli. Gerçek etki daha küçük çıkarsa çalışmanın gücü %80'in altına düşer.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```"
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 246,
+          "cache_read_input_tokens": 3787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 246
+          },
+          "output_tokens": 833,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "fc6e0602-c8a1-4ffc-8251-b7d3a5f5cc63",
+      "uuid": "4b7ed662-c8ad-4d9a-b3bf-4a135af94179",
+      "timestamp": "2026-10-26T12:11:30.529Z",
+      "request_id": "req_011CgQpsj772zbmMNs5WW9P8"
+    },
+    {
+      "type": "system",
+      "subtype": "post_turn_summary",
+      "summarizes_uuid": "4b7ed662-c8ad-4d9a-b3bf-4a135af94179",
+      "status_category": "completed",
+      "status_detail": "Eşleştirilmiş t testi, dz=0,5: 27 hasta gerekli",
+      "needs_action": "",
+      "uuid": "3eb37e2e-dd0f-49e2-bd00-eaa12e79ea9d",
+      "session_id": "fc6e0602-c8a1-4ffc-8251-b7d3a5f5cc63"
+    },
+    {
+      "duration_api_ms": 11064,
+      "stop_reason": "end_turn",
+      "session_id": "fc6e0602-c8a1-4ffc-8251-b7d3a5f5cc63",
+      "total_cost_usd": 0.032086,
+      "usage": {
+        "input_tokens": 4,
+        "cache_creation_input_tokens": 1370,
+        "cache_read_input_tokens": 6450,
+        "output_tokens": 991,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 1370,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 833,
+            "cache_read_input_tokens": 3787,
+            "cache_creation_input_tokens": 246,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 246
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "claude-opus-5-5": {
+          "inputTokens": 4,
+          "outputTokens": 991,
+          "cacheReadInputTokens": 6450,
+          "cacheCreationInputTokens": 1370,
+          "webSearchRequests": 0,
+          "costUSD": 0.032086,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-opus-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 2,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "**Sonuç: Çalışmayı tamamlayan 27 hasta gerekiyor.** Her hastanın hem başlangıç hem de program sonrası HbA1c ölçümü olmalı.\n\nHesapta kullanılan varsayımlar:\n- **Test:** Eşleştirilmiş örneklem t testi (aynı hastalarda önce/sonra ölçüm).\n- **Yön:** Tek yönlü; yalnızca HbA1c'deki düşüş test ediliyor.\n- **Etki büyüklüğü:** dz = 0,5 (ortalama HbA1c düşüşü / farkların standart sapması).\n- **Alfa:** 0,05\n- **Hedeflenen güç:** %80\n\nAraçtan çıkan değerler:\n- Gereken hasta sayısı: **27**\n- 27 hastayla elde edilen gerçek güç: **%81,18**\n- Serbestlik derecesi: 26\n- Kritik t değeri: 1,7056\n- Merkezsizlik parametresi (δ): 2,5981\n\n**Dikkat edilecekler:**\n- **Hasta kaybı:** 27, son ölçümü yapılmış hasta sayısıdır. Takipten çıkacak hastalar düşünülerek daha fazla hasta alınmalı. Örneğin kayıp oranı %20 bekleniyorsa yaklaşık 27 / 0,8 ≈ 34 hasta almak gerekir. Bu sadece bir orana göre büyütme işlemidir, ayrı bir güç hesabı değildir.\n- **Tek yönlü testin gerekçesi:** Tek yönlü test, protokolde önceden ve gerekçesiyle yazılmalı. Çünkü program HbA1c'yi beklenmedik biçimde artırırsa bu test o artışı anlamlı olarak gösteremez. Bazı dergiler ve etik kurullar iki yönlü test isteyebilir. O durumda gereken hasta sayısı artar ve ayrıca hesaplanması gerekir.\n- **dz = 0,5 varsayımı:** Bu değerin pilot çalışmaya ya da literatüre dayanması önemli. Gerçek etki daha küçük çıkarsa çalışmanın gücü %80'in altına düşer.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```",
+      "ttft_ms": 2427,
+      "type": "result",
+      "duration_ms": 13855,
+      "uuid": "8cc85afe-601f-4df3-8d09-021076dd5a64",
+      "ttft_stream_ms": 1364,
+      "time_to_request_ms": 64,
+      "first_content_frame_ms": 1365,
+      "queued_turn_count": 0,
+      "result_index": 0,
+      "model_usage_since_last_result": {
+        "claude-opus-5-5": {
+          "inputTokens": 4,
+          "outputTokens": 991,
+          "cacheReadInputTokens": 6450,
+          "cacheCreationInputTokens": 1370,
+          "webSearchRequests": 0,
+          "costUSD": 0.032086,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-opus-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      }
+    }
+  ]
+}

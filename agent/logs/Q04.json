@@ -1,0 +1,553 @@
+{
+  "id": "Q04",
+  "question": "Elimizde 35 hastanın tedavi öncesi ve sonrası LDL kolesterol ölçümleri var (aynı hastalar). Beklenen etki büyüklüğü dz = 0,5 ise, alfa 0,05 ve iki yönlü testle bu çalışmanın gücü ne olur?",
+  "model": "claude-haiku-5-5",
+  "started_utc": "2026-10-26T11:51:32.039372+00:00",
+  "wall_seconds_measured": 17.95,
+  "exit_code": 0,
+  "stderr": "",
+  "tool_calls": [
+    {
+      "id": "toolu_019yBQBU3KWkSqybTDvLer2J",
+      "name": "mcp__pairedpower__t_paired_power",
+      "input": {
+        "mode": "post-hoc",
+        "tails": 2,
+        "dz": 0.5,
+        "alpha": 0.05,
+        "n": 35
+      },
+      "result": {
+        "is_error": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"n_total\": 35,\n  \"actual_power\": 0.8195,\n  \"critical\": 2.0322,\n  \"df\": 34,\n  \"ncp\": 2.958\n}"
+          }
+        ]
+      },
+      "result_json": {
+        "n_total": 35,
+        "actual_power": 0.8195,
+        "critical": 2.0322,
+        "df": 34,
+        "ncp": 2.958
+      }
+    }
+  ],
+  "final_answer": "Bu çalışmanın gücü yaklaşık **%82** (0,8195).\n\nHesabın dayandığı varsayımlar:\n- **Tasarım:** Aynı 35 hastada tedavi öncesi ve sonrası ölçüm yapıldığı için eşleştirilmiş örneklem t testi kullanıldı.\n- **Etki büyüklüğü:** dz = 0,5 (farkların ortalamasının farkların standart sapmasına oranı).\n- **Anlamlılık düzeyi:** α = 0,05.\n- **Test yönü:** İki yönlü. Yani tedavinin LDL'yi hem düşürüp hem artırabileceği durumu test ediyorsunuz.\n\nHesaplanan ara değerler: serbestlik derecesi (df) = 34, kritik t = 2,0322, merkezi olmayanlık parametresi (ncp) = 2,958.\n\nYorum: Bu tasarımda, gerçek etki dz = 0,5 ise farkın istatistiksel olarak anlamlı çıkma olasılığı yaklaşık %82'dir. Geleneksel %80 güç eşiğinin üzerindesiniz.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```",
+  "final_block": {
+    "etiket": "t-paired",
+    "guven": "yuksek",
+    "arac_cagrildi": true
+  },
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 1353,
+    "cache_read_input_tokens": 6364,
+    "output_tokens": 676,
+    "output_tokens_details": {
+      "thinking_tokens": 70
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1353,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 448,
+        "cache_read_input_tokens": 3701,
+        "cache_creation_input_tokens": 315,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 315
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "model_usage": {
+    "claude-haiku-5-5": {
+      "inputTokens": 4,
+      "outputTokens": 676,
+      "cacheReadInputTokens": 6364,
+      "cacheCreationInputTokens": 1353,
+      "webSearchRequests": 0,
+      "costUSD": 0.0006726400000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 70,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.0006726400000000001,
+  "duration_ms": 10975,
+  "duration_api_ms": 6801,
+  "num_turns": 2,
+  "command": [
+    "-p",
+    "<soru>",
+    "--model",
+    "claude-haiku-5-5",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--system-prompt-file",
+    "C:\\Users\\ELİF HAZAAR\\Downloads\\k2-tpaired-asama1\\k2-tpaired\\agent\\system_prompt.md",
+    "--mcp-config",
+    "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmp5y_f0z_1\\mcp.json",
+    "--strict-mcp-config",
+    "--tools",
+    "",
+    "--allowedTools",
+    "mcp__pairedpower__t_paired_power",
+    "--setting-sources",
+    "",
+    "--no-session-persistence",
+    "--disable-slash-commands"
+  ],
+  "raw_stream": [
+    {
+      "type": "system",
+      "subtype": "init",
+      "cwd": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmp5y_f0z_1",
+      "session_id": "7cf54b15-dbd9-401d-8fe0-97a24e7a2ea1",
+      "tools": [
+        "mcp__pairedpower__t_paired_power"
+      ],
+      "mcp_servers": [
+        {
+          "name": "pairedpower",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "model": "claude-haiku-5-5",
+      "permissionMode": "default",
+      "slash_commands": [],
+      "apiKeySource": "none",
+      "claude_code_version": "2.1.309",
+      "output_style": "default",
+      "agents": [
+        "claude",
+        "claude-code-guide",
+        "Explore",
+        "general-purpose",
+        "Plan",
+        "statusline-setup"
+      ],
+      "skills": [],
+      "plugins": [
+        {
+          "name": "cc-plugin-agents-md",
+          "path": "builtin",
+          "source": "cc-plugin-agents-md@builtin"
+        },
+        {
+          "name": "cc-plugin-telemetry",
+          "path": "builtin",
+          "source": "cc-plugin-telemetry@builtin"
+        },
+        {
+          "name": "cc-plugin-plugin-authoring",
+          "path": "builtin",
+          "source": "cc-plugin-plugin-authoring@builtin"
+        }
+      ],
+      "capabilities": [
+        "interrupt_receipt_v1",
+        "interrupt_cancel_queued_v1",
+        "interrupt_send_now_v1",
+        "interrupt_requeue_taken_v1",
+        "msg_lifecycle_v1",
+        "request_marker_lists_v1",
+        "lifecycle_wakeup_source_v1",
+        "sdk_mcp_tools_list_changed",
+        "sdk_mcp_manifests",
+        "mcp_read_resource_v1",
+        "mcp_tool_ui_meta_v1",
+        "ui_surface_v1",
+        "mcp_call_result_not_for_model_v1"
+      ],
+      "analytics_disabled": false,
+      "product_feedback_disabled": false,
+      "uuid": "a15263fa-81fb-428d-b51d-49abadb507c1",
+      "memory_paths": {
+        "auto": "C:\\Users\\ELİF HAZAAR\\.claude\\projects\\C--Users-ELFHAZ-1-AppData-Local-Temp-tmp5y-f0z-1\\memory\\"
+      },
+      "scratchpad_path": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\claude\\C--Users-ELFHAZ-1-AppData-Local-Temp-tmp5y-f0z-1\\7cf54b15-dbd9-401d-8fe0-97a24e7a2ea1\\scratchpad",
+      "original_cwd": "C:\\Users\\ELFHAZ~1\\AppData\\Local\\Temp\\tmp5y_f0z_1",
+      "additional_directories": [],
+      "messaging_socket_path": "\\\\.\\pipe\\LOCAL\\cc-msg-a6f2b0e59fd87bc84154183bc6f311f6",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "per_turn_effort_active": true,
+      "view_mode": "default",
+      "powershell_path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    },
+    {
+      "type": "system",
+      "subtype": "thinking_tokens",
+      "estimated_tokens": 50,
+      "estimated_tokens_delta": 50,
+      "session_id": "7cf54b15-dbd9-401d-8fe0-97a24e7a2ea1",
+      "uuid": "7bb9596d-a5e0-4b44-bff7-9e374e0a188d"
+    },
+    {
+      "type": "system",
+      "subtype": "thinking_tokens",
+      "estimated_tokens": 200,
+      "estimated_tokens_delta": 150,
+      "session_id": "7cf54b15-dbd9-401d-8fe0-97a24e7a2ea1",
+      "uuid": "aab9dfa3-fa91-4531-b475-16099e4780cc"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-haiku-5-5",
+        "id": "msg_011CgQoNVKDDK915r5DvZfHh",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "thinking",
+            "thinking": "",
+            "signature": "CAQSlwYKEAgTGAI4AUIIdGhpbmtpbmcSDCT0x0DX8mek5JAjDBoMZRfIUslBSKUmF3imIjArE02AeUiydAZPe5XFVjbLtNi02U9x6SbZWHR0vVzgMad9WvUd9F75FFNeyRBpai0qtAXBpawwmJ+s1HGYoczPKG+ucAD8BNCKczXeuRLv6cNrfr+Te3cgTH9xtrPb8ssajha4Gy9Zvz4zqut1hFHbNv0tn/E+SkKXWmz7NyCMXSRwzHXo7Wgqm7q3qRRPmqZpa6nkUWOc/sG/TAZ6hTCkbFAUzUA+b3YGhzS8bHDrza9RAWRIEXnkpo4Vpiv2lBoNTT+Ehru3cDPAgAbqP/cBUCBFAM/equ8iRkkp+hUqMStIjYHGQ+7kx0rZK54Gd3r8/kdhomhzHKYGIlqyzJvyCOM1ickFb5mpmEtptRH1Nt6upSAbUZgVCoKGNZCi8dA2IPNaXMdD+yUDQq4XMnDg7yBWqk6UA33eVtn+pRvaNRCzc21qjQXc7tCknAjwswyFtH5rdUIR8TUFVSnj8fY8ISTHLG3txhwd+lGsEwXo1BqnSNihJEyWrJKyUjKGTZ+CdLqWHkni5dOoiHArlGlJ4/EwfV/MXIzRvmVo0WpTBtDWWQ7ZbsZmEpSjQp+SKH5Txk5UYvv57H/r1bvY+nYRJPKXYuulttDv1jtNpAvA8R9WxyIiklDhBbgkjnQ8Z+J1/tCyh82/ySebMwXPiRqdYj5Egf4Zz93FxpKd84XJ2jIU6nAdhX0W7QrB40setWb+Msxtu6RaSvMpIXC2w6ed06tiy+2pqO6uyZAOZE2Uzso9a3hzme2n/TWKEE85z8uHUoalowxtzstaHzSMJReyNm+Al+pTUnM8L6tlGer8KJge/8P723zXY0wFpbeDTiVCEFuyNQzGM9kLqtbfJbGrqYXQEDRxnC+fZEvhTjOuRscxkMENwzVCupxuGJkatgzyGVJrJSicZXXotZZspV9gpJPbhIYDkZikl7yZ8VtiQlk20bf58UFHy97rG7YmjUR6Lg3Wjigo0ODUGIyHRGGAOlSRuXoiqRgB"
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 1038,
+          "cache_read_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1038
+          },
+          "output_tokens": 5,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "7cf54b15-dbd9-401d-8fe0-97a24e7a2ea1",
+      "uuid": "f241346c-e892-4282-8c83-8c01099f06b5",
+      "timestamp": "2026-10-26T11:51:41.001Z",
+      "request_id": "req_011CgQoNV5aJjhetWSXpchMu",
+      "thinking_duration_ms": 398,
+      "thinking_display": "updates"
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-haiku-5-5",
+        "id": "msg_011CgQoNVKDDK915r5DvZfHh",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "tool_use",
+            "id": "toolu_019yBQBU3KWkSqybTDvLer2J",
+            "name": "mcp__pairedpower__t_paired_power",
+            "input": {
+              "mode": "post-hoc",
+              "tails": 2,
+              "dz": 0.5,
+              "alpha": 0.05,
+              "n": 35
+            },
+            "caller": {
+              "type": "direct"
+            }
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 1038,
+          "cache_read_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1038
+          },
+          "output_tokens": 5,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "7cf54b15-dbd9-401d-8fe0-97a24e7a2ea1",
+      "uuid": "4116dabb-1f1a-4f42-a7f1-dbd257d9077d",
+      "timestamp": "2026-10-26T11:51:41.364Z",
+      "request_id": "req_011CgQoNV5aJjhetWSXpchMu",
+      "wire_tool_inputs": {
+        "toolu_019yBQBU3KWkSqybTDvLer2J": {
+          "mode": "post-hoc",
+          "tails": 2,
+          "dz": 0.5,
+          "alpha": 0.05,
+          "n": 35
+        }
+      },
+      "tool_use_meta": [
+        {
+          "id": "toolu_019yBQBU3KWkSqybTDvLer2J",
+          "display_name": "T Paired Power",
+          "server_display_name": "pairedpower",
+          "tool_name": "t_paired_power"
+        }
+      ]
+    },
+    {
+      "type": "rate_limit_event",
+      "rate_limit_info": {
+        "status": "allowed",
+        "resetsAt": 1793028600,
+        "rateLimitType": "five_hour",
+        "overageStatus": "rejected",
+        "overageDisabledReason": "org_level_disabled",
+        "isUsingOverage": false,
+        "unifiedWindows": {
+          "five_hour": {
+            "utilization": 0.29,
+            "resetsAt": 1793028600
+          },
+          "seven_day": {
+            "utilization": 0.04,
+            "resetsAt": 1793466000
+          }
+        }
+      },
+      "uuid": "c322d7c2-623b-4c6f-981a-1e7593265b22",
+      "session_id": "7cf54b15-dbd9-401d-8fe0-97a24e7a2ea1"
+    },
+    {
+      "type": "user",
+      "message": {
+        "role": "user",
+        "content": [
+          {
+            "tool_use_id": "toolu_019yBQBU3KWkSqybTDvLer2J",
+            "type": "tool_result",
+            "content": [
+              {
+                "type": "text",
+                "text": "{\n  \"n_total\": 35,\n  \"actual_power\": 0.8195,\n  \"critical\": 2.0322,\n  \"df\": 34,\n  \"ncp\": 2.958\n}"
+              }
+            ]
+          }
+        ]
+      },
+      "parent_tool_use_id": null,
+      "session_id": "7cf54b15-dbd9-401d-8fe0-97a24e7a2ea1",
+      "uuid": "cc8345b1-d32e-4bf2-be1c-331bc1f37611",
+      "timestamp": "2026-10-26T11:51:41.385Z",
+      "tool_use_result": [
+        {
+          "type": "text",
+          "text": "{\n  \"n_total\": 35,\n  \"actual_power\": 0.8195,\n  \"critical\": 2.0322,\n  \"df\": 34,\n  \"ncp\": 2.958\n}"
+        }
+      ],
+      "tool_result_meta": [
+        {
+          "id": "toolu_019yBQBU3KWkSqybTDvLer2J",
+          "permission_decision": {
+            "decision": "accept",
+            "source": "config",
+            "reason_type": "rule"
+          }
+        }
+      ]
+    },
+    {
+      "type": "assistant",
+      "message": {
+        "model": "claude-haiku-5-5",
+        "id": "msg_011CgQoNiLYbhJhtcRLRsj74",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Bu çalışmanın gücü yaklaşık **%82** (0,8195).\n\nHesabın dayandığı varsayımlar:\n- **Tasarım:** Aynı 35 hastada tedavi öncesi ve sonrası ölçüm yapıldığı için eşleştirilmiş örneklem t testi kullanıldı.\n- **Etki büyüklüğü:** dz = 0,5 (farkların ortalamasının farkların standart sapmasına oranı).\n- **Anlamlılık düzeyi:** α = 0,05.\n- **Test yönü:** İki yönlü. Yani tedavinin LDL'yi hem düşürüp hem artırabileceği durumu test ediyorsunuz.\n\nHesaplanan ara değerler: serbestlik derecesi (df) = 34, kritik t = 2,0322, merkezi olmayanlık parametresi (ncp) = 2,958.\n\nYorum: Bu tasarımda, gerçek etki dz = 0,5 ise farkın istatistiksel olarak anlamlı çıkma olasılığı yaklaşık %82'dir. Geleneksel %80 güç eşiğinin üzerindesiniz.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```"
+          }
+        ],
+        "container": null,
+        "stop_reason": null,
+        "stop_sequence": null,
+        "stop_details": null,
+        "usage": {
+          "input_tokens": 2,
+          "cache_creation_input_tokens": 315,
+          "cache_read_input_tokens": 3701,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 315
+          },
+          "output_tokens": 9,
+          "service_tier": "standard",
+          "inference_geo": "global",
+          "speed": "standard"
+        },
+        "input_transformations": [],
+        "diagnostics": null,
+        "context_management": null
+      },
+      "parent_tool_use_id": null,
+      "session_id": "7cf54b15-dbd9-401d-8fe0-97a24e7a2ea1",
+      "uuid": "41e4785f-f0b2-4c38-ad09-f322baa81cbd",
+      "timestamp": "2026-10-26T11:51:45.098Z",
+      "request_id": "req_011CgQoNi3w6Soe68Km9Q7yg"
+    },
+    {
+      "type": "system",
+      "subtype": "post_turn_summary",
+      "summarizes_uuid": "41e4785f-f0b2-4c38-ad09-f322baa81cbd",
+      "status_category": "completed",
+      "status_detail": "35 hasta eşleştirilmiş t testi gücü ≈ %82",
+      "needs_action": "",
+      "uuid": "72d0c9ab-dc14-41ca-88d8-242c5e3c4ebb",
+      "session_id": "7cf54b15-dbd9-401d-8fe0-97a24e7a2ea1"
+    },
+    {
+      "duration_api_ms": 6801,
+      "stop_reason": "end_turn",
+      "session_id": "7cf54b15-dbd9-401d-8fe0-97a24e7a2ea1",
+      "total_cost_usd": 0.0006726400000000001,
+      "usage": {
+        "input_tokens": 4,
+        "cache_creation_input_tokens": 1353,
+        "cache_read_input_tokens": 6364,
+        "output_tokens": 676,
+        "output_tokens_details": {
+          "thinking_tokens": 70
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 1353,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 448,
+            "cache_read_input_tokens": 3701,
+            "cache_creation_input_tokens": 315,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 315
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "claude-haiku-5-5": {
+          "inputTokens": 4,
+          "outputTokens": 676,
+          "cacheReadInputTokens": 6364,
+          "cacheCreationInputTokens": 1353,
+          "webSearchRequests": 0,
+          "costUSD": 0.0006726400000000001,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 70,
+          "canonicalModel": "claude-haiku-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 2,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "Bu çalışmanın gücü yaklaşık **%82** (0,8195).\n\nHesabın dayandığı varsayımlar:\n- **Tasarım:** Aynı 35 hastada tedavi öncesi ve sonrası ölçüm yapıldığı için eşleştirilmiş örneklem t testi kullanıldı.\n- **Etki büyüklüğü:** dz = 0,5 (farkların ortalamasının farkların standart sapmasına oranı).\n- **Anlamlılık düzeyi:** α = 0,05.\n- **Test yönü:** İki yönlü. Yani tedavinin LDL'yi hem düşürüp hem artırabileceği durumu test ediyorsunuz.\n\nHesaplanan ara değerler: serbestlik derecesi (df) = 34, kritik t = 2,0322, merkezi olmayanlık parametresi (ncp) = 2,958.\n\nYorum: Bu tasarımda, gerçek etki dz = 0,5 ise farkın istatistiksel olarak anlamlı çıkma olasılığı yaklaşık %82'dir. Geleneksel %80 güç eşiğinin üzerindesiniz.\n\n```json\n{\"etiket\": \"t-paired\", \"guven\": \"yuksek\", \"arac_cagrildi\": true}\n```",
+      "ttft_ms": 2815,
+      "type": "result",
+      "duration_ms": 10975,
+      "uuid": "d8d9b415-fa18-4412-a8e5-180efff26230",
+      "ttft_stream_ms": 2416,
+      "time_to_request_ms": 142,
+      "first_content_frame_ms": 2416,
+      "queued_turn_count": 0,
+      "result_index": 0,
+      "model_usage_since_last_result": {
+        "claude-haiku-5-5": {
+          "inputTokens": 4,
+          "outputTokens": 676,
+          "cacheReadInputTokens": 6364,
+          "cacheCreationInputTokens": 1353,
+          "webSearchRequests": 0,
+          "costUSD": 0.0006726400000000001,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 70,
+          "canonicalModel": "claude-haiku-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      }
+    }
+  ]
+}

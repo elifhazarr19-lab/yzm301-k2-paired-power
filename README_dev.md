@@ -33,8 +33,12 @@ pytest
 ## Yapı
 
 - `src/pairedpower/engine.py` — saf hesap motoru (G/Ç yok). Doğrulama, N araması, güç.
-  CLI'dan bağımsız çağrılabilir; ileride bir MCP sunucusu eklenirse aynı modülü kullanabilir (MCP bu teslimde yok).
+  `solve` (mod seçimi + zorunlu alanlar), `to_dict` (çıktı sözlüğü, yuvarlama), `calculate` (girdi → sonuç ya da `{"error"}`):
+  CLI ve MCP bu ortak yolu kullanır.
 - `src/pairedpower/cli.py` — argüman okuma, eş ad çözümü, JSON çıktısı.
+- `src/pairedpower/mcp_server.py` — FastMCP stdio sunucusu; tek araç `t_paired_power` → `engine.calculate`.
+- `agent/` — `claude -p` ile çalışan Türkçe ajan ve değerlendirme betikleri.
+- `tests/test_mcp_parity.py` — CLI alt süreci ile gerçek MCP protokolü üzerinden aracın aynı JSON'u verdiğini doğrular.
 - `tests/test_spec.py` — SPEC §7 senaryoları.
 
 ## Sayısal notlar

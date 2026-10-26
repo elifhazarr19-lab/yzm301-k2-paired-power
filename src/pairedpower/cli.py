@@ -8,8 +8,6 @@ import sys
 from pairedpower import engine
 
 TEST_NAME = "t-paired"
-MODES = ("a-priori", "post-hoc")
-DECIMALS = 4
 EXIT_OK = 0
 EXIT_ERROR = 2
 
@@ -48,7 +46,7 @@ def _precision(text):
 def _build_parser():
     parser = _Parser(prog="gpower-clone", allow_abbrev=False)
     parser.add_argument("--test", required=True, choices=[TEST_NAME])
-    parser.add_argument("--mode", required=True, choices=MODES)
+    parser.add_argument("--mode", required=True, choices=engine.MODES)
     parser.add_argument("--tails", required=True, type=_number)
     parser.add_argument("--dz", type=_number)
     parser.add_argument("--d", dest="d", type=_number)
@@ -58,7 +56,7 @@ def _build_parser():
     parser.add_argument("--n-total", dest="n_total", type=_number)
     parser.add_argument("--n_total", dest="n_total_underscore", type=_number)
     # Gizli: diferansiyel test için ondalık basamak sayısı; varsayılan çıktıyı değiştirmez.
-    parser.add_argument("--precision", type=_precision, default=DECIMALS, help=argparse.SUPPRESS)
+    parser.add_argument("--precision", type=_precision, default=engine.DECIMALS, help=argparse.SUPPRESS)
     return parser
 
 
@@ -74,46 +72,18 @@ def _pick(values, label):
     return next(iter(given.values()))
 
 
-def _require(value, flag):
-    if value is None:
-        raise ArgError(f"the following arguments are required: {flag}")
-    return value
-
-
 def _run(args):
-    # SPEC §3.1 (3): tails kontrolü bayrak okumasının parçası; §4'ten önce yapılır.
+    # SPEC §3.1 (3): tails kontrolü bayrak okumasının parçası; eş ad çözümünden önce yapılır.
     engine.check_tails(args.tails)
-    alpha = args.alpha
-    # SPEC §3.1 (7): --dz (veya --d) her iki modda zorunlu.
-    dz = _require(_pick({"--dz": args.dz, "--d": args.d}, "--dz/--d"), "--dz")
-    if args.mode == "a-priori":
-        # Moda ait olmayan bayrak (--n) yok sayılır (SPEC §3).
-        power = _require(args.power, "--power")
-        return engine.a_priori(args.tails, dz, alpha, power)
-    # Moda ait olmayan bayrak (--power) yok sayılır (SPEC §3).
-    n = _require(
-        _pick(
+    # Eş adlar burada çözülür; doğrulama, mod seçimi ve hesap motordaki tek yoldan geçer.
+    dz = _pick({"--dz": args.dz, "--d": args.d}, "--dz/--d")
+    n = None
+    if args.mode == "post-hoc":
+        n = _pick(
             {"--n": args.n, "--n-total": args.n_total, "--n_total": args.n_total_underscore},
             "--n/--n-total/--n_total",
-        ),
-        "--n",
-    )
-    return engine.post_hoc(args.tails, dz, alpha, n)
-
-
-def _round(value, decimals):
-    # + 0.0, -0.0 değerinin JSON'da "-0.0" olarak çıkmasını önler.
-    return round(value, decimals) + 0.0
-
-
-def _format(result, decimals):
-    return {
-        "n_total": result.n_total,
-        "actual_power": _round(result.actual_power, decimals),
-        "critical": _round(result.critical, decimals),
-        "df": result.df,
-        "ncp": _round(result.ncp, decimals),
-    }
+        )
+    return engine.solve(args.mode, args.tails, dz, args.alpha, power=args.power, n=n)
 
 
 def main(argv=None):
@@ -124,7 +94,7 @@ def main(argv=None):
         # SPEC §3.1 (1): hata JSON'u stdout'a yazılır; stderr boş kalır.
         print(json.dumps({"error": str(exc)}))
         return EXIT_ERROR
-    print(json.dumps(_format(result, args.precision), separators=(",", ":")))
+    print(json.dumps(engine.to_dict(result, args.precision), separators=(",", ":")))
     return EXIT_OK
 
 
