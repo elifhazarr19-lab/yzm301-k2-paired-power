@@ -23,8 +23,9 @@ Yalnızca G*Power arayüzünde elle girilip ekrandan okunan değerler. Kütüpha
 | `S01_rea_kontrol.png` | "REA araçları ve Ghidra sağlayıcısı bu oturumda kullanılabilir mi?" sorusunun cevabı |
 | `S01a_kurulum.png` | Node.js / Java sürümleri |
 | `S02_rea_maliyet.png`, `S03_yazim_maliyet.png` | Claude Code oturumlarının ölçülmüş maliyeti |
-| `S04_testler.png` | Temiz kurulumla `pytest -q` → 1089 passed |
+| `S04_testler.png` | Temiz kurulumla `pytest -q` → 1089 passed (Oturum 2 sonundaki durum; MCP ve kılavuz testleriyle güncel toplam 1190) |
 
 ## Diğer dosyalar
+- `manual_vectors.csv` — G*Power 3.1 kılavuzunun (June 1, 2023, resmi sayfadan) §19.3 matched-pairs örnekleri: 2 post-hoc vektör, kılavuzun verdiği 6 ondalıklı değerlerle. Karşılaştırma: `tests/test_manual.py`.
 - `gpower_sha256.txt` — `GPowerNT.exe` SHA-256 (PowerShell çıktısı, UTF-16).
 - `library_vectors.csv` — statsmodels ile üretilmiş 1000 vektör (500 a-priori + 500 post-hoc). **G*Power değildir.** Üretim: `tests/gen_library_vectors.py`; karşılaştırma: `tests/test_library.py`, `tests/UYUM_RAPORU.md`.

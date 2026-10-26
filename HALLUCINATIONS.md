@@ -2,7 +2,7 @@
 
 > Ödev şartı: ajanın yanlış çıkardığı **en az 2 şey**, nasıl fark edildiği, hangi testin yakaladığı.
 > Durum (son sürüm, 2026-10-19): kanıtlanmış yanlış varsayım / çelişki sayısı **7** (H-01 güncelleme 2, H-07, H-08, H-09, H-10, H-11, H-12). **Açık madde kalmadı.** Bölümler:
-> - **KARAR / BİLGİ:** kanıtla kapatılamayan, gerekçeli kararla kapatılan maddeler (H-01, H-02, H-03, H-06).
+> - **KARAR / BİLGİ:** kanıtla kapatılamayan, gerekçeli kararla kapatılan maddeler (H-01, H-02, H-06) ve sonradan kaynakla kapatılan H-03.
 > - **DOĞRULANDI:** ajanın varsayımı G*Power ve REA ile doğru çıktı (H-04, H-05).
 > - **ÇÜRÜTÜLDÜ:** ajanın varsayımı yanlış çıktı ya da belgede çelişki bulundu (H-07 … H-12).
 
@@ -41,8 +41,9 @@
 ### H-03 Kılavuz bölümü okunamadı
 - **Tür:** Eksik kanıt
 - **Durum bilgisi:** G*Power 3.1 kılavuzunun matched-pairs bölümü (TOC'a göre Bölüm 18) bu oturumda erişilen kopyada yer almıyordu. [DOK] satırları ikincil kaynağa (UCLA) dayanıyor.
-- **Nasıl kapandı:** Kılavuzun anlatacağı hesap modeli birincil kanıtla gösterildi: 30/30 G*Power vektörü ve REA bulguları (R-08 df, R-09 δ, R-10 güç, R-12 N araması). Kılavuz bölümüne bu yüzden ihtiyaç kalmadı.
-- **Durum:** KARAR (kılavuz bölümü okunmadı; birincil kanıtla ikame edildi)
+- **Nasıl kapandı:** Resmi sayfadaki güncel kılavuz (June 1, 2023) indirildi; matched-pairs bölümü orada Bölüm 19 (s. 48–49). Bölümdeki iki örnek `oracle/manual_vectors.csv`'ye eklendi ve `tests/test_manual.py` ile 2/2 eşleşti (LEDGER D-07). Hesap modeli ayrıca 30/30 G*Power vektörü ve REA bulgularıyla (R-08, R-09, R-10, R-12) gösterilmişti.
+- **Ders:** Ajanın erişebildiği kopya eski bir sürümdü; "bölüm yok" sonucu kaynağın kendisinden değil, kopyadan geliyordu. Resmi kaynağa dönmek sorunu çözdü.
+- **Durum:** KAPANDI
 
 ### H-06 Belgeler arası küçük çelişkiler
 - **Tür:** Çelişki (bilgi için)

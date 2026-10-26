@@ -19,11 +19,12 @@ Bu proje G*Power'ın yerine geçmez ve G*Power adını taşımaz. G*Power'ın ma
 | **N ve df tam eşleşme** | **30/30** | `tests/test_differential.py` |
 | Güç, kritik t, δ (G*Power'ın 7 ondalığı) | 90/90 | aynı |
 | Hata vektörleri (G*Power hata verdi → biz de hata) | 8/8 | aynı |
+| G*Power kılavuz örnekleri (§19.3, matched pairs) | 2/2 (kılavuzun 6 ondalığı) | `oracle/manual_vectors.csv`, `tests/test_manual.py` |
 | Kütüphane vektörleri (statsmodels) | 1000 vektör; farkların hepsi açıklandı | `oracle/library_vectors.csv`, `tests/UYUM_RAPORU.md` |
 | CLI = MCP eşitliği (gerçek MCP protokolü) | 98/98 girdi birebir aynı JSON (38 G*Power + 60 kütüphane) | `tests/test_mcp_parity.py` |
 | Ajan değerlendirmesi (10 Türkçe soru) | haiku ve opus ile ayrı ayrı: etiket 10/10, parametre 7/7, N/güç = G*Power 7/7 | `agent/EVAL_RAPORU.md`, `agent/EVAL_RAPORU_opus.md` |
 | Token karşılaştırması (aynı model opus, aynı birim: bağlama eklenen token, Q01–Q09) | MCP 9,124 · GUI 19,660 (GUI 2.2 kat; kurulum hariç 1.5 kat); model çağrısı 16 / 31; süre 187 / 254 sn | `agent/TOKEN_KARSILASTIRMA.md` |
-| Toplam test | 1188 geçti (1089 + 99 MCP eşitlik testi) | `pytest -q` |
+| Toplam test | 1190 geçti (1089 + 99 MCP eşitlik testi + 2 kılavuz örneği) | `pytest -q` |
 | [REA] bulguları | 16 adresli REA bulgusu; 14'ü GUI vektörleriyle çapraz doğrulandı, her satırın doğrulama durumu `LEDGER.md` [REA] tablosunda | `LEDGER.md`, `rea_notes/REA_BULGULAR.md` |
 | Kanıtlanmış ajan hataları | 7 madde | `HALLUCINATIONS.md` |
 

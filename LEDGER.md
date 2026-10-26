@@ -160,7 +160,7 @@ Hepsi "Input error" başlıklı bir pencere; çıktı alanları "?" kalıyor. Me
 ### D-04 [DOK] A priori'de N yukarı yuvarlanır (genel kural)
 - **Kaynak:** G*Power 3.1 kılavuzu (1 Mart 2017), Bölüm 1.2.3 — oir.umh.es kopyası üzerinden okundu. Kesirli örneklem büyüklükleri her zaman yukarı yuvarlanır; bu yüzden "actual power" çoğu zaman istenen gücün biraz üstündedir.
 - **Sınırlama:** Genel kural; t-paired'e özgü uygulaması [REA] ile gösterilmeli. Ödev belgesi de "kütüphaneler N'yi kesirli verir, G*Power yukarı yuvarlar" diyor.
-- **Not:** Kılavuzun matched-pairs bölümü (TOC: Bölüm 18, s. 45) bu oturumda okunamadı; öğrenci resmi kılavuzdan okumalı. → H-03
+- **Not:** Kılavuzun matched-pairs bölümü (TOC: Bölüm 18, s. 45) bu oturumda okunamadı; öğrenci resmi kılavuzdan okumalı. → H-03 *(Kapandı: resmi sayfadaki 2023 kılavuzunun Bölüm 19'u okundu → D-07.)*
 
 ### D-05 [DOK] Yayımlanmış G*Power çıktıları (ikincil kaynak)
 - **Kaynak:** UCLA OARC, "Power analysis for paired sample t-test" (G*Power ekran görüntülerine dayalı ders sayfası). *Kılavuz değil; G*Power arayüzünde yeniden üretilmeden kâhin sayılmaz.*
@@ -181,6 +181,13 @@ Hepsi "Input error" başlıklı bir pencere; çıktı alanları "?" kalıyor. Me
 - **Sonuç:** Elif Hazar K2'yi bireysel yapıyor; hoca onayladı (2026-10-19, öğrencinin bildirimi). İki ayrı oturum kuralı iki ayrı sohbetle karşılanacak.
 - **2026-10-19:** Öğrencinin bildirdiğine göre hoca bireysel çalışmayı kabul etti.
 - **Not:** Ders kaydı CONTRACT.md değildir; CONTRACT.md hiç yok (H-01).
+
+### D-07 [DOK] Kılavuzun matched-pairs bölümü (birincil kaynak)
+- **Kaynak:** G*Power 3.1 kılavuzu (June 1, 2023), resmi sayfadan (psychologie.hhu.de) indirildi; Bölüm 19 "t test: Means - difference between two dependent means (matched pairs)", s. 48–49. (D-04'teki 2017 kopyasında bu bölüm Bölüm 18 olarak geçiyordu ve okunamamıştı → H-03.)
+- **İçerik:** dz = |µx − µy| / √(σx² + σy² − 2ρxy σxσy); H0 dağılımı t(N−1, 0), H1 dağılımı t(N−1, δ), δ = dz√N. Örnek (§19.3, Cohen 1969 s. 48): post hoc, iki kuyruk, dz=0.421637, α=0.05, N=50 → δ 2.981424, kritik t 2.009575, df 49, güç 0.832114; aynı örnek dz=0.2828427 ile güç 0.500352.
+- **Kılavuzda OLMAYANLAR:** N araması (başlangıç, yöntem, durma koşulu), kesirli N'nin yuvarlanması, girdi aralıkları ve hata mesajları kılavuzda yok → bunlar [REA] satırlarıyla gösterildi (R-02…R-07, R-12, R-15).
+- **Karşılaştırma:** İki örnek `oracle/manual_vectors.csv`'ye eklendi; `tests/test_manual.py` 2/2 (kılavuzun 6 ondalığına kadar aynı).
+- **Durum:** KAPANDI (A-01 ve D-05 birincil kaynakla da desteklendi)
 
 ---
 

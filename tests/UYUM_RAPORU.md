@@ -22,7 +22,12 @@ python tests/gen_library_vectors.py
 | `tests/test_differential.py` | 38 | `oracle/gpower_vectors.csv` (30 hesaplı + 8 hata) |
 | `tests/test_library.py` | 1001 | `oracle/library_vectors.csv` (1000 satır) |
 | `tests/test_mcp_parity.py` | 99 | CLI = MCP: 38 G*Power + 60 kütüphane satırı (+1 sayım testi) |
-| **Toplam** | **1188** | Hepsi geçiyor |
+| `tests/test_manual.py` | 2 | `oracle/manual_vectors.csv` — G*Power 3.1 kılavuzu §19.3 (s. 48) matched-pairs örnekleri |
+| **Toplam** | **1190** | Hepsi geçiyor |
+
+**Kılavuz örnekleri:** Kılavuz değerleri 6 ondalıkla veriyor; CLI çıktısı 6 ondalığa yuvarlanınca ikisi de birebir aynı.
+M01 (post hoc, iki kuyruk, dz=0.421637, α=0.05, N=50): güç 0.832114, kritik t 2.009575, df 49, δ 2.981424 → bizim 0.8321145, 2.0095752, 49, 2.9814238.
+M02 (aynı, dz=0.2828427): güç 0.500352 → bizim 0.5003516.
 
 ## 0. SPEC v1.1 (§3.1) uyumu
 

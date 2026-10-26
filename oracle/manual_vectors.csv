@@ -1,0 +1,3 @@
+id,source,mode,tails,dz,alpha,n_input,m_n_total,m_actual_power,m_critical_t,m_df,m_ncp,note
+M01,"G*Power 3.1 manual (June 1, 2023), §19.3, p. 48",post-hoc,2,0.421637,0.05,50,50,0.832114,2.009575,49,2.981424,"Cohen (1969, p. 48) örneği; dz rho=0.55 ile hesaplanmış"
+M02,"G*Power 3.1 manual (June 1, 2023), §19.3, p. 48",post-hoc,2,0.2828427,0.05,50,50,0.500352,,,,"Aynı örnek, korelasyon 0 (dz=0.2828427); kılavuz yalnızca gücü veriyor"
