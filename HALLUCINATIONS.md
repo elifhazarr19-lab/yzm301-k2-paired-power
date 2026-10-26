@@ -1,7 +1,7 @@
 # HALLUCINATIONS.md — Halüsinasyon ve Belirsizlik Günlüğü (K2 · t-paired)
 
 > Ödev şartı: ajanın yanlış çıkardığı **en az 2 şey**, nasıl fark edildiği, hangi testin yakaladığı.
-> Durum (son sürüm, 2026-10-19): kanıtlanmış yanlış varsayım / çelişki sayısı **7** (H-01 güncelleme 2, H-07, H-08, H-09, H-10, H-11, H-12). **Açık madde kalmadı.** Bölümler:
+> Durum (son sürüm, 2026-10-26): kanıtlanmış yanlış varsayım / çelişki sayısı **7** (H-01 güncelleme 2, H-07, H-08, H-09, H-10, H-11, H-12). **Açık madde kalmadı.** Bölümler:
 > - **KARAR / BİLGİ:** kanıtla kapatılamayan, gerekçeli kararla kapatılan maddeler (H-01, H-02, H-06) ve sonradan kaynakla kapatılan H-03.
 > - **DOĞRULANDI:** ajanın varsayımı G*Power ve REA ile doğru çıktı (H-04, H-05).
 > - **ÇÜRÜTÜLDÜ:** ajanın varsayımı yanlış çıktı ya da belgede çelişki bulundu (H-07 … H-12).

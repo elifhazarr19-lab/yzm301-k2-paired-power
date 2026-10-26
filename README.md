@@ -127,6 +127,8 @@ aracına izin verilir (`--allowedTools`), yerleşik araçlar kapalıdır (`--too
 (önce test ailesi etiketi → parametreler → araç çağrısı → sade Türkçe cevap; sayı asla ajan tarafından üretilmez; etiket
 `t-paired` değilse ya da güven düşükse araç çağrılmaz; `ambiguous` ise araştırmacıya soru sorulur).
 
+**Test ailesi seçimi (ödevdeki isteğe bağlı Jev maddesi):** Jev kullanılmadı. Ödevin önerdiği yedek yol izlendi: test ailesini, ödevdeki etiket setine (`t2-indep`, `t-paired`, `anova-oneway`, `chi2-contingency`, `multireg-r2`, `ambiguous`, `unsupported`) kısıtlanmış bir LLM (Claude) seçiyor. Güven sayısal değil, üç düzeyli (yüksek/orta/düşük); düşükse karar araştırmacıya bırakılıyor. İsteğe bağlı kalibrasyon ölçümü ve İngilizce karşılaştırması yapılmadı. Etiket hiçbir sayı üretmez; N ve güç her zaman motordan gelir.
+
 ```
 python agent/agent.py "Aynı hastalarda önce/sonra tansiyon ölçeceğim; dz=0,5, alfa 0,05, iki yönlü, %80 güç. Kaç hasta?"
 python agent/run_eval.py             (10 soruluk seti çalıştırır, agent/EVAL_RAPORU.md üretir)
@@ -222,7 +224,8 @@ Not: claude.ai bulut sohbetlerinde REA kullanılamadı; yerel Claude Code gerekt
 1. **İnceleme (Oturum 1):** belgeler okundu; G*Power arayüzünden 38 vektör ekran görüntüsüyle toplandı; REA + Ghidra ile hesap motoru incelendi (`prompts/oturum1_inceleme.md`, `prompts/oturum1_rea_gorevi.md`). Çıktılar: `LEDGER.md`, `SPEC.md`, `HALLUCINATIONS.md`, `oracle/`, `rea_notes/`.
 2. **Yazım (Oturum 2):** ayrı bir klasörde (`C:\paired-power`), yeni bir Claude Code oturumu yalnızca `SPEC.md` ile başladı (`prompts/oturum2_yazim.md`). G*Power vektörleri (yalnızca girdi/çıktı değerleri) kod ve SPEC testleri bittikten sonra diferansiyel test için verildi (`prompts/oturum2_diferansiyel.md`). Yazım oturumu LEDGER'ı, REA notlarını ve decompile çıktısını görmedi.
 3. **Bonus katmanlar (Oturum 3):** yeni bir Claude Code oturumu (`prompts/oturum3_mcp_ajan.md`) yalnızca SPEC, README'ler, `src/`, `tests/` ve oracle CSV'leriyle çalıştı; LEDGER, HALLUCINATIONS, `rea_notes/` ve Oturum 1 prompt'larını açmadı. MCP sunucusu, CLI = MCP testleri, ajan, değerlendirme ve GUI karşılaştırması bu oturumda yapıldı.
-4. Teslim edilen kodda decompile çıktısı yoktur. `rea_notes/REA_BULGULAR.md` yalnızca fonksiyon/dize adresleri ve kısa alıntılar içerir (ödevin izin verdiği biçimde).
+4. **Son kontrol (Oturum 1'in devamı, 2026-10-26):** inceleme oturumu belgelerdeki tutarsızlıkları düzeltti ve G*Power kılavuzunun matched-pairs örneklerini kâhine ekledi (`oracle/manual_vectors.csv`, `tests/test_manual.py`). Bu oturum `src/` altındaki koda dokunmadı; eklenen test yalnızca kılavuzda yayımlanmış girdi/çıktı değerlerini CLI ile karşılaştırır.
+5. Teslim edilen kodda decompile çıktısı yoktur. `rea_notes/REA_BULGULAR.md` yalnızca fonksiyon/dize adresleri ve kısa alıntılar içerir (ödevin izin verdiği biçimde).
 
 ## Belgeler
 
